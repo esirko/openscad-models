@@ -35,11 +35,11 @@ difference() {
 
 // attachment from vertical extension bar to nailbar
 translate([0, vsetback + (radius + setback - vsetback - 1)/2, 0]) 
-    cube([5, (radius + setback - vsetback) + eps,1], center=true);
+    cube([10, (radius + setback - vsetback) + eps, 6], center=true);
 
 // vertical extension bar
-translate([0, vsetback, -25-eps])
-cube([ 5, 1, 50 + 2*eps], center=true);
+translate([0, vsetback, -24.25-eps])
+cube([ 10, 2, 54.5 + 2*eps], center=true);
 
 // bottom loop
 translate([0, 0, -35]) {
@@ -65,5 +65,5 @@ cube([width, 1, thickness + eps], center=true);
 
 // bottom support
 translate([0, 3.5, -50])
-    cube([5, 20, 1], center=true);
+    cube([10, 20, 3], center=true);
 }

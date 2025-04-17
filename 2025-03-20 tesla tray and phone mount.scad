@@ -6,7 +6,7 @@ include <BOSL2/rounding.scad>
 
 // TODOs as of 2025-03-30
 // - Make the skate have a protrusion on the achilles heel to keep the trapezoid from moving back and forth.
-// - The phone mount should move closer, be tilted forward, and be tilted towards the center a bit.
+// - The phone mount should move closer, be tilted forward. It _might_ be able to be moved up a bit, but ideally it could be adjustable!
 // - The phone mount to tray adapter could be a bit more user friendly and use less filament. Consider a vertical sliding connector
 // - My car is currently using an outdated version of the right trapzeoid part and the right tray part, where the difference is
 //   that the joiners are the opposite way.
