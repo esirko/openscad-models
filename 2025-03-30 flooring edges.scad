@@ -2,38 +2,33 @@ include <BOSL2/std.scad>
 include <BOSL2/joiners.scad>
 include <BOSL2/screws.scad>
 
-// trap door edging pieces
-
+// Globals
 e = 0.01;
 fn = 36;
-sd = 20;
+sd = 20; // Distance from screwhole to edge of piece
 
 // Outer edging parameters
-    t1 = 4;
-    t3 = 1;
-    t4 = 1;
-    w1 = 20;
-    l1 = 150; //150;
-    l2 = 150; //150;
-    tlvp = 6; // thickness of LVP
-    d1 = 19;
-    d2 = 20;
-    
-    ch1 = 2.5;
-    
-    t2_1 = 6;
-    w2_1 = 19;
-    t2_2 = 15;
-    w2_2 = 42;
-            
-    notch_w = 45;
-    notch_d = 20;
-    notch_x = 47;
+t1 = 4;
+t3 = 1;
+t4 = 1;
+w1 = 20;
+tlvp = 6 + 1.5; // thickness of LVP + underlayment
+d1 = 19;
+d2 = 20;
+ch1 = 2.5;
+
+t2_1 = 6;
+w2_1 = 19;
+t2_2 = 15;
+w2_2 = 42;
+        
+notch_w = 45;
+notch_d = 20;
+notch_x = 47;
     
 // Inner edging parameters
 iw1 = w1; // unlikely to be different from w1
 it1 = t1-1;
-itlvp = tlvp;
 id1 = 18;
 it2 = 3;
 it3 = 1;
@@ -43,44 +38,94 @@ ich2 = 0.75;
 
 // Front edging parameters
 fw1 = 40; // almost certainly bigger than w1
-ftlvp = tlvp;
 ft1 = t1; // consider bigger than t1
 fch1 = ch1;
 ft2 = 3;
 fd1 = 18;
 fch2 = 1.5;
 
-
-module front_edging(fl1) {
-    up(ftlvp) left(ft2)
+// Front of entire platform (not trap door)
+module front_edging(length, screw_positions) {
+    up(tlvp) left(ft2)
     difference() {
-        cuboid([fw1, fl1, ft1], chamfer=fch1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
-        back(e) rounding_edge_mask(l=fl1+2*e, r=ft1, anchor=TOP+BACK, $fn=fn, orient=BACK);
+        cuboid([fw1, length, ft1], chamfer=fch1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
+        back(e) rounding_edge_mask(l=length+2*e, r=ft1, anchor=TOP+BACK, $fn=fn, orient=BACK);
     }
     
-    cuboid([ft2, fl1, ftlvp], anchor=RIGHT+BOTTOM+BACK);
+    cuboid([ft2, length, tlvp], anchor=RIGHT+BOTTOM+BACK);
     diff()
-        cuboid([ft2, fl1, fd1], anchor=RIGHT+TOP+BACK, chamfer=fch2, edges=BOTTOM+LEFT)
+        cuboid([ft2, length, fd1], anchor=RIGHT+TOP+BACK, chamfer=fch2, edges=BOTTOM+LEFT)
             attach(LEFT) {
-                left(fl1/2-sd) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
-                right(fl1/2-sd) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+                for (s = screw_positions) {
+                    right(s) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+                }
             }
 }
 
-module inside_edging(il1) {
-        up(itlvp) left(it2) cuboid([iw1, il1, it1], chamfer=ich1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
-        cuboid([it2, il1, itlvp], anchor=RIGHT+BOTTOM+BACK);
+// Trap door: outside edging, i.e. frame of the trap door
+module outside_edging(t2, w2, l1, screw_positions) {
+    union() {
+        up(tlvp) right(t2) cuboid([w1, l1, t1], chamfer=ch1, edges=TOP+LEFT, anchor=RIGHT+BOTTOM+BACK);
+        cuboid([t2, l1, tlvp], anchor=LEFT+BOTTOM+BACK);
         diff()
-            cuboid([it2, il1, id1], anchor=RIGHT+TOP+BACK)
-                attach(LEFT) {
-                    left(il1/2-sd) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
-                    right(il1/2-sd) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
-                }
-        left(it2) down(id1) cuboid([iw2, il1, it3], anchor=LEFT+TOP+BACK, chamfer=ich2, edges=BOTTOM+RIGHT);
+            cuboid([t2, l1, d1], anchor=LEFT+TOP+BACK)
+                attach(RIGHT)
+                    for (s = screw_positions) {
+                        right(s) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+                    }
+        down(d1) cuboid([w2, l1, t3], anchor=LEFT+BOTTOM+BACK);
+        right(w2) down(d1-t3) cuboid([t4, l1, d2+t3], anchor=LEFT+TOP+BACK);
+    }
 }
-    
+
+// Trap door: outside corner, i.e. frame of the trap door
+module outside_corner(l1, l2) {
+    difference () {
+        union() {
+            outside_edging(t2_1, w2_1, l1, [-l1/2+sd, l1/2-sd-t2_2+10]);
+            up(tlvp) right(t2_1) fwd(t2_2) cuboid([w1, w1, t1], chamfer=ch1, edges=TOP, anchor=RIGHT+BOTTOM+FRONT);
+            zrot(90) xflip()
+            outside_edging(t2_2, w2_2, l2, [-l2/2+sd]);
+            
+            fwd(w2_2+t4-e) down(d1-t3+e) right(notch_x-t4)
+            color("red")
+            cuboid([notch_w+2*t4, notch_d+t4, d2+t4], anchor=LEFT+TOP+FRONT);
+        }
+        
+        fwd(w2_2-e) left(2*e) down(d1+e) cuboid([w2_1+e, t4+2*e, 100], anchor=LEFT+TOP+BACK);
+        right(w2_1-e) back(2*e) down(d1+e) cuboid([t4+2*e, w2_2+e, 100], anchor=LEFT+TOP+BACK);
+        
+        fwd(w2_2+t4+e) down(d1-t3-e) right(notch_x)
+        color("red")
+        cuboid([notch_w, notch_d, d2], anchor=LEFT+TOP+FRONT);
+    }
+}
+
+
+// Trap door: inside edging, i.e., trap door itself
+module inside_edging(length, screw_positions) {
+    up(tlvp) left(it2) cuboid([iw1, length, it1], chamfer=ich1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
+    cuboid([it2, length, tlvp], anchor=RIGHT+BOTTOM+BACK);
+    diff()
+        cuboid([it2, length, id1], anchor=RIGHT+TOP+BACK)
+            attach(LEFT) {
+                for (s = screw_positions) {
+                    right(s) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+                }
+                
+            }
+    left(it2) down(id1) cuboid([iw2, length, it3], anchor=LEFT+TOP+BACK, chamfer=ich2, edges=BOTTOM+RIGHT);
+}
+
+module inside_corner(l1, l2) {
+    inside_edging(l1, [-l1/2+sd, l1/2-sd]);
+    down(id1+it3) cuboid([it2, it2, it1+tlvp+id1+it3], anchor=RIGHT+FRONT+BOTTOM);
+    zrot(90) xflip()
+    inside_edging(l2, [l2/2-sd]);
+}
+
+// Trap door: beam cover on trap door itself
 module beam_cover_endcap() {
-    
     t5 = 1;
     l3 = 50;
     w3 = 20;
@@ -103,150 +148,7 @@ module beam_cover_endcap() {
 }
 
 
-
-module outside_edging(t1, t2, t3, t4, w1, w2, l1, d1, d2, ch1) {
-    
-    union() {
-        up(tlvp) right(t2) cuboid([w1, l1, t1], chamfer=ch1, edges=TOP+LEFT, anchor=RIGHT+BOTTOM+BACK);
-        cuboid([t2, l1, tlvp], anchor=LEFT+BOTTOM+BACK);
-        diff()
-            cuboid([t2, l1, d1], anchor=LEFT+TOP+BACK)
-                attach(RIGHT)
-                    screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
-        down(d1) cuboid([w2, l1, t3], anchor=LEFT+BOTTOM+BACK);
-        right(w2) down(d1-t3) cuboid([t4, l1, d2+t3], anchor=LEFT+TOP+BACK);
-    }
-}
-
-module outside_corner() {
-
-    difference () {
-        union() {
-            outside_edging(t1, t2_1, t3, t4, w1, w2_1, l1, d1, d2, ch1);
-            up(tlvp) right(t2_1) fwd(t2_2) cuboid([w1, w1, t1], chamfer=ch1, edges=TOP, anchor=RIGHT+BOTTOM+FRONT);
-            zrot(90) xflip()
-            outside_edging(t1, t2_2, t3, t4, w1, w2_2, l2, d1, d2, ch1);
-            
-            fwd(w2_2+t4-e) down(d1-t3+e) right(notch_x-t4)
-            color("red")
-            cuboid([notch_w+2*t4, notch_d+t4, d2+t4], anchor=LEFT+TOP+FRONT);
-        }
-        
-        fwd(w2_2-e) left(2*e) down(d1+e) cuboid([w2_1+e, t4+2*e, 100], anchor=LEFT+TOP+BACK);
-        right(w2_1-e) back(2*e) down(d1+e) cuboid([t4+2*e, w2_2+e, 100], anchor=LEFT+TOP+BACK);
-        
-        fwd(w2_2+t4+e) down(d1-t3-e) right(notch_x)
-        color("red")
-        cuboid([notch_w, notch_d, d2], anchor=LEFT+TOP+FRONT);
-    }
-}
-
-module edging2(l) {
-
-    h = 19+5;
-    t1 = 2;
-    x1 = 15;
-    t2 = 3;
-    t3 = 3;
-    x2 = 20;
-    r1 = 1;
-    r2 = 3;
-    ch1 = 1.5;
-    ch2 = 2.5;
-
-    jh = 5;
-    jw1 = 10;
-    jt1 = 1;
-    jw2 = 11;
-    jw3 = 12;
-    jt3 = 1.5;
-    jr1 = t2/2;
-    jr3 = t2/2;
-    
-
-    front_half() partition(spread=20, cutsize=x1/2, cutpath="sawtooth")
-    fwd(l+x1/2)
-    back_half() partition(spread=20, cutsize=x1/2, cutpath="sawtooth")
-    union() {
-        fwd(l/2) cuboid([x1, 2*l, t1], chamfer=ch1, edges=TOP+RIGHT, anchor=FRONT+LEFT+TOP);
-        down(t1+h) fwd(l/2) cuboid([x2, 2*l, t3], chamfer=ch2, edges=BOTTOM+RIGHT, anchor=FRONT+LEFT+TOP);
-    }
-
-    down(t1) yrot(90)
-    front_half() partition(spread=20, cutsize=h/4, gap=13, cutpath="dovetail")
-    fwd(l+x1/2)
-    back_half() partition(spread=20, cutsize=h/4, gap=13, cutpath="dovetail")
-    fwd(l/2) cuboid([h, 2*l, t2], anchor=FRONT+LEFT+BOTTOM);
- 
-}
-
-
-module edging(l) {
-    h = 19+5;
-    t1 = 2;
-    x1 = 15;
-    t2 = 3;
-    t3 = 3;
-    x2 = 20;
-    r1 = 1;
-    r2 = 3;
-    ch1 = 1.5;
-    ch2 = 2.5;
-
-    jh = 5;
-    jw1 = 10;
-    jt1 = 1;
-    jw2 = 11;
-    jw3 = 12;
-    jt3 = 1.5;
-    jr1 = t2/2;
-    jr3 = t2/2;
-
-    difference() {
-        union() {
-            // top main piece
-            back(jh) cuboid([x1, l, t1], chamfer=ch1, edges=TOP+RIGHT, anchor=FRONT+LEFT+TOP);
-            // first try - 1mm protrusion addition
-            //right(jr1) down(t1-jt1) cuboid([jw1, jh, jt1], anchor=FRONT+LEFT+TOP);
-            // second try - triangular surface protrusion addition
-            back(jh) 
-            rounded_prism([[0, jh], [x1/2, 0], [x1, jh]], height=t1, anchor=FRONT+LEFT+TOP);
-        
-            diff("remove")
-            down(t1) cuboid([t2, l, h], anchor=FRONT+LEFT+TOP) {
-                attach(BACK) dovetail("male", slide=t2, width=jw2, height=jh, spin=90);
-                tag("remove") attach(FRONT) dovetail("female", slide=t2, width=jw2, height=jh, spin=90);
-            }
-            
-            back(jh) down(t1+h) cuboid([x2, l, t3], chamfer=ch2, edges=BOTTOM+RIGHT, anchor=FRONT+LEFT+TOP);
-            // first try
-            //down(h+t1) right(jr3) cuboid([jw3, jh, jt3], anchor=FRONT+LEFT+TOP);
-            // second try
-            // ...
-        }
-        
-        // first try - 1mm protrusion subtraction
-        //down(e) back(e) back(l) right(jr1) down(t1-jt1) cuboid([jw1, jh, jt1], anchor=FRONT+LEFT+TOP);
-        
-        // second try - triangular surface protrusion addition
-        back(l+jh) up(e) rounded_prism([[0, jh-e], [x1/2, 0], [x1, jh+e]], height=t1+2*e, anchor=FRONT+LEFT+TOP);
-
-        // first try
-        //up(e) back(e) back(l) down(h+t1) right(jr3) cuboid([jw3, jh, jt3], anchor=FRONT+LEFT+TOP);
-        // second try
-        // ...
-
-        fwd(e) yrot(90) xrot(90) rounding_edge_mask(l=l+jh+2*e, r=r1, excess=1, $fn=fn, anchor=TOP);
-        fwd(e) down(t1+h+t3) xrot(90) rounding_edge_mask(l=l+jh+2*e, r=r2, excess=1, $fn=fn, anchor=TOP);
-        
-    }
-
-    
-    // TODO: there will be varying degrees of protrusion of the LVP and the subfloor, so we want a "buffer" to butt up against them, and have that buffer be variable and specifyable.
-    // TODO: need corner pieces
-}
-
-// This was an attempt to create a very thin but as large as possible sheet to act as a covering for ugly OSB. I eventually decided not to use this method but to use Cricut vinyl instead.
+// Create a very thin but as large as possible sheet to act as a covering for ugly OSB. I eventually decided not to use this method but to use Cricut vinyl instead.
 module paneling(w, h, j1, j2) {
     t = 0.4;
     maxh = 190;
@@ -267,25 +169,24 @@ module paneling(w, h, j1, j2) {
 // --- invocations
 // ------------------------------------------------------
 
+l0 = 180;
+
+outside_corner(150, 150);
+
+fwd(160) outside_edging(t2_1, w2_1, l0, [-l0/2+sd, l0/2-sd]);
+
+right(160) zrot(90) xflip()
+outside_edging(t2_2, w2_2, l0, [-l0/2+sd, l0/2-sd]);
+
+right(120) fwd(120)
+inside_edging(l0, [-l0/2+sd, l0/2-sd]);
+
+right(60) fwd(60)
+inside_corner(l0, l0);
 
 
-//outside_corner();
-
-//l_80 = 175;
-//fwd(160) outside_edging(t1, t2_1, t3, t4, w1, w2_1, l_80, d1, d2, ch1);
-
-//right(160) zrot(90) xflip()
-//outside_edging(t1, t2_2, t3, t4, w1, w2_2, l_80, d1, d2, ch1);
-
-right(80) fwd(80)
-inside_edging(175);
-
-right(120) fwd(80)
-inside_edging(175);
-
-//front_edging(175);
+//front_edging(175, [-175/2+sd, 175/2-sd]);
 
 //beam_cover_endcap();
-
 
 
