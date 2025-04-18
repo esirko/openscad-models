@@ -6,27 +6,78 @@ include <BOSL2/screws.scad>
 
 e = 0.01;
 fn = 36;
+sd = 20;
 
-    t1 = 3;
+// Outer edging parameters
+    t1 = 4;
     t3 = 1;
     t4 = 1;
     w1 = 20;
-    l1 = 80; //150;
-    l2 = 100; //150;
+    l1 = 150; //150;
+    l2 = 150; //150;
     tlvp = 6; // thickness of LVP
     d1 = 19;
     d2 = 20;
     
-    ch1 = 1.5;
+    ch1 = 2.5;
     
-    t2_1 = 5;
+    t2_1 = 6;
     w2_1 = 19;
-    t2_2 = 14;
+    t2_2 = 15;
     w2_2 = 42;
             
     notch_w = 45;
     notch_d = 20;
     notch_x = 47;
+    
+// Inner edging parameters
+iw1 = w1; // unlikely to be different from w1
+it1 = t1-1;
+itlvp = tlvp;
+id1 = 18;
+it2 = 3;
+it3 = 1;
+iw2 = 30;
+ich1 = ch1-1;
+ich2 = 0.75;
+
+// Front edging parameters
+fw1 = 40; // almost certainly bigger than w1
+ftlvp = tlvp;
+ft1 = t1; // consider bigger than t1
+fch1 = ch1;
+ft2 = 3;
+fd1 = 18;
+fch2 = 1.5;
+
+
+module front_edging(fl1) {
+    up(ftlvp) left(ft2)
+    difference() {
+        cuboid([fw1, fl1, ft1], chamfer=fch1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
+        back(e) rounding_edge_mask(l=fl1+2*e, r=ft1, anchor=TOP+BACK, $fn=fn, orient=BACK);
+    }
+    
+    cuboid([ft2, fl1, ftlvp], anchor=RIGHT+BOTTOM+BACK);
+    diff()
+        cuboid([ft2, fl1, fd1], anchor=RIGHT+TOP+BACK, chamfer=fch2, edges=BOTTOM+LEFT)
+            attach(LEFT) {
+                left(fl1/2-sd) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+                right(fl1/2-sd) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+            }
+}
+
+module inside_edging(il1) {
+        up(itlvp) left(it2) cuboid([iw1, il1, it1], chamfer=ich1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
+        cuboid([it2, il1, itlvp], anchor=RIGHT+BOTTOM+BACK);
+        diff()
+            cuboid([it2, il1, id1], anchor=RIGHT+TOP+BACK)
+                attach(LEFT) {
+                    left(il1/2-sd) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+                    right(il1/2-sd) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+                }
+        left(it2) down(id1) cuboid([iw2, il1, it3], anchor=LEFT+TOP+BACK, chamfer=ich2, edges=BOTTOM+RIGHT);
+}
     
 module beam_cover_endcap() {
     
@@ -49,9 +100,9 @@ module beam_cover_endcap() {
     up(6) zrot(-90) yrot(-90) prismoid(size1=[18, 38], size2=[0, 38], shift=[9, 0],  h=20, anchor=FRONT+BOTTOM);
     left(w3) up(13) cuboid([38+2*w3, 18, 3], anchor=FRONT+BOTTOM+LEFT);
     */
-    
 }
-   
+
+
 
 module outside_edging(t1, t2, t3, t4, w1, w2, l1, d1, d2, ch1) {
     
@@ -218,13 +269,21 @@ module paneling(w, h, j1, j2) {
 
 
 
-outside_corner();
+//outside_corner();
 
-l_80 = 80;
-fwd(160) outside_edging(t1, t2_1, t3, t4, w1, w2_1, l_80, d1, d2, ch1);
+//l_80 = 175;
+//fwd(160) outside_edging(t1, t2_1, t3, t4, w1, w2_1, l_80, d1, d2, ch1);
 
-right(160) zrot(90) xflip()
-outside_edging(t1, t2_2, t3, t4, w1, w2_2, l_80, d1, d2, ch1);
+//right(160) zrot(90) xflip()
+//outside_edging(t1, t2_2, t3, t4, w1, w2_2, l_80, d1, d2, ch1);
+
+right(80) fwd(80)
+inside_edging(175);
+
+right(120) fwd(80)
+inside_edging(175);
+
+//front_edging(175);
 
 //beam_cover_endcap();
 
