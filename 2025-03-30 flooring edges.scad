@@ -12,7 +12,7 @@ t1 = 4;
 t3 = 1;
 t4 = 1;
 w1 = 20;
-tlvp = 6 + 1.5; // thickness of LVP + underlayment
+tlvp = 6 + 2; // thickness of LVP + underlayment
 d1 = 19;
 d2 = 20;
 ch1 = 2.5;
@@ -63,41 +63,47 @@ module front_edging(length, screw_positions) {
 }
 
 // Trap door: outside edging, i.e. frame of the trap door
-module outside_edging(t2, w2, l1, screw_positions) {
-    union() {
-        up(tlvp) right(t2) cuboid([w1, l1, t1], chamfer=ch1, edges=TOP+LEFT, anchor=RIGHT+BOTTOM+BACK);
-        cuboid([t2, l1, tlvp], anchor=LEFT+BOTTOM+BACK);
-        diff()
-            cuboid([t2, l1, d1], anchor=LEFT+TOP+BACK)
-                attach(RIGHT)
-                    for (s = screw_positions) {
-                        right(s) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
-                    }
-        down(d1) cuboid([w2, l1, t3], anchor=LEFT+BOTTOM+BACK);
-        right(w2) down(d1-t3) cuboid([t4, l1, d2+t3], anchor=LEFT+TOP+BACK);
+module outside_edging(t2, w2, l1, screw_positions, notch_x) {
+    
+    difference() {
+        union() {
+            up(tlvp) right(t2) cuboid([w1, l1, t1], chamfer=ch1, edges=TOP+LEFT, anchor=RIGHT+BOTTOM+BACK);
+            cuboid([t2, l1, tlvp], anchor=LEFT+BOTTOM+BACK);
+            diff()
+                cuboid([t2, l1, d1], anchor=LEFT+TOP+BACK)
+                    attach(RIGHT)
+                        for (s = screw_positions) {
+                            right(s) screw_hole("#8-32,1/2",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+                        }
+            down(d1) cuboid([w2, l1, t3], anchor=LEFT+BOTTOM+BACK);
+            right(w2) down(d1-t3) cuboid([t4, l1, d2+t3], anchor=LEFT+TOP+BACK);
+                        
+            if (notch_x > 0) {
+                color("red") right(w2+t4-e) down(d1-t3+e) fwd(notch_x-t4)
+                cuboid([notch_d+t4, notch_w+2*t4, d2+t4], anchor=RIGHT+TOP+BACK);
+            }
+        }
+        
+        if (notch_x > 0) {
+            color("red") right(w2+t4+e) down(d1-t3-e) fwd(notch_x)
+            cuboid([notch_d, notch_w, d2], anchor=RIGHT+TOP+BACK);
+        }
     }
 }
 
 // Trap door: outside corner, i.e. frame of the trap door
-module outside_corner(l1, l2) {
+module outside_corner(l1, l2, t2_1, t2_2) {
+    
     difference () {
         union() {
-            outside_edging(t2_1, w2_1, l1, [-l1/2+sd, l1/2-sd-t2_2+10]);
+            outside_edging(t2_1, w2_1, l1, [-l1/2+sd, l1/2-sd-t2_2+10], 0);
             up(tlvp) right(t2_1) fwd(t2_2) cuboid([w1, w1, t1], chamfer=ch1, edges=TOP, anchor=RIGHT+BOTTOM+FRONT);
             zrot(90) xflip()
-            outside_edging(t2_2, w2_2, l2, [-l2/2+sd]);
-            
-            fwd(w2_2+t4-e) down(d1-t3+e) right(notch_x-t4)
-            color("red")
-            cuboid([notch_w+2*t4, notch_d+t4, d2+t4], anchor=LEFT+TOP+FRONT);
+            outside_edging(t2_2, w2_2, l2, [-l2/2+sd], notch_x);
         }
         
         fwd(w2_2-e) left(2*e) down(d1+e) cuboid([w2_1+e, t4+2*e, 100], anchor=LEFT+TOP+BACK);
         right(w2_1-e) back(2*e) down(d1+e) cuboid([t4+2*e, w2_2+e, 100], anchor=LEFT+TOP+BACK);
-        
-        fwd(w2_2+t4+e) down(d1-t3-e) right(notch_x)
-        color("red")
-        cuboid([notch_w, notch_d, d2], anchor=LEFT+TOP+FRONT);
     }
 }
 
@@ -171,18 +177,19 @@ module paneling(w, h, j1, j2) {
 
 l0 = 180;
 
-outside_corner(150, 150);
+outside_corner(150, 150, t2_1, t2_2);
 
-fwd(160) outside_edging(t2_1, w2_1, l0, [-l0/2+sd, l0/2-sd]);
+//right(300) xflip() outside_corner(80, 110, 7, 15);
 
-right(160) zrot(90) xflip()
-outside_edging(t2_2, w2_2, l0, [-l0/2+sd, l0/2-sd]);
+//fwd(160) outside_edging(t2_1, w2_1, l0, [-l0/2+sd, l0/2-sd]);
+//right(160) zrot(90) xflip()
+//outside_edging(t2_2, w2_2, l0, [-l0/2+sd, l0/2-sd]);
 
-right(120) fwd(120)
-inside_edging(l0, [-l0/2+sd, l0/2-sd]);
+//right(120) fwd(120)
+//inside_edging(l0, [-l0/2+sd, l0/2-sd]);
 
-right(60) fwd(60)
-inside_corner(l0, l0);
+//right(60) fwd(60)
+//inside_corner(155, 155);
 
 
 //front_edging(175, [-175/2+sd, 175/2-sd]);
