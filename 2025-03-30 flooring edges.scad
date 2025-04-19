@@ -92,7 +92,7 @@ module outside_edging(t2, w2, l1, screw_positions, notch_x) {
 }
 
 // Trap door: outside corner, i.e. frame of the trap door
-module outside_corner(l1, l2, t2_1, t2_2) {
+module outside_corner(l1, l2, t2_1, t2_2, notch_x) {
     
     difference () {
         union() {
@@ -175,9 +175,16 @@ module paneling(w, h, j1, j2) {
 // --- invocations
 // ------------------------------------------------------
 
-l0 = 180;
+l0 = 100;
 
-outside_corner(150, 150, t2_1, t2_2);
+outside_corner(80, 120, t2_1, t2_2, notch_x);
+
+right(400)
+xflip()
+outside_corner(80, 120, 7, t2_2, notch_x);
+
+right(160) zrot(90) xflip()
+outside_edging(t2_2, w2_2, l0, [-l0/2+sd, l0/2-sd], l0/2-notch_w/2);
 
 //right(300) xflip() outside_corner(80, 110, 7, 15);
 
