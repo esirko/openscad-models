@@ -35,7 +35,7 @@ iw2 = 30;
 iw2_back = 33+12;
 ich1 = ch1-1;
 ich2 = 0.75;
-extra_ledge = true;
+extra_ledge = false;
 
 // Front edging parameters
 fw1 = 40; // almost certainly bigger than w1
@@ -150,8 +150,8 @@ module inside_edging(length, it2, iw2, iw1, screw_positions, bottom_chamfer, bar
 
 }
 
-
-module inside_corner(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_1, iw1_2, notch_x, bar_cover_border1, bar_cover_border2) {
+// for the back.
+module inside_corner_back(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_1, iw1_2, notch_x, bar_cover_border1, bar_cover_border2) {
     difference() {
         union() {
             // corner of two edges
@@ -159,6 +159,18 @@ module inside_corner(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_1, iw1_2, notch_x, 
             down(id1+it3) cuboid([it2_1, it2_2, it1+tlvp+id1+it3], anchor=RIGHT+FRONT+BOTTOM);
             zrot(90) xflip()
             inside_edging(l2, it2_2, iw2_2, iw1_2, [l2/2-sd, -l2/2+notch_x+38+sd, -l2/2+notch_x+38-sd], ich2, notch_x, 113, bar_cover_border1, bar_cover_border2);
+        }
+    }
+}
+
+module inside_corner_front(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_1, iw1_2, notch_x, bar_cover_border1, bar_cover_border2) {
+    difference() {
+        union() {
+            // corner of two edges
+            inside_edging(l1, it2_1, iw2_1, iw1_1, [l1/2-sd, -l1/2+sd], 0, 0, 0, 0, 0);
+            down(id1+it3) cuboid([it2_1, it2_2, it1+tlvp+id1+it3], anchor=RIGHT+FRONT+BOTTOM);
+            zrot(90) xflip()
+            inside_edging(l2, it2_2, iw2_2, iw1_2, [l2/2-sd], ich2, notch_x, 0, bar_cover_border1, bar_cover_border2);
         }
     }
 }
@@ -209,7 +221,7 @@ module paneling(w, h, j1, j2) {
 outside_edging(l1, t2, w2, screw_positions, notch_x, notch_w, notch_d, cutout_for_hinge)
 outside_corner(l1, l2, t2_1, t2_2, w2_1, w2_2, notch_x, notch_w, notch_d, cutout_for_hinge)
 inside_edging(length, it2, iw2, iw1, screw_positions, bottom_chamfer, bar_cover_x, hinge_hole_x, bar_cover_border1, bar_cover_border2)
-inside_corner(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_2, iw1_2, notch_x, bar_cover_border1, bar_cover_border2)
+inside_corner_{back,front}(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_2, iw1_2, notch_x, bar_cover_border1, bar_cover_border2)
 */
 
 // ------------------------------------------------------
@@ -221,48 +233,66 @@ l0 = 160;
 
 // Front edge outside
 /*
-outside_corner(60, 110, 7, 17, w2_1, w2_2, notch_x, notch_d, 0);
+outside_corner(150, 150, 7, 17, w2_1, w2_2, notch_x, notch_w,  notch_d, 0);
 
-right(160) zrot(90) xflip()
+right(170) zrot(90) xflip()
 outside_edging(l0, 15, w2_2-1, [-l0/2+sd, l0/2-sd], l0/2-notch_w/2, notch_w, notch_d+1, 0);
 
-right(400) xflip()
-outside_corner(60, 110, 6, 15, w2_1, w2_2-2, notch_x, notch_d, 0);
+right(500) xflip()
+outside_corner(150, 150, 6, 15, w2_1, w2_2-2, notch_x, notch_w, notch_d, 0);
 */
 
 // Front edge inside
-/*
-inside_corner(50, 100, 3, 3, iw2, iw2_back, iw1, iw1, 39, 14, 15);
 
-right(300) zrot(-90)
-inside_edging(l0, it2, iw2, iw1, [-l0/2+sd, l0/2-sd], 0.75, 20, 0, 14, 14);
+inside_corner_front(150, 150, 3, 3, iw2, iw2_back, iw1, iw1, 39, 14, 15);
+
+right(330) zrot(-90)
+inside_edging(l0, it2, iw2, iw1, [-l0/2+sd, l0/2-sd], 0.75, l0/2-38/2, 0, 14, 14);
 
 right(500) xflip()
-inside_corner(50, 100, 3, 3, iw2, iw2_back, iw1, iw1, 37, 14, 15);
-*/
+inside_corner_front(150, 150, 3, 3, iw2, iw2_back, iw1, iw1, 37, 14, 15);
+
 
 // Back edge outside
-outside_corner(l0, l0-2, 6, 2, 18, 28+7, notch_x, notch_w, 15, 13);
+/*
+//outside_corner(l0, l0-2, 6, 2, 18, 28+7, notch_x, notch_w, 15, 13);
+
+right(50) fwd(100) zrot(90) xflip()
+outside_edging(120, 2, 30+7, [-120/2+sd, 120/2-sd], 0, 0, 0, 0);
+
+right(180) fwd(100) zrot(90) xflip()
+outside_edging(124, 2, 30+7, [-124/2+sd, 124/2-sd], 0, 0, 0, 59);
 
 right(180) zrot(90) xflip()
 outside_edging(l0, 2, 30+7, [-l0/2+sd, l0/2-sd], l0/2-notch_w/2, notch_w, 15, 0);
 
-right(530) xflip()
-outside_corner(l0, l0+1, 6, 2, 21, 29+7, 53, notch_w, 15, 9);
+right(250) fwd(200) zrot(90) xflip()
+outside_edging(121, 2, 30+7, [-121/2+sd, 121/2-sd], 0, 0, 0, 6);
 
+right(380) fwd(200) zrot(90) xflip()
+outside_edging(120, 2, 30+7, [-120/2+sd, 120/2-sd], 0, 0, 0, 0);
+
+//right(530) xflip()
+//outside_corner(l0, l0+1, 6, 2, 21, 29+7, 53, notch_w, 15, 9);
+*/
 
 // Back edge inside
-
-//partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
-//left(78+e) inside_corner(l0, 77+l0, 3, 12+7, iw2, iw2_back+7, iw1, iw1+10, 38, 16, 15);
-
 /*
-right(350) zrot(-90)
-inside_edging(l0, 12+7, iw2_back+7, iw1+10, [-l0/2+sd, l0/2-sd], 0.75, l0/2-20, 0, 14, 14);
+//partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
+//left(78+e) inside_corner_back(l0, 77+l0, 3, 12+7, iw2, iw2_back+7, iw1, iw1+10, 38, 16, 15);
 
-right(550) xflip()
-partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
-left(81+e) inside_corner(l0, 80+l0, 3, 12+7, iw2, iw2_back+7, iw1, iw1+10, 41, 14, 15);
+right(250) fwd(100) zrot(-90)
+inside_edging(154, 12+7, iw2_back+7, iw1+10, [-154/2+sd, 154/2-sd], 0.75, 0, 32, 0, 0);
+
+//right(350) zrot(-90)
+//inside_edging(l0, 12+7, iw2_back+7, iw1+10, [-l0/2+sd, l0/2-sd], 0.75, l0/2-20, 0, 14, 14);
+
+right(450) fwd(100) zrot(-90)
+inside_edging(149, 12+7, iw2_back+7, iw1+10, [-149/2+sd, 149/2-sd], 0.75, 0, 109, 0, 0);
+
+//right(550) xflip()
+//partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
+//left(81+e) inside_corner_back(l0, 80+l0, 3, 12+7, iw2, iw2_back+7, iw1, iw1+10, 41, 14, 15);
 */
 
 
