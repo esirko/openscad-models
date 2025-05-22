@@ -9,7 +9,7 @@ lt = 7;
 ll = 20;
 theta = 35;
 
-zh = 7;
+zh = 8;
 e = 0.01;
 
 
@@ -38,9 +38,16 @@ difference() {
     difference() {
         cylinder(thumb_zh, thumb_r2, thumb_r2, $fn=360);
         translate([0, 0, -e]) cylinder(thumb_zh + 2 * e, thumb_r1, thumb_r1, $fn=360);
-        translate([0, 0, -e]) rotate([0, 0, -15]) cube([thumb_r2 + e, thumb_r2 + e, thumb_zh + 2 * e]);
+        translate([0, 0, -e]) rotate([0, 0, -e]) cube([thumb_r2 + e, thumb_r2 + e, thumb_zh + 2 * e]);
         translate([-(thumb_r2 + e), -(thumb_r2 + e), -e]) cube([2 * (thumb_r2 + e), thumb_r2 + e, thumb_zh + 2 * e]);
     }
     
     translate([-93, -50, -e]) cube([100, 100, thumb_zh + 2 * e]);
 }
+
+/*
+color("red")
+translate([0, 0, -(thumb_zh - zh)/2])
+translate([42, -40, 0])
+translate([-15, 0, -e]) rotate([0, 0, -15]) cube([thumb_r2 + e, thumb_r2 + e, thumb_zh + 2 * e]);
+*/
