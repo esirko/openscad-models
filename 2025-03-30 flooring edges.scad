@@ -33,7 +33,7 @@ it2 = 3;
 it3 = 1;
 iw2 = 30;
 iw2_back = 33+12;
-ich1 = ch1-1;
+ich1 = 0.4;
 ich2 = 0.75;
 extra_ledge = false;
 
@@ -122,7 +122,13 @@ module inside_edging(length, it2, iw2, iw1, screw_positions, bottom_chamfer, bar
     
     difference() {
         union() {
-            up(tlvp) left(it2) cuboid([iw1, length, it1], chamfer=ich1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
+            up(tlvp) left(it2)
+                // TODO: convert the other instances of chamferd top edges to use a new differenced wedge
+                //cuboid([iw1, length, it1], chamfer=ich1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
+                difference() {
+                    cuboid([iw1, length, it1], anchor=LEFT+BOTTOM+BACK);
+                    color("red") back(e) up(it1+e) right(iw1+e) zrot(-90) xrot(180) wedge([length+2*e, iw1-it2, it1-ich1]);
+                }
             cuboid([it2, length, tlvp], anchor=RIGHT+BOTTOM+BACK);
             if (extra_ledge) {
                 left(it2) cuboid([it2+10, length, 1], anchor=LEFT+BOTTOM+BACK);
@@ -258,20 +264,20 @@ outside_corner(150, 150, 6, 15, w2_1, w2_2-2, w1, w1+10, notch_x, notch_w, notch
 
 //inside_corner_front(150, 150, 3, 3, iw2, iw2_back, iw1, iw1, 39, 14, 15);
 
-//fwd(100) right(200) zrot(-90)
-inside_edging(125, it2, iw2, iw1, [-125/2+sd, 125/2-sd], 0.75, 0, 0, 0, 0);
+fwd(100) right(200) zrot(-90)
+inside_edging(125, it2, iw2, iw1, [-125/2+sd, 125/2-sd], ich2, 0, 0, 0, 0);
 
-//fwd(100) right(350) zrot(-90)
-//inside_edging(121, it2, iw2, iw1, [-121/2+sd, 121/2-sd], 0.75, 0, 0, 0, 0);
+fwd(100) right(350) zrot(-90)
+inside_edging(121, it2, iw2, iw1, [-121/2+sd, 121/2-sd], ich2, 0, 0, 0, 0);
 
-//right(330) zrot(-90)
-//inside_edging(l0, it2, iw2, iw1, [-l0/2+sd, l0/2-sd], 0.75, l0/2-38/2, 0, 14, 14);
+right(330) zrot(-90)
+inside_edging(l0, it2, iw2, iw1, [-l0/2+sd, l0/2-sd], ich2, l0/2-38/2, 0, 14, 14);
 
-//fwd(200) right(300) zrot(-90)
-//inside_edging(125, it2, iw2, iw1, [-125/2+sd, 125/2-sd], 0.75, 0, 0, 0, 0);
+fwd(200) right(300) zrot(-90)
+inside_edging(125, it2, iw2, iw1, [-125/2+sd, 125/2-sd], ich2, 0, 0, 0, 0);
 
-//fwd(200) right(450) zrot(-90)
-//inside_edging(111, it2, iw2, iw1, [-111/2+sd, 111/2-sd], 0.75, 0, 0, 0, 0);
+fwd(200) right(450) zrot(-90)
+inside_edging(111, it2, iw2, iw1, [-111/2+sd, 111/2-sd], ich2, 0, 0, 0, 0);
 
 //right(500) xflip()
 //inside_corner_front(150, 150, 3, 3, iw2, iw2_back, iw1, iw1, 37, 14, 15);

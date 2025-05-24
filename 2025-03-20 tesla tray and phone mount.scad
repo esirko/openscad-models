@@ -4,21 +4,14 @@ include <BOSL2/beziers.scad>
 include <BOSL2/walls.scad>
 include <BOSL2/rounding.scad>
 
-// TODOs as of 2025-03-30
-// - Make the skate have a protrusion on the achilles heel to keep the trapezoid from moving back and forth.
-// - The phone mount should move closer, be tilted forward. It _might_ be able to be moved up a bit, but ideally it could be adjustable!
-// - The phone mount to tray adapter could be a bit more user friendly and use less filament. Consider a vertical sliding connector
-// - My car is currently using an outdated version of the right trapzeoid part and the right tray part, where the difference is
-//   that the joiners are the opposite way.
-
-//trapezoid_mount = false;
-//wood_panel_contour = false;
+trapezoid_mount = false;
+wood_panel_contour = false;
 //cargo_tray = false;
 //phone_mount = false;
 //tray_to_phone_connector = false;
 
-trapezoid_mount = true;
-wood_panel_contour = true;
+//trapezoid_mount = true;
+//wood_panel_contour = true;
 cargo_tray = true;
 phone_mount = true;
 tray_to_phone_connector = true;
@@ -49,7 +42,7 @@ ct = 3;
 cpartition_dx = 20;
 cpartition_x = -40;
 cjoiner_height = 10;
-tray_to_phone_block = 20;
+tray_to_phone_block = 10;
 separate_tray_from_wood_contour = true;
 separate_phone_from_tray = true;
 
@@ -222,9 +215,9 @@ if (cargo_tray) {
                             up(0.5*(cw+ct)) linear_extrude(pt) polygon(tray_path);
                             up(0.75*(cwp+ct)) linear_extrude(pt) polygon(tray_path);
                         }
-                        up(0.24*(cw+ct)) left(10) back(20) zrot(-10) cube([100, 100, 0.04*cw]);
-                        up(0.49*(cw+ct)) left(10) back(35) zrot(-10) cube([100, 100, 0.04*cw]);
-                        up(0.74*(cwp+ct)) left(10) back(20) zrot(-10) cube([100, 100, 0.04*cw]);
+                        up(0.24*(cw+ct)) left(10) back(35) zrot(-10) cube([100, 100, 0.04*cw]);
+                        up(0.49*(cw+ct)) left(10) back(45) zrot(-10) cube([100, 100, 0.04*cw]);
+                        up(0.74*(cwp+ct)) left(10) back(35) zrot(-10) cube([100, 100, 0.04*cw]);
                     }
                 }
                 
@@ -236,12 +229,19 @@ if (cargo_tray) {
                     up(0.51*cw+e+cpartition_dx) right(85) back(40) zrot(ctheta) left(15) fwd(5) zrot(90) yrot(180) half_joiner_clear(l=30, w=10);
                 }
                 
+                /*
                 up(8) down(tray_to_phone_block) right(25) back(30) zrot(90) xrot(180) 
                     union() {
                         half_joiner_clear(l=40, w=20);
                         cuboid([20, 40, 18]);
-                    }
+                    }*/
+                    
+                    down(tray_to_phone_block) right(35) back(30) zrot(90) xrot(180) 
+                    dovetail("female", slide=40, width=26, height=5, back_width=26, spin=90);
+
                 }
+                
+                
             
             if (cpartition_dx > 0) {
                 up(0.51*cw+e) right(20) fwd(5) zrot(90) half_joiner2(l=30, w=10, base=20);
@@ -278,51 +278,60 @@ if (cargo_tray) {
 // --- phone mount and extension arm
 pw = 79; // width of iphone+spigen case
 pd = 13; // thickness(depth) of iphone+spigen case
-ph = 100; // height of phone, but doesn't have to be exact
+ph = 90; // height of phone, but doesn't have to be exact
 pt = 5;
 lip = 5;
 if (phone_mount) {
     left(separate_phone_from_tray ? 40 : 0)
     up(separate_tray_from_wood_contour ? 20 : 0)
     left(cpartition_dx/2)
-    fwd(55) up(50) left(230) zrot(-10) xrot(10)
-    union() {
-        // Probably a smarter (and prettier) way to do this - the rounding page on BOSL2 has some good examples
-        difference() {
-            cuboid([pw+2*pt, pd+2*pt, ph+2*pt],chamfer=3);
-            up(ph-2*pt) cuboid([100, 100, ph]);
-            fwd(pt/2) cuboid([pw, pd+pt+e, ph], rounding=5, edges="Y");
-        }
-        
-        fwd(0.5*(pd+pt))
+    fwd(55) up(70) left(220) zrot(-5) xrot(15)
+    difference() {
         union() {
-            down(0.5*(ph-lip)) cuboid([pw, pt, lip]);        
-            left(0.5*(pw-lip)) down(0.5*(ph-40)) cuboid([lip, pt, 40], rounding=3, edges=BACK+TOP);
-            right(0.5*(pw-lip)) down(0.5*(ph-40)) cuboid([lip, pt, 40], rounding=3, edges=BACK+TOP);
+            // Probably a smarter (and prettier) way to do this - the rounding page on BOSL2 has some good examples
+            difference() {
+                cuboid([pw+2*pt, pd+2*pt, ph+2*pt],chamfer=3);
+                up(ph-2*pt) cuboid([100, 100, ph]);
+                fwd(pt/2) cuboid([pw, pd+pt+e, ph], rounding=5, edges="Y");
+            }
+            
+            fwd(0.5*(pd+pt))
+            union() {
+                down(0.5*(ph-lip)) cuboid([pw, pt, lip]);        
+                left(0.5*(pw-lip)) down(0.5*(ph-40)) cuboid([lip, pt, 40], rounding=3, edges=BACK+TOP);
+                right(0.5*(pw-lip)) down(0.5*(ph-40)) cuboid([lip, pt, 40], rounding=3, edges=BACK+TOP);
+            }
         }
+        fwd(0.5*(pd+pt))
+        color("red") down(0.5*(ph-lip)+2.5) cuboid([40, pt+2*e, lip+5+2*e], chamfer=-1);
+        fwd(1) color("red") down(0.5*(ph)+2.5) cuboid([20, pd+2*e, 5+2*e], chamfer=-1);
+        fwd(1) color("red") up(11) fwd(2.5) right(0.5*(pw+pt)) yrot(90) cuboid([30, pd+pt+2*e, pt+2*e], chamfer=-1);
+
     }
 }
 
 if (tray_to_phone_connector) {
+    
     // same transform as tray
-    p1 = fwd(45,  up(54, left(cwp/2+ct, xrot(20, zrot(90, xrot(90,
+    p1 = fwd(45, up(54, left(cwp/2+ct, xrot(20, zrot(90, xrot(90,
     back(separate_tray_from_wood_contour ? 20 : 0,
     down(tray_to_phone_block,
-    p=path3d(tray_path)))))))));
-
+    back(30, right(30,
+    p=path3d([[-10, -10], [30, -10], [30, 10], [-10, 10]])))))))))));
+    
     // same transform as phone mount
     p2 = up(separate_tray_from_wood_contour ? 20 : 0, left(cpartition_dx/2,
-    fwd(55, up(50, left(230, zrot(-10, xrot(10,
-    back(pd/2+pt, up(10, xrot(90, 
-    p=path3d(rect([pw, 40]))))))))))));
+    fwd(55, up(70, left(220, zrot(-5, xrot(10,
+    back(pd/2+pt, up(-10, xrot(90, 
+    p=path3d(rect([pw, 10]))))))))))));
 
     left(separate_phone_from_tray ? 40 : 0)
-    difference() {
-        skin([p1,p2], method="distance", slices=10, refine=10);
-        fwd(45) up(54) left(cwp/2+ct) xrot(20) zrot(90) xrot(90)
-            back(separate_tray_from_wood_contour ? 20 : 0)
-            down(tray_to_phone_block) right(25) back(30) zrot(90) xrot(180) yrot(180) half_joiner_clear(l=40, w=20);
-    }
+    //difference() {
+        skin([p1,p2], method="distance", slices=20, refine=20);
+        //fwd(45) up(54) left(cwp/2+ct) xrot(20) zrot(90) xrot(90)
+        //    back(separate_tray_from_wood_contour ? 20 : 0)
+        //    down(tray_to_phone_block) right(25) back(30) zrot(90) xrot(180) yrot(180) half_joiner_clear(l=40, w=20);
+    //}
 
     // For reference here are the polygons...
     //fwd(45) up(54) left(tw/2+ct) xrot(20) zrot(90) xrot(90)
@@ -331,15 +340,24 @@ if (tray_to_phone_connector) {
     //fwd(80) up(100) left(230) zrot(-10) xrot(10) 
     //back(pd/2+pt) down(20) xrot(90) rect([pw, 40]);
     
+    
     // same transform as tray for joiners
+    /*
     fwd(45) up(54) left(cwp/2+ct) xrot(20) zrot(90) xrot(90)
     back(separate_tray_from_wood_contour ? 20 : 0)
-    up(8) down(tray_to_phone_block) right(25) back(30) zrot(90) xrot(180) half_joiner2(l=40, w=20, base=10);
+    up(8) down(tray_to_phone_block) right(25) back(30) zrot(90) xrot(180) 
+        //half_joiner2(l=40, w=20, base=10);
+        up(10) dovetail("female", slide=40, width=15, height=5, back_width=15, spin=90);
+        */
 
     left(separate_phone_from_tray ? 40 : 0)
     fwd(45) up(54) left(cwp/2+ct) xrot(20) zrot(90) xrot(90)
     back(separate_tray_from_wood_contour ? 20 : 0)
-    up(8) down(tray_to_phone_block) right(25) back(30) zrot(90) xrot(180) yrot(180) half_joiner(l=40, w=20, base=10);
+    up(0) down(tray_to_phone_block) right(35) back(30) zrot(90) xrot(180) yrot(180) 
+        //half_joiner(l=40, w=20, base=10);
+        dovetail("male", slide=40, width=25, height=5, back_width=25, spin=90);
+    
+
     
 }
 
