@@ -15,7 +15,7 @@ w1 = 20;
 tlvp = 6 + 2; // thickness of LVP + underlayment
 d1 = 19;
 d2 = 20;
-ch1 = 2.5;
+ch1 = 0.4;
 
 w2_1 = 19;
 w2_2 = 40;
@@ -66,9 +66,16 @@ module front_edging(length, screw_positions) {
 // Trap door: outside edging, i.e. frame of the trap door
 module outside_edging(l1, t2, w2, w1, screw_positions, notch_x, notch_w, notch_d, cutout_for_hinge) {
     
+    //up(tlvp) right(t2) 
+    //color("red") back(e) up(t1+e) fwd(l1) left(w1) zrot(90) xrot(180) wedge([l1+2*e, w1-t2, t1-ch1]);
     difference() {
         union() {
-            up(tlvp) right(t2) cuboid([w1, l1, t1], chamfer=ch1, edges=TOP+LEFT, anchor=RIGHT+BOTTOM+BACK);
+            up(tlvp) right(t2) 
+                //cuboid([w1, l1, t1], chamfer=ch1, edges=TOP+LEFT, anchor=RIGHT+BOTTOM+BACK);
+                difference() {
+                    cuboid([w1, l1, t1], anchor=RIGHT+BOTTOM+BACK);
+                    color("red") back(e) up(t1+e) fwd(l1+e) left(w1+e) zrot(90) xrot(180) wedge([l1+2*e, w1, t1-ch1]);
+                }
             cuboid([t2, l1, tlvp], anchor=LEFT+BOTTOM+BACK);
             diff()
                 cuboid([t2, l1, d1], anchor=LEFT+TOP+BACK)
@@ -238,8 +245,8 @@ l0 = 160;
 
 
 // Front edge outside
-/*
-outside_corner(150, 150, 7, 17, w2_1, w2_2+1, w1, w1+10, notch_x, notch_w,  notch_d, 0);
+
+//outside_corner(150, 150, 7, 17, w2_1, w2_2+1, w1, w1+10, notch_x, notch_w,  notch_d, 0);
 
 fwd(100) right(40) zrot(90) xflip()
 outside_edging(125, 15, w2_2+1, w1+10, [-125/2+sd, 125/2-sd], 0, 0, 0, 0);
@@ -256,12 +263,12 @@ outside_edging(125, 15, w2_2-1, w1+10, [-125/2+sd, 125/2-sd], 0, 0, 0, 0);
 fwd(200) right(300) zrot(90) xflip()
 outside_edging(123, 15, w2_2-1, w1+10, [-122/2+sd, 122/2-sd], 0, 0, 0, 0);
 
-right(500) xflip()
-outside_corner(150, 150, 6, 15, w2_1, w2_2-2, w1, w1+10, notch_x, notch_w, notch_d, 0);
-*/
+//right(500) xflip()
+//outside_corner(150, 150, 6, 15, w2_1, w2_2-2, w1, w1+10, notch_x, notch_w, notch_d, 0);
+
 
 // Front edge inside
-
+/*
 //inside_corner_front(150, 150, 3, 3, iw2, iw2_back, iw1, iw1, 39, 14, 15);
 
 fwd(100) right(200) zrot(-90)
@@ -281,7 +288,7 @@ inside_edging(111, it2, iw2, iw1, [-111/2+sd, 111/2-sd], ich2, 0, 0, 0, 0);
 
 //right(500) xflip()
 //inside_corner_front(150, 150, 3, 3, iw2, iw2_back, iw1, iw1, 37, 14, 15);
-
+*/
 
 // Back edge outside
 /*

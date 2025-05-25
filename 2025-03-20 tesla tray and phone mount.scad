@@ -237,7 +237,7 @@ if (cargo_tray) {
                     }*/
                     
                     down(tray_to_phone_block) right(35) back(30) zrot(90) xrot(180) 
-                    dovetail("female", slide=40, width=26, height=5, back_width=26, spin=90);
+                    dovetail("female", slide=40, width=25.5, height=8, back_width=25.5, angle=30, spin=90);
 
                 }
                 
@@ -355,7 +355,7 @@ if (tray_to_phone_connector) {
     back(separate_tray_from_wood_contour ? 20 : 0)
     up(0) down(tray_to_phone_block) right(35) back(30) zrot(90) xrot(180) yrot(180) 
         //half_joiner(l=40, w=20, base=10);
-        dovetail("male", slide=40, width=25, height=5, back_width=25, spin=90);
+        dovetail("male", slide=40, width=25, height=8, back_width=25, angle=30, spin=90);
     
 
     
