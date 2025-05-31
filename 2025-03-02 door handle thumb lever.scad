@@ -9,7 +9,10 @@ lt = 7;
 ll = 20;
 theta = 35;
 
-zh = 8;
+// TODO: 8 seemed to get stuck, but 7.5 wiggles a bit too much. 
+// I think ideally the part surrounding the axle should be 7.5 but there should be an extra protrusion,
+// not directly around the axle, that prevents it from wiggling from side to side.
+zh = 7.5;
 e = 0.01;
 
 

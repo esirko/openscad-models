@@ -6,13 +6,13 @@ include <BOSL2/rounding.scad>
 
 trapezoid_mount = false;
 wood_panel_contour = false;
-//cargo_tray = false;
+cargo_tray = false;
 //phone_mount = false;
 //tray_to_phone_connector = false;
 
 //trapezoid_mount = true;
 //wood_panel_contour = true;
-cargo_tray = true;
+//cargo_tray = true;
 phone_mount = true;
 tray_to_phone_connector = true;
 
@@ -285,7 +285,7 @@ if (phone_mount) {
     left(separate_phone_from_tray ? 40 : 0)
     up(separate_tray_from_wood_contour ? 20 : 0)
     left(cpartition_dx/2)
-    fwd(55) up(70) left(220) zrot(-5) xrot(15)
+    fwd(55) up(70) left(220) yrot(2) zrot(-5) xrot(20) left(5) fwd(15)
     difference() {
         union() {
             // Probably a smarter (and prettier) way to do this - the rounding page on BOSL2 has some good examples
@@ -321,9 +321,9 @@ if (tray_to_phone_connector) {
     
     // same transform as phone mount
     p2 = up(separate_tray_from_wood_contour ? 20 : 0, left(cpartition_dx/2,
-    fwd(55, up(70, left(220, zrot(-5, xrot(10,
+    fwd(55, up(70, left(220, yrot(2, zrot(-5, xrot(20, left(5, fwd(15, 
     back(pd/2+pt, up(-10, xrot(90, 
-    p=path3d(rect([pw, 10]))))))))))));
+    p=path3d(rect([pw, 10])))))))))))))));
 
     left(separate_phone_from_tray ? 40 : 0)
     //difference() {
