@@ -252,9 +252,29 @@ inside_corner_{back,front}(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_2, iw1_2, not
 l0 = 160;
 
 
+// Left edge inside: 3x175 + 170
+// Note: for the 175 ones, I accidentally used 150 instead of 175 as the numerator for the screw hole positions. - wait, did I?
+//inside_edging(170, 3, iw2, iw1+10, [170/2-sd, -170/2+sd], 0, 0, 0, 0, 0, false);
+
+// Left edge outside: 4x150 + 144
+//outside_edging(150, 7, 19, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false);
+//right(50) outside_edging(150, 7, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false);
+//right(100) outside_edging(144, 7, 20, w1, [-144/2+sd, 144/2-sd], 0, 0, 0, 0, false);
+//right(150) outside_edging(150, 6, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false);
+//right(200) outside_edging(150, 6, 21, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false);
+
+// Right edge inside: 3x175 + 169
+inside_edging(169, 3, iw2, iw1+10, [169/2-sd, -169/2+sd], 0, 0, 0, 0, 0, false);
+
+// Right edge outside:
+//outside_edging(150, 6, 19, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false); // x2
+right(100) outside_edging(142, 6, 19, w1, [-142/2+sd, 142/2-sd], 0, 0, 0, 0, false);
+//outside_edging(150, 6, 18, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false); // x2
+
+
 // Front edge outside
 
-
+/*
 outside_corner(150, 150, 7, 17, w2_1, w2_2+1, w1, w1+10, notch_x, notch_w,  notch_d, 0, true);
 
 //fwd(100) right(40) zrot(90) xflip()
@@ -274,7 +294,7 @@ outside_corner(150, 150, 7, 17, w2_1, w2_2+1, w1, w1+10, notch_x, notch_w,  notc
 
 right(500) xflip()
 outside_corner(150, 150, 6, 15, w2_1, w2_2-2, w1, w1+10, notch_x, notch_w, notch_d, 0, true);
-
+*/
 
 // Front edge inside
 /*
@@ -323,6 +343,7 @@ outside_corner(l0, l0+1, 6, 2, 21, 29+7, w1, w1, 53, notch_w, 15, 9, false);
 */
 
 // Back edge inside
+
 /*
 partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
 left(78+e) inside_corner_back(l0, 77+l0, 3, 12+7, iw2, iw2_back+7, iw1+10, iw1+10, 38, 16, 15);
