@@ -1,7 +1,7 @@
 include <BOSL2/std.scad>
 include <BOSL2/distributors.scad>
 
-l = 60;
+l = 80;
 t = 15;
 s = 8;
 fn = 36;
@@ -12,7 +12,11 @@ w2 = 5;
 w3 = 7;
 $slop=0.4;
 
-e = 0.01;
+    gt = 5;
+    gr = 15.5;
+    
+
+e = 0.1;
 tm1 = 7;
 handle_angle = asin(t/l);
 hole4adjustment = l * (1 - cos(handle_angle)); // original calculation assumed the two handles would be exactly co-linear, but they aren't, they will be separated by a small amount given by t and handle_angle
@@ -33,18 +37,24 @@ module hole4() {
     yrot(90) fwd(l - hole4adjustment) fwd(rh) cuboid([2*rh, 2*rh + l * (1-cos(max_angle)) - hole4adjustment, 100], rounding=rh, edges="Z", $fn=fn, anchor=FRONT);
 }
 
+/*
 module grip1() {
     gt = 5;
-    gr = 15.5; //13.5 was too tight
+    gr = 15.5;
     
     difference() {
-        cuboid([50, 35, gt], anchor=FRONT);
-        down(gt/2+e) back(gr + 5) cylinder(h = gt+2*e, r = gr);
-        back(gr+5) cuboid([2*gr, 35, gt+2*e], anchor=FRONT);
+        union() {
+            cuboid([50, 35, gt], anchor=FRONT);
+            up(gt/2) prismoid(size1=[50,35], size2=[50, 0], shift=[0,-17.5], height=20, anchor=FRONT+BOTTOM);
+        }
+        
+        down(gt/2+e) back(gr + 5) cylinder(h = gt+20+2*e, r = gr);
+        back(gr+5) cuboid([2*gr, 35, gt+15+2*e], anchor=FRONT);
     }
 }
+*/
 
-/*
+
 difference() {
     back(s)
     union() {
@@ -74,7 +84,7 @@ difference() {
     hole2();
     hole3();
 }
-*/
+
 
 
 up(80)
@@ -84,17 +94,33 @@ difference() {
         left(0.5*w1+w2+0.5*w3) cuboid([w3, l + 2*s, t], anchor=BACK, rounding=t/2-1, edges=[FRONT+TOP, FRONT+BOTTOM], $fn=fn);
         right(0.5*w1+w2+0.5*w3) cuboid([w3, l + 2*s, t], anchor=BACK, rounding=t/2-1, edges=[FRONT+TOP, FRONT+BOTTOM], $fn=fn);
         up(40/2+t/2) cuboid([50, 20, 40], anchor=BACK);
-        up(15) grip1();
-        up(45) grip1();
+        
+        up(t/2) prismoid(size1=[50, 60], size2=[50,20], shift=[0,20], height=130-t/2, anchor=BACK+BOTTOM);
+        
+        difference() {
+            cuboid([50, 35, 130], anchor=FRONT+BOTTOM);
+            
+            up(gt) back(35+e) prismoid(size1=[50, 0], size2=[50+2*e,35], shift=[0,-17.5], height=30, anchor=FRONT+BOTTOM);
+            up(40+gt) back(35+e) prismoid(size1=[50, 0], size2=[50+2*e,35], shift=[0,-17.5], height=30, anchor=FRONT+BOTTOM);
+            up(80+gt) back(35+e) prismoid(size1=[50, 0], size2=[50+2*e,35], shift=[0,-17.5], height=30, anchor=FRONT+BOTTOM);
+            //up(90+gt) back(35+e) prismoid(size1=[50, 0], size2=[50+2*e,35], shift=[0,-17.5], height=20, anchor=FRONT+BOTTOM);
+          
+            up(40-e) back(e) cuboid([50+2*e,35,gt], anchor=FRONT+TOP);
+            up(80-e) back(e) cuboid([50+2*e,35,gt], anchor=FRONT+TOP);
+            up(120-e) back(e) cuboid([50+2*e,35,gt], anchor=FRONT+TOP);
+            //up(120-e) back(e) cuboid([50+2*e,35,gt], anchor=FRONT+TOP);
+
+            down(e) back(gr + 5) cylinder(h = 130+2*e, r = gr);
+            back(gr+5) down(e) cuboid([2*gr, 35, 130+2*e], anchor=FRONT+BOTTOM);   
+        }
     }
     
     hole1();
     hole4();
 }
 
-/*
+
 right(100) {
     ycopies(10, 4) cyl(h=2*w3 + 2*w2 + w1 + 4, r=rh-$slop/2, $fn=fn);
     fwd(30) cyl(h=2*w2 + w1, r=rh-$slop/2, $fn=fn);
 }
-*/

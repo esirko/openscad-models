@@ -8,6 +8,7 @@ ri = 36/2;
 e = 0.01;
 // first: 35/2
 fn = 72;
+$slop=0.2;
 
 
 difference() {
@@ -20,12 +21,14 @@ difference() {
     right(ro+e) cuboid([xb/2, 2*ro+2*e, 50], anchor=LEFT);
 }
 
-tilt_compensation=3; // angle to adjust joiner by to compensate for the weight tilting the thing downwards
+tilt_compensation=5; // angle to adjust joiner by to compensate for the weight tilting the thing downwards
+dx = tan(tilt_compensation) * 15;
+
 
 left(ro + xb/2)
 union() {
     difference() {
-        cuboid([20, 55, 30], anchor=RIGHT);
+        prismoid(size1=[20+dx,55], size2=[20-dx,55], shift=[dx,0], height=30, rounding=5, anchor=RIGHT, $fn=fn);
         left(20) yrot(tilt_compensation) union() {
             half_joiner_clear(l=40, w=15, orient=LEFT);
             cuboid([10, 40, 15], anchor=RIGHT);
@@ -36,17 +39,26 @@ union() {
 
 
 up(50)
-difference() {
-    union() {
-        cuboid([2*ro + xb, 2*ro, 30]);
-    }
+union() {
+    difference() {
+        union() {
+            cuboid([2*ro + xb, 2*ro, 30], rounding=3, edges=RIGHT, $fn=fn);
+            cuboid([(2*ro + xb)/2 + 20-dx+5, 2*ro, 30], anchor=RIGHT);
+            up(15) left(5) cuboid([(2*ro + xb)/2 + 20-dx, 2*ro, 3], anchor=RIGHT);
+            down(15) left(5) cuboid([(2*ro + xb)/2 + 20-dx, 2*ro, 3], anchor=RIGHT); //left((2*ro + xb)/2) 
+        }
 
-    cyl(l=200, r=ri, $fn=fn);
-    cuboid([50, 2*ri, 50], anchor=RIGHT);
-    right(8) cuboid([2*ro + xb, 2*ro+2*e, 10], anchor=RIGHT);
+        cyl(l=200, r=ri, $fn=fn);
+        cuboid([70, 2*ri, 50], anchor=RIGHT);
+        right(8) cuboid([2*ro + xb, 2*ro+2*e, 10], anchor=RIGHT);
+        
+        fwd((ro+ri)/2) left(e) cuboid([ro, ro-ri+2*e, 10+2*e], anchor=LEFT);
+        back((ro+ri)/2) left(e) cuboid([ro, ro-ri+2*e, 10+2*e], anchor=LEFT);
+        
+        left(ro + xb/2) prismoid(size1=[20+dx+$slop,55+$slop], size2=[20-dx+$slop,55+$slop], shift=[dx,0], height=30+$slop, rounding=5, anchor=RIGHT, $fn=fn);
+        left(ro + xb/2) cuboid([30, 60, 28], anchor=RIGHT);
+    }
     
-    fwd((ro+ri)/2) left(e) cuboid([ro, ro-ri+2*e, 10+2*e], anchor=LEFT);
-    back((ro+ri)/2) left(e) cuboid([ro, ro-ri+2*e, 10+2*e], anchor=LEFT);
 }
 
 
