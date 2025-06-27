@@ -95,7 +95,7 @@ difference() {
         right(0.5*w1+w2+0.5*w3) cuboid([w3, l + 2*s, t], anchor=BACK, rounding=t/2-1, edges=[FRONT+TOP, FRONT+BOTTOM], $fn=fn);
         up(40/2+t/2) cuboid([50, 20, 40], anchor=BACK);
         
-        up(t/2) prismoid(size1=[50, 60], size2=[50,20], shift=[0,20], height=130-t/2, anchor=BACK+BOTTOM);
+        up(t/2) prismoid(size1=[50, 60], size2=[50,20], shift=[0,20], height=130-t/2, anchor=BACK+BOTTOM, $fn=fn);
         
         difference() {
             cuboid([50, 35, 130], anchor=FRONT+BOTTOM);
@@ -121,6 +121,13 @@ difference() {
 
 
 right(100) {
-    ycopies(10, 4) cyl(h=2*w3 + 2*w2 + w1 + 4, r=rh-$slop/2, $fn=fn);
-    fwd(30) cyl(h=2*w2 + w1, r=rh-$slop/2, $fn=fn);
+    ycopies(10, 4) {
+        cyl(h=2*w3 + 2*w2 + w1 + 4+2, r=rh-$slop/2, $fn=fn, anchor=BOTTOM);
+        cyl(h=2, r=rh+1, $fn=fn, anchor=BOTTOM);
+        up(50) difference() {
+            cyl(h=5, r=rh+1, $fn=fn, anchor=BOTTOM);
+            down(e) cyl(h=3, r=rh-$slop/2, $fn=fn, anchor=BOTTOM);
+        }
+    }
+    fwd(30) cyl(h=2*w2 + w1, r=rh-$slop/2, $fn=fn, anchor=BOTTOM);
 }

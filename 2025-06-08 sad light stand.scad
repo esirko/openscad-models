@@ -44,8 +44,8 @@ union() {
         union() {
             cuboid([2*ro + xb, 2*ro, 30], rounding=3, edges=RIGHT, $fn=fn);
             cuboid([(2*ro + xb)/2 + 20-dx+5, 2*ro, 30], anchor=RIGHT);
-            up(15) left(5) cuboid([(2*ro + xb)/2 + 20-dx, 2*ro, 3], anchor=RIGHT);
-            down(15) left(5) cuboid([(2*ro + xb)/2 + 20-dx, 2*ro, 3], anchor=RIGHT); //left((2*ro + xb)/2) 
+            up(15) left(5) cuboid([(2*ro + xb)/2 + 20-dx, 2*ro, 5], anchor=RIGHT+BOTTOM);
+            down(15) left(5) cuboid([(2*ro + xb)/2 + 20-dx, 2*ro, 5], anchor=RIGHT+TOP); //left((2*ro + xb)/2) 
         }
 
         cyl(l=200, r=ri, $fn=fn);
@@ -56,7 +56,7 @@ union() {
         back((ro+ri)/2) left(e) cuboid([ro, ro-ri+2*e, 10+2*e], anchor=LEFT);
         
         left(ro + xb/2) prismoid(size1=[20+dx+$slop,55+$slop], size2=[20-dx+$slop,55+$slop], shift=[dx,0], height=30+$slop, rounding=5, anchor=RIGHT, $fn=fn);
-        left(ro + xb/2) cuboid([30, 60, 28], anchor=RIGHT);
+        left(ro + xb/2) cuboid([30, 60, 26], anchor=RIGHT);
     }
     
 }
