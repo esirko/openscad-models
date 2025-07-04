@@ -1,102 +1,136 @@
 include <BOSL2/std.scad>
 
 e = 0.1;
+slop = 0.2;
 fn = 72;
 
-r0 = 25;
+//r0 = 25;
 rc = 15;
 zh = 8;
 
 r1 = 30;
 rc2 = rc;
-rh1 = 6;
 rh0 = 3;
 
 ht = 6;
 hl = 40;
 
- 
+
+
+
 // syringe piston
 gr = 15.5;
+gw = 57;
+gh = 45;
 gt = 5;
-back(100)
+
+gp = 18;
+gs = 2;
+
+theta = 90;
+
+r0 = (gh/2) / sin(theta/2); // critical radius of the system
+chordx = r0 - (r0 * cos(theta/2));
+echo(chordx);
+
+//back(120)
 difference() {
     union() {
+        up(110) zflip()
         difference() {
-            cuboid([50,40,gt], anchor=BOTTOM);
-            down(e) back(15+e) cuboid([2*gr,20,gt+2*e], anchor=BOTTOM);
-            down(e) back(5) cylinder(h = gt+2*e, r = gr);
-        }
-        
-        up(40) union() {
-            cuboid([50, 40, gt], anchor=BOTTOM);
-            up(gt) back(5) difference() {
-                cyl(h=2, r=18, anchor=BOTTOM);
-                down(e) cyl(h=2+2*e, r=17, anchor=BOTTOM);
-                down(e) back(9) cuboid([36+2*e, 18+e, 2+2*e], anchor=BOTTOM);
+            union() {
+                cuboid([gw,gh,gt], anchor=BOTTOM); // thin rectangular block
+                zrot(90) xrot(-90) fwd(r0 - chordx) difference() { // chord
+                    cyl(h=gw, r=r0, $fn=fn);
+                    fwd(chordx/2) cuboid([2*r0+2*e, 2*r0-chordx, gw+2*e]);
+                }
+                fwd(2.5) right(gw/2) up(gt) cuboid([3, 4, 23.5], anchor=TOP+LEFT+BACK);
+                back(2.5) right(gw/2) up(gt) cuboid([3, 4, 23.5], anchor=TOP+LEFT+FRONT);
+                right(gw/2+3) cuboid([2, 13, 5], anchor=LEFT+BOTTOM);
+                fwd(2.5) right(gw/2-4) down(23.5-gt-2) cuboid([4, 4, 2], anchor=TOP+LEFT+BACK);
+                back(2.5) right(gw/2-4) down(23.5-gt-2) cuboid([4, 4, 2], anchor=TOP+LEFT+FRONT);
+                fwd(2.5) left(gw/2) up(gt) cuboid([3, 4, 23.5], anchor=TOP+RIGHT+BACK);
+                back(2.5) left(gw/2) up(gt) cuboid([3, 4, 23.5], anchor=TOP+RIGHT+FRONT);
+                left(gw/2+3) cuboid([2, 13, 5], anchor=RIGHT+BOTTOM);
+                fwd(2.5) left(gw/2-4) down(23.5-gt-2) cuboid([4, 4, 2], anchor=TOP+RIGHT+BACK);
+                back(2.5) left(gw/2-4) down(23.5-gt-2) cuboid([4, 4, 2], anchor=TOP+RIGHT+FRONT);
+            }
+            down(chordx) union() {
+                down(e) back(e) cuboid([2*gr,gh/2+e,gt+chordx+2*e], anchor=FRONT+BOTTOM);
+                down(e) cylinder(h = gt+chordx+2*e, r = gr);
             }
         }
         
-        right(16) fwd(30) cyl(h=50, r=2.9, anchor=BOTTOM);
-        left(16) fwd(30) cyl(h=50, r=2.9, anchor=BOTTOM);
-    }
-    
-    right(16) fwd(14) down(e) cyl(h=100, r=3.1, anchor=BOTTOM);
-    left(16) fwd(14) down(e) cyl(h=100, r=3.1, anchor=BOTTOM);
-}
-
-
-// pistons
-back(50)
-xcopies(100, 2) {
-    difference() {
-        union() {
-            cyl(l=zh+2, r=r0, $fn=fn);
-            right(12) up((zh+2)/2 + 1) cuboid([85, 5, 2]);
-            right(12) down((zh+2)/2 + 1) back(5.2) cuboid([85, 5, 2]);
-            right(12) down((zh+2)/2 + 1) fwd(5.2) cuboid([85, 5, 2]);
-        }
-        left(rc) cuboid([r0+rc+e, 2*r0+2*e, zh+2+2*e], anchor=LEFT);
-        back(r0/2+5/2) down(1.5) up((zh+2)/2 + 1+e) cuboid([85, r0, 1]);
-        fwd(r0/2+5/2) down(1.5) up((zh+2)/2 + 1+e) cuboid([85, r0, 1]);
         
-        back(r0/2+5/2 + 5.2) up(1.5) down((zh+2)/2 + 1+e) cuboid([85, r0, 1]);
-        up(1.5-e) down((zh+2)/2 + 1) cuboid([85, 5.4, 1]);
-        fwd(r0/2+5/2 + 5.2) up(1.5) down((zh+2)/2 + 1+e) cuboid([85, r0, 1]);
+        difference() {
+            union() {
+                cuboid([gw, gh, gt], anchor=BOTTOM);
+                zrot(90) xrot(-90) fwd(r0 - chordx) difference() { // chord
+                    cyl(h=gw, r=r0, $fn=fn);
+                    fwd(chordx/2) cuboid([2*r0+2*e, 2*r0-chordx, gw+2*e]);
+                }
+                //fwd(gh/2) cuboid([10, 2, 100], anchor=FRONT+BOTTOM);
+                down(18.5) right(gw/2) cuboid([2, 4, 110], anchor=LEFT+BOTTOM);
+                right(gw/2-4) down(23.5-gt-2) cuboid([4, 4, 2], anchor=LEFT+TOP);
+                down(18.5) left(gw/2) cuboid([2, 4, 110], anchor=RIGHT+BOTTOM);
+                left(gw/2-4) down(23.5-gt-2) cuboid([4, 4, 2], anchor=RIGHT+TOP);
+            }
+            up(gt-gs+e) cuboid([2*gp,gh/2+e,gs], anchor=FRONT+BOTTOM);
+            up(gt-gs+e) cylinder(h=gs, r=gp);
+        }
+        
+        
     }
-    right(85/2+12-1) up((zh+2)/2 - 1) cuboid([2, 5, 4]);
-    right(85/2+12-1) down((zh+2)/2 - 1) back(5.2) cuboid([2, 5, 4]);
-    right(85/2+12-1) down((zh+2)/2 - 1) fwd(5.2) cuboid([2, 5, 4]);
 }
 
+/*
 // plier arms
-left(10)
-xcopies(20, 2) {
+rh1 = 12;
+ds = 16; // size of reinforcing notch
+// TODO: gw for the pliers should be less than gw for the pistons
 
-    ydisplacement = sqrt(r1*r1 - rc2*rc2) + 4; // hmmm may need to recalculate this
+//left(10)
+xcopies(50, 2) {
+    ydisplacement = sqrt((r0+5)*(r0+5) - rc2*rc2) + 15; // hmmm may need to recalculate this. Hmm wait I think it will just be a configurable
 
     difference() {
         union() {
-            difference() {
-                cyl(l=zh, r=r1, $fn=fn);
-                cyl(l=zh+2*e, r=r0, $fn=fn);
-                left(rc2) cuboid([r1+rc2+e, 2*r1+2*e, zh+2*e], anchor=LEFT);
+            right(rc2) back(ydisplacement) difference() {
+                cyl(l=gw, r=r0+5, $fn=fn);
+                cyl(l=gw+2*e, r=r0, $fn=fn);
+                left(rc2) cuboid([r0+5+rc2+e, 2*(r0+5)+2*e, gw+2*e], anchor=LEFT);
+                fwd(r0-8) cuboid([r0+5+e, 2*r0+5+e, 2*gp], anchor=RIGHT+FRONT);
             }
-            fwd(ydisplacement) left(rc2) cyl(l=zh, r=rh1, $fn=fn);
-            //fwd(ydisplacement-5) left(rc2) cuboid([5, 10, zh], anchor=RIGHT);
-            fwd(ydisplacement+hl/2) left(rc2) cuboid([ht, hl, zh], anchor=LEFT);
+            cyl(l=gw, r=rh1, $fn=fn);
+            fwd(hl/2) cuboid([ht, hl, gw], anchor=LEFT);
+            //up(gw/2) cyl(h=gw/4, r=rh1, anchor=TOP);
+            
+            xrot(-90)
+            union() {
+                prismoid(size1=[0,gw],size2=[ds,gw],shift=[-ds/2,0], height=ds);
+                zflip() prismoid(size1=[0,gw],size2=[ds,gw],shift=[ds/2,0], height=ds);
+            }
+            back(ds) left(2) cuboid([12,5.5,gw], anchor=RIGHT+FRONT);
+            fwd(ds) right(4) cuboid([12,7,gw], anchor=LEFT+BACK);
         }
         
-        fwd(ydisplacement) left(rc2) cyl(l=zh+2*e, r=rh0, $fn=fn);
-        fwd(ydisplacement) left(rc2) cyl(l=zh/2+e, r=rh1+e, $fn=fn, anchor=BOTTOM);
+        down(gw/2+e) cyl(h=gw/4, r=8, anchor=BOTTOM);
+        cyl(l=gw+4+2*e, r=rh0, $fn=fn);
+        cyl(l=gw/2+e, r=rh1+e, $fn=fn, anchor=TOP);
+        
     }
 }
+*/
 
+
+
+/*
 // plier axle
-cyl(h=zh+6, r=rh0-0.2, $fn=fn, anchor=BOTTOM);
+cyl(h=gw+6, r=rh0-0.2, $fn=fn, anchor=BOTTOM);
 cyl(h=2, r=rh0+1, $fn=fn, anchor=BOTTOM);
 right(2*rh0+4) difference() {
     cyl(h=4, r=rh0+1, $fn=fn, anchor=BOTTOM);
     up(1+e) cyl(h=3, r=rh0-0.05, $fn=fn, anchor=BOTTOM);
 }
+*/
 

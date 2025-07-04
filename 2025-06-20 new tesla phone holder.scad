@@ -8,13 +8,16 @@ lip = 5;
 
 e = 0.1;
 
-cuboid([5, 4, 20], anchor=LEFT+BOTTOM+FRONT);
-left(50) cuboid([5, 4, 20], anchor=LEFT+BOTTOM+FRONT);
-color("red") up(20-3) cuboid([50, 3, 3], anchor=RIGHT+BOTTOM+FRONT);
-color("blue") up(20-3) left(25) cuboid([5, 40, 3], anchor=LEFT+BOTTOM+BACK);
-color("green") fwd(40) left(25) cuboid([5, 3, 20], anchor=LEFT+BOTTOM+BACK);
+ns = 52./7.;
 
-up(20-3) left(25) xrot(30) cuboid([5, 3, 100], anchor=LEFT+BOTTOM+FRONT);
+cuboid([5, 4, 20], anchor=LEFT+BOTTOM+FRONT);
+left(5*ns) cuboid([5, 4, 20], anchor=LEFT+BOTTOM+FRONT);
+left(7*ns) cuboid([5, 4, 20], anchor=LEFT+BOTTOM+FRONT);
+color("red") up(20-3) cuboid([50, 3, 3], anchor=RIGHT+BOTTOM+FRONT);
+color("blue") up(20-3) left(25) cuboid([5, 90, 3], anchor=LEFT+BOTTOM+BACK);
+up(10) color("green") fwd(90) left(25) cuboid([5, 3, 10], anchor=LEFT+BOTTOM+BACK);
+
+up(20-3) left(25) back(3) xrot(45) cuboid([5, 3, 150], anchor=LEFT+BOTTOM+FRONT);
 
 /*
 fwd(55) up(70) left(100) 

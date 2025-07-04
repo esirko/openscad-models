@@ -65,13 +65,13 @@ module front_edging(length, screw_positions) {
 }
 
 // --- New side edge (not trap door) model (previously front edging)
-module side_edging(l, h1, h2, screw_positions, scarf_joint_1=true, scarf_joint_2=true) {
+module side_edging(l, h1, h2, screw_positions, scarf_joint_1=true, scarf_joint_2=true, far_side=false) {
     w1 = 30;
     //t1 = 4; // should be same as other t1
     //ch1 = 2.5; // should be same as other ch1
     d1 = 19+6+2;
     t2 = 3;
-    w2 = 30;
+    w2 = far_side ? 15 : 30;
     t3 = 1;
     c1 = 8.5;
     c2 = 11.5;
@@ -88,7 +88,9 @@ module side_edging(l, h1, h2, screw_positions, scarf_joint_1=true, scarf_joint_2
             
             if (h1 == 0) {
                 down(d1-t3) cuboid([w2-t2, l, t3], chamfer=0.5, edges=BOTTOM+RIGHT, anchor=LEFT+TOP+BACK);
-                cuboid([c1+c3, l, d1-t3], anchor=LEFT+TOP+BACK);
+                if (!far_side) {
+                    cuboid([c1+c3, l, d1-t3], anchor=LEFT+TOP+BACK);
+                }
             } else {
                 color("red") xrot(90) prismoid(size1=[c1, c2+h1], size2=[c1, c2+h2], h=l, shift=[0,(h1-h2)/2], anchor=LEFT+BACK+BOTTOM);
                 color("blue") right(c1) xrot(90) prismoid(size1=[c3, h1], size2=[c3, h2], h=l, shift=[0,(h1-h2)/2], anchor=LEFT+BACK+BOTTOM);
@@ -427,6 +429,7 @@ partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
 left(81+e) inside_corner_back(l0, 80+l0, 3, 12+7, iw2, iw2_back+7, iw1+10, iw1+10, 41, 14, 15);
 */
 
+//--- Near side of office side edging
 
 //back(110-4+216+126) side_edging(126, 0, 0, [sd, 126-sd], true, false);
 //back(110-4+216) side_edging(216, 0, 0, [sd, 216-sd]);
@@ -443,6 +446,10 @@ left(81+e) inside_corner_back(l0, 80+l0, 3, 12+7, iw2, iw2_back+7, iw1+10, iw1+1
 //fwd(1190) side_edging(216, 6, 6, [sd, 216-sd]);
 //fwd(1406) side_edging(170, 6, 6, [sd, 170-sd]); // 216 makes the next piece look bad, so shortening it a bit
 //fwd(1576) side_edging(80, 6, 6, [sd, 80-sd], false, true);
+
+// --- Far side of office side edging
+//side_edging(216, 0, 0, [sd, 216-sd], true, false, true);
+side_edging(216, 0, 0, [sd, 216-sd], true, true, true);
 
 //joint test
 /*
