@@ -4,17 +4,17 @@ include <BOSL2/beziers.scad>
 include <BOSL2/walls.scad>
 include <BOSL2/rounding.scad>
 
-trapezoid_mount = false;
+//trapezoid_mount = false;
 wood_panel_contour = false;
 cargo_tray = false;
 //phone_mount = false;
-//tray_to_phone_connector = false;
+tray_to_phone_connector = false;
 
-//trapezoid_mount = true;
+trapezoid_mount = true;
 //wood_panel_contour = true;
 //cargo_tray = true;
 phone_mount = true;
-tray_to_phone_connector = true;
+//tray_to_phone_connector = true;
 
 // --- constants
 e = 0.01;
@@ -32,7 +32,7 @@ tr = 2.5; // rounding on edges
 tsc1 = 20; // skate clip length, right side
 tsc2 = 20; // skate clip length, left side
 tooth_inward_angle = 95;
-tpartition_dx = 20;
+tpartition_dx = 0;
 tpartition_x = -40;
 tjoiner_height = 10;
 
@@ -55,6 +55,7 @@ theta = atan2((t2-t1)/2, th);
 t1p = t1 + tpartition_dx;
 t2p = t2 + tpartition_dx;
 cwp = cw + cpartition_dx;
+
 
 // --- modules
 module tooth(dir) {
@@ -112,9 +113,10 @@ module tooth(dir) {
     }
 }
 
-xrot(-20) // This rotates the entire model so that it's approximately in the right orientation relative to the car. Not necessary, but may be helpful for visualizing.
+//xrot(-20) // This rotates the entire model so that it's approximately in the right orientation relative to the car. Not necessary, but may be helpful for visualizing.
 difference() {
 union() { // ---- full model union
+
 
 // --- trapezoid mount
 if(trapezoid_mount) {

@@ -83,13 +83,13 @@ difference() {
     }
 }
 
-/*
+
 // plier arms
 rh1 = 12;
 ds = 16; // size of reinforcing notch
 // TODO: gw for the pliers should be less than gw for the pistons
 
-//left(10)
+left(100)
 xcopies(50, 2) {
     ydisplacement = sqrt((r0+5)*(r0+5) - rc2*rc2) + 15; // hmmm may need to recalculate this. Hmm wait I think it will just be a configurable
 
@@ -120,7 +120,7 @@ xcopies(50, 2) {
         
     }
 }
-*/
+
 
 
 

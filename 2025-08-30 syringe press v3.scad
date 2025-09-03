@@ -1,0 +1,166 @@
+include <BOSL2/std.scad>
+include <BOSL2/screws.scad>
+include <BOSL2/rounding.scad>
+
+// https://thors.com/threaded-fastener-parts-and-terminology/
+
+fn = 180;
+e = 0.01;
+
+// screw parameters
+major_diameter = 20;
+minor_diameter = 10;
+pitch = 15;
+
+depth = pitch * (major_diameter - minor_diameter)/major_diameter;
+root_y = -depth/pitch;
+minor_radius = (major_diameter-pitch)/2; // ???? wild guess ????
+
+dx = 0.25;
+fudgex = 0.05;
+fudgey1 = 0.05;
+fudgey2 = 0.05;
+
+l = 152; // screw length: 143 is final, er 152 is final
+
+knob_scale = 40;
+knob_height = 15;
+
+gr = 15;   // radius of syringe body
+gp = 17.5; // radius of top of syringe plunger
+
+sl = 152;  // final gutter length, assuming nl (nut length) of 20
+st = 5;    // gutter thickness
+nl = 20;   // nut length
+nt = gp+st;    // nut radius, must be > major_diameter/2
+
+
+profile = [
+    [-0.5, root_y],
+    [-dx, root_y],
+    [-dx, 0.0],
+    [dx, 0.0],
+    [dx, root_y],
+    [0.5, root_y]
+];
+
+profile2 = [
+    [-0.5, root_y+fudgey1],
+    [-dx-fudgex, root_y+fudgey1],
+    [-dx-fudgex, fudgey2],
+    [dx+fudgex, fudgey2],
+    [dx+fudgex, root_y+fudgey1],
+    [0.5, root_y+fudgey1]
+];
+
+/*
+// Code for studying positive/negative - leave commented out but don't delete!
+back(50)
+difference() {
+    union() {
+        left_half()
+        generic_threaded_rod(d=major_diameter, l=l, pitch=pitch, starts=3, profile=profile, $fn=fn);
+
+        color("red")
+        up(pitch/2) right_half()
+        generic_threaded_rod(d=major_diameter, l=l, pitch=pitch, starts=3, profile=profile2, internal=true, $fn=fn);
+    }
+
+    up(l/2 + 1) cuboid([50, 50, 50]);
+}
+*/
+
+
+// screw
+
+up(l/2) right(100)
+union() {
+    diff() generic_threaded_rod(d=major_diameter, l=l, pitch=pitch, starts=3, profile=profile, $fn=fn)
+        position(TOP) tag("remove") up(e) cyl(r=minor_radius+e, h=5, $fn=fn, anchor=TOP);
+    up(l/2-5) sphere(r=minor_radius, $fn=fn);
+
+    // knob
+    down(l/2-5) rounded_prism(hexagon(knob_scale), height=knob_height,
+                  joint_top=2, joint_bot=2, joint_sides=2);
+}
+
+
+
+spr = 28; // slotted part radius (outer)
+sph = 25; // slotted part height, not including the tapered support
+tsh = 8; // slotted part tapered support height; tsh+spz needs to be <=13
+spz = 5; // amount of slotted part (not including tapered support) on the + end of the syringe
+
+/*
+difference() {
+    union() {
+        // main gutter
+        diff() cyl(r=gp+st, h=sl, $fn=fn, anchor=BOTTOM)
+            tag("remove") cyl(r=gp, h=sl+1, $fn=fn)
+            tag("remove") cuboid([2*(gp+st+1), gp+st+1, sl+1], anchor=BACK);
+        
+        // angled support to the slotted part to avoid 3dprint supports and to make it stronger
+        up(spz) cyl(r1=spr, r2=gp+st+4, h=tsh, $fn=fn, anchor=BOTTOM);
+        up(spz) diff() cyl(r1=spr, r2=gp+st, h=30, $fn=fn, anchor=BOTTOM) // outer support below the gutter
+            tag("remove") cyl(r=gp, h=40+1, $fn=fn)
+            tag("remove") cuboid([2*(spr+1), spr+1, sl+1], anchor=BACK);
+        
+        // getting to very hacky adjustments
+        left(gp+st+0.25) up(spz) diff() prismoid(size1=[spr-gp, 22], size2=[st, 0], shift=[(spr-gp-st)/2, 11], h=30, anchor=BACK+BOTTOM);
+        
+        right(gp+st+0.25) up(spz) diff() prismoid(size1=[spr-gp, 22], size2=[st, 0], shift=[-(spr-gp-st)/2, 11], h=30, anchor=BACK+BOTTOM);
+
+        // slotted part
+        up(spz) cyl(r=spr, h=sph, rounding=2, $fn=fn, anchor=TOP);
+        up(spz) cyl(r=spr, h=2, $fn=fn, anchor=TOP); // hack to cover up the rounded part of the top edge
+    }
+
+    // cutouts to the slotted part
+    union() {
+        up(spz+tsh+e) cyl(r=gr, h=sph+tsh+1, $fn=fn, anchor=TOP);
+        up(spz+tsh+e) cuboid([2*gr, spr+1, sph+tsh+1], anchor=BACK+TOP);
+        up(spz+tsh+e) cyl(r1=gr, r2=gp, h=4, $fn=fn, anchor=TOP); // cutout for inner support part
+        up(spz+tsh+e) prismoid(size1=[2*gr, 40], size2=[2*gp, 40], h=4, anchor=TOP+BACK); // getting into the details
+
+        color("red") back(9) prismoid(size1=[45, 3], size2=[22, 3], h=8, orient=BACK, anchor=FRONT+BOTTOM);
+        color("pink") back(9) cuboid([45, 50, 3], anchor=BACK+TOP);
+        color("#ff8080") fwd(16) up(5+8+20+e) cuboid([50, 21, 25+8+20+1], anchor=BACK+TOP);
+        
+        tube(h=100, ir=spr, or=40, $fn=fn);
+    }
+}
+
+
+// nut
+up(sl-nl/2)
+difference() {
+    cyl(r=nt, l=nl, rounding=2, $fn=fn);
+    generic_threaded_rod(d=major_diameter, l=l, pitch=pitch, starts=3, profile=profile2, internal=true, $fn=fn);
+}
+
+// gutter/nut attachment
+up(sl-nl/2)
+diff() cyl(r=gp+e, h=nl, $fn=fn) {
+    tag("remove") cuboid([2*(gp+1), gp+1, nl+1], anchor=BACK);
+    tag("remove") cyl(r=major_diameter/2+nt-e, l=nl+1, $fn=fn);
+}
+
+up(sl-nl/2) diff() cyl(r1=gp+st-0.5, r2=spr, h=nl, rounding=2, $fn=fn)
+    tag("remove") cyl(r=gr, h=nl+1);
+*/
+
+//press plate (for future reference but probably not going to use)
+/*
+gw = 57;
+gh = 45;
+gt = 5;
+gl = 80;
+gs = 2;
+left(100) up(gl + 20)
+diff() cuboid([gw, gh, gt], rounding=1, $fn=fn, anchor=TOP) tag("remove") down(e) position(BOTTOM) {
+    cuboid([2*gp,gh/2+e,gs], anchor=FRONT+BOTTOM);
+    cylinder(h=gs, r=gp, anchor=BOTTOM);
+}
+*/ 
+
+        

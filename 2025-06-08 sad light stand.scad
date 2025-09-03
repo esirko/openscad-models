@@ -2,7 +2,8 @@ include <BOSL2/std.scad>
 include <BOSL2/shapes3d.scad>
 include <BOSL2/joiners.scad>
 
-xb = 15;
+xb = 5;
+yb = 10;
 ro = 55/2;
 ri = 36/2;
 e = 0.01;
@@ -10,54 +11,63 @@ e = 0.01;
 fn = 72;
 $slop=0.2;
 
+tilt_compensation=10; // angle to adjust joiner by to compensate for the weight tilting the thing downwards
+dx = tan(tilt_compensation) * 15;
+tip_compensation=15; // angle to tip the platform forwards
 
 difference() {
     union() {
-        cuboid([2*ro + xb, 2*ro, 10]);
-    }
+        difference() {
+            union() {
+                yrot(90) zrot(90) down(ro+xb/2) prismoid(size1=[2*(ro+yb), 10], size2=[2*ro, 10], height=2*ro+xb);
+            }
 
-    cyl(l=200, r=ri, $fn=fn);
-    cuboid([50, 2*ri, 50], anchor=LEFT);
-    right(ro+e) cuboid([xb/2, 2*ro+2*e, 50], anchor=LEFT);
-}
-
-tilt_compensation=5; // angle to adjust joiner by to compensate for the weight tilting the thing downwards
-dx = tan(tilt_compensation) * 15;
-
-
-left(ro + xb/2)
-union() {
-    difference() {
-        prismoid(size1=[20+dx,55], size2=[20-dx,55], shift=[dx,0], height=30, rounding=5, anchor=RIGHT, $fn=fn);
-        left(20) yrot(tilt_compensation) union() {
-            half_joiner_clear(l=40, w=15, orient=LEFT);
-            cuboid([10, 40, 15], anchor=RIGHT);
+            cyl(l=200, r=ri, $fn=fn);
+            cuboid([50, 2*ri, 50], anchor=LEFT);
+            right(8) cuboid([ro+xb, 2*(ro+yb), 11], anchor=LEFT);
+            right(ro+e) cuboid([xb/2, 2*ro+2*e, 50], anchor=LEFT);
         }
-    }
-    left(20) yrot(tilt_compensation) half_joiner2(l=40, w=15, orient=LEFT);
-}
 
-
-up(50)
-union() {
-    difference() {
+        left(ro+yb/2+5)
         union() {
-            cuboid([2*ro + xb, 2*ro, 30], rounding=3, edges=RIGHT, $fn=fn);
-            cuboid([(2*ro + xb)/2 + 20-dx+5, 2*ro, 30], anchor=RIGHT);
-            up(15) left(5) cuboid([(2*ro + xb)/2 + 20-dx, 2*ro, 5], anchor=RIGHT+BOTTOM);
-            down(15) left(5) cuboid([(2*ro + xb)/2 + 20-dx, 2*ro, 5], anchor=RIGHT+TOP); //left((2*ro + xb)/2) 
+            cuboid([15, 50, 25], rounding=2, $fn=fn, edges="X");
+            right(12) cuboid([xb+(ro-ri), 2*ri, 20]);
+            
+            left(10)
+            xrot(tip_compensation) yrot(tilt_compensation) 
+            union() {
+                difference() {
+                    cuboid([15, 46, 21], rounding=2, $fn=fn, edges="X");
+                    left(7.5) half_joiner_clear(l=40, w=15, orient=LEFT);
+                }
+                left(7.5) half_joiner2(l=40, w=15, orient=LEFT);
+            }
         }
 
-        cyl(l=200, r=ri, $fn=fn);
-        cuboid([70, 2*ri, 50], anchor=RIGHT);
-        right(8) cuboid([2*ro + xb, 2*ro+2*e, 10], anchor=RIGHT);
-        
-        fwd((ro+ri)/2) left(e) cuboid([ro, ro-ri+2*e, 10+2*e], anchor=LEFT);
-        back((ro+ri)/2) left(e) cuboid([ro, ro-ri+2*e, 10+2*e], anchor=LEFT);
-        
-        left(ro + xb/2) prismoid(size1=[20+dx+$slop,55+$slop], size2=[20-dx+$slop,55+$slop], shift=[dx,0], height=30+$slop, rounding=5, anchor=RIGHT, $fn=fn);
-        left(ro + xb/2) cuboid([30, 60, 26], anchor=RIGHT);
+        up(41)
+        union() {
+            difference() {
+                union() {
+                    yrot(90) zrot(90) down(ro+xb/2) prismoid(size1=[2*(ro+yb), 30], size2=[2*ro, 30], height=2*ro+xb, rounding=3, $fn=fn);
+                }
+
+                cyl(l=200, r=ri, $fn=fn);
+                cuboid([70, 2*ri, 50], anchor=RIGHT);
+                right(8) cuboid([2*ro + xb, 2*ro+2*yb+2*e, 10], anchor=RIGHT);
+            }
+        }
     }
+
+    fwd(26) left(22) cyl(r=3, height=200);
+    back(26) left(22) cyl(r=3, height=200);
+}
+
+right(50)
+xcopies(20, 2)
+union() {
+    cyl(r=3-$slop, height=35, anchor=TOP);
+    cyl(r=5, height=2, anchor=TOP);
+    down(35) cyl(r1=1, r2=3-$slop, height=3, anchor=TOP);
     
 }
 

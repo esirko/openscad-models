@@ -448,8 +448,45 @@ left(81+e) inside_corner_back(l0, 80+l0, 3, 12+7, iw2, iw2_back+7, iw1+10, iw1+1
 //fwd(1576) side_edging(80, 6, 6, [sd, 80-sd], false, true);
 
 // --- Far side of office side edging
-//side_edging(216, 0, 0, [sd, 216-sd], true, false, true);
-side_edging(216, 0, 0, [sd, 216-sd], true, true, true);
+//side_edging(216, 0, 0, [sd, 216-sd], true, false, true); // Need to cut out a notch manually (I didn't bother modeling it)
+//side_edging(216, 0, 0, [sd, 216-sd], true, true, true); // x8
+//side_edging(175, 0, 0, [sd, 175-sd], true, true, true);
+//side_edging(179, 0, 0, [sd, 179-sd], false, true, true);
+
+
+// --- Extra platform corners
+
+// switch these and print two each, for the four corners
+extra_platform_x = 155;
+extra_platform_y = 180;
+
+/*
+difference() {
+    union() {
+        side_edging(extra_platform_x, 0, 0, [extra_platform_x-sd], true, false, true);
+        right(extra_platform_y) zrot(-90) side_edging(extra_platform_y, 0, 0, [sd], false, true, true);
+        up(4) cuboid([3, 3, 19+6+2+ 4], anchor=RIGHT+TOP+FRONT);
+    }
+    back(4+e) left(3) rounding_edge_mask(l=100+2*e, r=t1, anchor=TOP+BACK, $fn=fn, orient=BACK);
+    left(4+e) back(3) right(100) zrot(-90) rounding_edge_mask(l=100+2*e, r=t1, anchor=TOP+BACK, $fn=fn, orient=BACK);
+ 
+    left(3) back(3) down(19+6+2) chamfer_corner_mask(chamfer=3);
+
+    left(3) back(3) zrot(-90) rounding_edge_mask(l=100, r=t1, $fn=fn);
+}
+*/
+
+
+//side_edging(180, 0, 0, [sd, 180-sd], true, true, true); // x3 x2
+//side_edging(192, 0, 0, [sd, 192-sd], true, true, true); // x1 x2
+//side_edging(155, 0, 0, [sd, 155-sd], true, true, true); // x1 x2
+//side_edging(155, 0, 0, [sd, 155-sd], true, true, true); // x2 x2
+//side_edging(163, 0, 0, [sd, 163-sd], true, true, true); // x1
+side_edging(162, 0, 0, [sd, 162-sd], true, true, true); // x1
+
+
+
+
 
 //joint test
 /*
