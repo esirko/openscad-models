@@ -7,6 +7,9 @@ e = 0.01;
 fn = 36;
 sd = 20; // Distance from screwhole to edge of piece
 
+// 2025-10-17 Version 2 using aluminum angle/edge protector
+aluminum_edge = 1;
+
 // Outer edging parameters
 t1 = 4;
 t3 = 1;
@@ -35,7 +38,6 @@ iw2 = 30;
 iw2_back = 33+12;
 ich1 = 1.5;
 ich2 = 0.75;
-extra_ledge = false;
 
 // Front edging parameters
 fw1 = 40; // almost certainly bigger than w1
@@ -120,24 +122,31 @@ module side_edging(l, h1, h2, screw_positions, scarf_joint_1=true, scarf_joint_2
 
 
 // Trap door: outside edging, i.e. frame of the trap door
-module outside_edging(l1, t2, w2, w1, screw_positions, notch_x, notch_w, notch_d, cutout_for_hinge, minimal_edge, d1adjustment) {
+module outside_edging(l1, t2, w2, w1, screw_positions, notch_x, notch_w, notch_d, cutout_for_hinge, minimal_edge, d1adjustment, hack="") {
     
     tlvp = tlvp + d1adjustment; // adjusting tlvp works better in that if you adjust d1, it affects the screw hole lo7cations
     
     difference() {
         union() {
-            up(tlvp) right(t2) 
-                if (minimal_edge) {
-                    difference() {
-                        cuboid([w1, l1, 2], anchor=RIGHT+BOTTOM+BACK);
-                        color("red") back(e) up(t1+e) fwd(l1+e) left(w1+e) zrot(90) xrot(180) wedge([l1+2*e, w1, t1-0.4]);
+            if (aluminum_edge == 0) {
+                up(tlvp) right(t2) 
+                    if (minimal_edge) {
+                        difference() {
+                            cuboid([w1, l1, 2], anchor=RIGHT+BOTTOM+BACK);
+                            color("red") back(e) up(t1+e) fwd(l1+e) left(w1+e) zrot(90) xrot(180) wedge([l1+2*e, w1, t1-0.4]);
+                        }
+                    } else {
+                        cuboid([w1, l1, t1], chamfer=ch1, edges=TOP+LEFT, anchor=RIGHT+BOTTOM+BACK);
                     }
-                } else {
-                    cuboid([w1, l1, t1], chamfer=ch1, edges=TOP+LEFT, anchor=RIGHT+BOTTOM+BACK);
-                }
-            cuboid([t2, l1, tlvp], anchor=LEFT+BOTTOM+BACK);
+            }
+            color("gray") 
+            if (hack == "FO4") {
+                prismoid(size1=[t2-aluminum_edge, tlvp], size2=[t2-aluminum_edge, tlvp-2], shift=[0,-1], h=l1, anchor=BOTTOM+FRONT+LEFT, orient=FRONT);
+            } else {
+                cuboid([t2-aluminum_edge, l1, tlvp], anchor=LEFT+BOTTOM+BACK);
+            }
             diff()
-                cuboid([t2, l1, d1], anchor=LEFT+TOP+BACK)
+                cuboid([t2-aluminum_edge, l1, d1], anchor=LEFT+TOP+BACK)
                     attach(RIGHT)
                         for (s = screw_positions) {
                             right(s) screw_hole("#8-32,1",head="flat",counterbore=0,anchor=TOP, $fn=fn);
@@ -159,65 +168,70 @@ module outside_edging(l1, t2, w2, w1, screw_positions, notch_x, notch_w, notch_d
         if (cutout_for_hinge > 0) {
             fwd(notch_x + notch_w + cutout_for_hinge + e) down(d1-t3-e) right(w2-e) cuboid([t4+2*e, 54, d2+t3+2*e], anchor=LEFT+TOP+BACK);
         }
-    
     }
 }
 
 // Trap door: outside corner, i.e. frame of the trap door
-module outside_corner(l1, l2, t2_1, t2_2, w2_1, w2_2, w1_1, w1_2, notch_x, notch_w, notch_d, cutout_for_hinge, front) {
+module outside_corner(l1, l2, t2_1, t2_2, w2_1, w2_2, w1_1, w1_2, notch_x, notch_w, notch_d, cutout_for_hinge, front, d1adjustment=0, hack="") {
     
-    d1adjustment = (front && t2_1 == 6) ? -2 : 0; // HACK: assume t2_1 is 6 for the right front corner
+    //d1adjustment = (front && t2_1 == 6) ? -2 : 0; // HACK: assume t2_1 is 6 for the right front corner
+    
+    screw_adjustment = hack == "FO1" ? -2 : 0;
 
     difference () {
         union() {
-            outside_edging(l1, t2_1, w2_1, w1_1, [-l1/2+sd, l1/2-sd-t2_2+10], 0, 0, 0, 0, false, d1adjustment);
-            up(tlvp+d1adjustment) right(t2_1) fwd(t2_2) cuboid([w1_1, w1_2, t1], chamfer=ch1, edges=TOP+LEFT+BACK, anchor=RIGHT+BOTTOM+FRONT);
+            outside_edging(l1, t2_1, w2_1, w1_1, [-l1/2+sd+screw_adjustment, l1/2-sd-t2_2+10+screw_adjustment], 0, 0, 0, 0, false, d1adjustment);
             zrot(90) xflip()
             outside_edging(l2, t2_2, w2_2, w1_2, [-l2/2+sd], notch_x, notch_w, notch_d, cutout_for_hinge, front, d1adjustment);
+            if (aluminum_edge == 0) {
+                up(tlvp+d1adjustment) right(t2_1) fwd(t2_2) cuboid([w1_1, w1_2, t1], chamfer=ch1, edges=TOP+LEFT+BACK, anchor=RIGHT+BOTTOM+FRONT);
+            }
         }
-        
-        fwd(w2_2-e) left(2*e) down(d1+e) cuboid([w2_1+e, t4+2*e, 100], anchor=LEFT+TOP+BACK);
-        right(w2_1-e) back(2*e) down(d1+e) cuboid([t4+2*e, w2_2+e, 100], anchor=LEFT+TOP+BACK);
-        if (front) {
-            zrot(90) xflip()
-            up(tlvp) right(t2_2) 
-            color("blue") back(e) up(t1+d1adjustment+e) fwd(l2+e) left(w1_2+e) zrot(90) xrot(180) wedge([l2+2*e + 100, w1_2, t1-0.4]);
-        }
+        //if (aluminum_edge == 0) {
+            fwd(w2_2-e) left(2*e) down(d1+e) cuboid([w2_1+e, t4+2*e, 100], anchor=LEFT+TOP+BACK);
+            right(w2_1-e) back(2*e) down(d1+e) cuboid([t4+2*e, w2_2+e, 100], anchor=LEFT+TOP+BACK);
+            if (front) {
+                zrot(90) xflip()
+                up(tlvp) right(t2_2) 
+                color("blue") back(e) up(t1+d1adjustment+e) fwd(l2+e) left(w1_2+e) zrot(90) xrot(180) wedge([l2+2*e + 100, w1_2, t1-0.4]);
+            }
+        //}
     }
 }
 
 
 // Trap door: inside edging, i.e., trap door itself
-module inside_edging(length, it2, iw2, iw1, screw_positions, bottom_chamfer, bar_cover_x, hinge_hole_x, bar_cover_border1, bar_cover_border2, minimal_edge, d1adjustment) {
+module inside_edging(length, it2, iw2, iw1, screw_positions, bottom_chamfer, bar_cover_x, hinge_hole_x, bar_cover_border1, bar_cover_border2, minimal_edge, d1adjustment, hack="") {
     t5 = 1;
     l3 = 45;
     //w3 = 14;
     
     tlvp = tlvp + d1adjustment;
     
+    screw_hole_vertical = (hack == "FI5") ? 1 : 0;
+    
     difference() {
         union() {
-            up(tlvp) left(it2)
-                if (minimal_edge) {
-                    difference() {
-                        cuboid([iw1, length, 1], anchor=LEFT+BOTTOM+BACK);
-                        color("red") back(e) up(it1+e) right(iw1+e) zrot(-90) xrot(180) wedge([length+2*e, iw1-it2, it1-0.4]);
+            if (aluminum_edge == 0) {
+                up(tlvp) left(it2)
+                    if (minimal_edge) {
+                        difference() {
+                            cuboid([iw1, length, 1], anchor=LEFT+BOTTOM+BACK);
+                            color("red") back(e) up(it1+e) right(iw1+e) zrot(-90) xrot(180) wedge([length+2*e, iw1-it2, it1-0.4]);
+                        }
+                    } else {
+                        cuboid([iw1, length, it1], chamfer=ich1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
                     }
-                } else {
-                    cuboid([iw1, length, it1], chamfer=ich1, edges=TOP+RIGHT, anchor=LEFT+BOTTOM+BACK);
-                }
-            cuboid([it2, length, tlvp], anchor=RIGHT+BOTTOM+BACK);
-            if (extra_ledge) {
-                left(it2) cuboid([it2+10, length, 1], anchor=LEFT+BOTTOM+BACK);
             }
+            cuboid([it2-aluminum_edge, length, tlvp], anchor=RIGHT+BOTTOM+BACK);
             diff()
-                cuboid([it2, length, id1], anchor=RIGHT+TOP+BACK)
+                cuboid([it2-aluminum_edge, length, id1], anchor=RIGHT+TOP+BACK)
                     attach(LEFT) {
                         for (s = screw_positions) {
-                            right(s) screw_hole("#8-32,1",head="flat",counterbore=0,anchor=TOP, $fn=fn);
+                            up(it2-aluminum_edge <= 1 ? 0.5 : 0) right(s) back(s > 0 ? screw_hole_vertical : 0) screw_hole("#8-32,1",head="flat",counterbore=0,anchor=TOP, $fn=fn);
                         }
                     }
-            left(it2) down(id1) cuboid([iw2, length, it3], anchor=LEFT+TOP+BACK, chamfer=bottom_chamfer, edges=BOTTOM+RIGHT);
+            left(it2-aluminum_edge) down(id1) cuboid([iw2-aluminum_edge, length, it3], anchor=LEFT+TOP+BACK, chamfer=bottom_chamfer, edges=BOTTOM+RIGHT);
             if (bar_cover_x > 0) {
                 fwd(bar_cover_x) left(t5) down(id1) cuboid([l3+t5, 38+2*t5, 19+t5], anchor=LEFT+TOP+BACK);
                 fwd(bar_cover_x-bar_cover_border2+t5) left(t5) down(id1) cuboid([l3+t5, 38+bar_cover_border1+bar_cover_border2, t5], anchor=LEFT+TOP+BACK);
@@ -239,19 +253,20 @@ module inside_corner_back(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_1, iw1_2, notc
         union() {
             // corner of two edges
             inside_edging(l1, it2_1, iw2_1, iw1_1, [l1/2-sd, -l1/2+sd], 0, 0, 0, 0, 0, false, 0);
-            down(id1+it3) cuboid([it2_1, it2_2, it1+tlvp+id1+it3], anchor=RIGHT+FRONT+BOTTOM);
+            down(id1+it3) cuboid([it2_1-aluminum_edge, it2_2-aluminum_edge, (aluminum_edge == 0 ? it1 : 0) +tlvp+id1+it3], anchor=RIGHT+FRONT+BOTTOM);
             zrot(90) xflip()
             inside_edging(l2, it2_2, iw2_2, iw1_2, [l2/2-sd, -l2/2+notch_x+38+sd, -l2/2+notch_x+38-sd], ich2, notch_x, 113, bar_cover_border1, bar_cover_border2, false, 0);
         }
     }
 }
 
-module inside_corner_front(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_1, iw1_2, notch_x, bar_cover_border1, bar_cover_border2) {
+module inside_corner_front(l1, l2, it2_1, it2_2, iw2_1, iw2_2, iw1_1, iw1_2, notch_x, bar_cover_border1, bar_cover_border2, hack="") {
     difference() {
         union() {
             // corner of two edges
-            inside_edging(l1, it2_1, iw2_1, iw1_1, [l1/2-sd, -l1/2+sd], 0, 0, 0, 0, 0, false, 0);
-            down(id1+it3) cuboid([it2_1, it2_2, 1+tlvp+id1+it3], anchor=RIGHT+FRONT+BOTTOM);
+            side_screw_adjustment = (hack == "FI1" || hack == "FI7") ? -2 : 0;
+            inside_edging(l1, it2_1, iw2_1, iw1_1, [l1/2-sd+side_screw_adjustment, -l1/2+sd+side_screw_adjustment], 0, 0, 0, 0, 0, false, 0);
+            down(id1+it3) cuboid([it2_1-aluminum_edge, it2_2-aluminum_edge, (aluminum_edge == 0 ? 1 : 0)+tlvp+id1+it3], anchor=RIGHT+FRONT+BOTTOM);
             zrot(90) xflip()
             inside_edging(l2, it2_2, iw2_2, iw1_2, [l2/2-sd], ich2, notch_x, 0, bar_cover_border1, bar_cover_border2, true, 0);
         }
@@ -319,114 +334,116 @@ l0 = 160;
 
 
 // Left edge inside: 3x175 + 170
-// Note: for the 175 ones, I accidentally used 150 instead of 175 as the numerator for the screw hole positions. - wait, did I?
-//inside_edging(170, 3, iw2, iw1+10, [170/2-sd, -170/2+sd], 0, 0, 0, 0, 0, false, 0);
+// Note: for the 175 ones, I accidentally used 150 instead of 175 as the numerator for the screw hole positions. - wait, did I? - yes, in fact for all of them, including the 170 one
+//inside_edging(175, 2, iw2-1, iw1+10, [150/2-sd, -150/2+sd], 0, 0, 0, 0, 0, false, 0); // x3
+//right(50) inside_edging(170, 2, iw2-1, iw1+10, [150/2-sd, -150/2+sd], 0, 0, 0, 0, 0, false, 0);
 
 // Left edge outside: 4x150 + 144
-//outside_edging(150, 7, 19, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
-//right(50) outside_edging(150, 7, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
-//right(100) outside_edging(144, 7, 20, w1, [-144/2+sd, 144/2-sd], 0, 0, 0, 0, false, 0);
-//right(150) outside_edging(150, 6, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
-//right(200) outside_edging(150, 6, 21, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
+//outside_edging(150, 6, 19, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
+//right(50) outside_edging(148, 6, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
+//right(100) outside_edging(144, 6, 20, w1, [-144/2+sd, 144/2-sd], 0, 0, 0, 0, false, 0);
+//right(150) outside_edging(150, 7, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
+//right(200) outside_edging(150, 7, 21, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
 
-// Right edge inside: 3x175 + 169
-//inside_edging(169, 3, iw2, iw1+10, [169/2-sd, -169/2+sd], 0, 0, 0, 0, 0, false, 0);
+// Right edge inside: 173 (with 175 screw positions), 175, 169, 175
+//inside_edging(173, 3, iw2, iw1+10, [175/2-sd+1, -175/2+sd+1], 0, 0, 0, 0, 0, false, 0);
+//right(50) inside_edging(175, 3, iw2, iw1+10, [175/2-sd, -175/2+sd], 0, 0, 0, 0, 0, false, 0);
+//right(100) inside_edging(169, 3, iw2, iw1+10, [169/2-sd, -169/2+sd], 0, 0, 0, 0, 0, false, 0);
+//right(150) inside_edging(175, 3, iw2, iw1+10, [175/2-sd, -175/2+sd], 0, 0, 0, 0, 0, false, 0);
 
 // Right edge outside:
-//outside_edging(150, 6, 19, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0); // x2
-//right(100) outside_edging(142, 6, 19, w1, [-142/2+sd, 142/2-sd], 0, 0, 0, 0, false, 0);
-//outside_edging(150, 6, 18, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0); // x2
+outside_edging(150, 7, 19, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, -1); // x2
+right(50) outside_edging(140, 7, 19, w1, [-140/2+sd, 140/2-sd], 0, 0, 0, 0, false, 0);
+//right(100) outside_edging(150, 6, 18, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0); // x2
 
 
 // Front edge outside
+/*
+outside_corner(150, 150, 6, 12, w2_1, w2_2+1, w1, w1+10, notch_x, notch_w,  notch_d, 0, true, hack="FO1");
 
+fwd(100) right(40) zrot(90) xflip()
+outside_edging(125, 12, w2_2+1, w1+10, [-125/2+sd, 125/2-sd], 0, 0, 0, 0, true, 0);
 
-//outside_corner(150, 150, 7, 17, w2_1, w2_2+1, w1, w1+10, notch_x, notch_w,  notch_d, 0, true);
+fwd(100) right(200) zrot(90) xflip()
+outside_edging(132, 12, w2_2+1, w1+10, [-133/2+sd, 133/2-sd], 0, 0, 0, 0, true, 0); // 132 vs 133 is intentional since I already screwed in the screws
 
-//fwd(100) right(40) zrot(90) xflip()
-//outside_edging(125, 15, w2_2+1, w1+10, [-125/2+sd, 125/2-sd], 0, 0, 0, 0, true, 0);
+right(170) zrot(90) xflip()
+outside_edging(l0, 12, w2_2, w1+10, [-l0/2+sd, l0/2-sd], l0/2-notch_w/2, notch_w, notch_d+1, 0, true, 0, hack="FO4");
 
-//fwd(100) right(200) zrot(90) xflip()
-//outside_edging(132, 15, w2_2+1, w1+10, [-133/2+sd, 133/2-sd], 0, 0, 0, 0, true, 0); // 132 vs 133 is intentional since I already screwed in the screws
+left(100)
+fwd(200) right(140) zrot(90) xflip()
+outside_edging(125, 12, w2_2-1, w1+10, [-125/2+sd, 125/2-sd], 0, 0, 0, 0, true, -2);
 
-//right(170) zrot(90) xflip()
-//outside_edging(l0, 15, w2_2, w1+10, [-l0/2+sd, l0/2-sd], l0/2-notch_w/2, notch_w, notch_d+1, 0, true, 0);
+fwd(200) right(300) zrot(90) xflip()
+outside_edging(123, 12, w2_2-1, w1+10, [-122/2+sd, 122/2-sd], 0, 0, 0, 0, true, -2);
 
-//left(100)
-//fwd(200) right(140) zrot(90) xflip()
-//outside_edging(125, 15, w2_2-1, w1+10, [-125/2+sd, 125/2-sd], 0, 0, 0, 0, true, -2);
-
-//fwd(200) right(300) zrot(90) xflip()
-//outside_edging(123, 15, w2_2-1, w1+10, [-122/2+sd, 122/2-sd], 0, 0, 0, 0, true, -2);
-
-//right(500) xflip()
-//outside_corner(150, 150, 6, 15, w2_1, w2_2-2, w1, w1+10, notch_x, notch_w, notch_d, 0, true);
-
+right(500) xflip()
+outside_corner(150, 150, 7, 12, w2_1, w2_2-2, w1, w1+10, notch_x, notch_w, notch_d, 0, true, d1adjustment=-2);
+*/
 
 // Front edge inside
+/*
+inside_corner_front(150, 150, 2, 10, iw2, iw2_back, iw1+10, iw1, 39, 14, 15, hack="FI1");
 
-//inside_corner_front(150, 150, 3, 3, iw2, iw2_back, iw1+10, iw1, 39, 14, 15);
+fwd(100) right(200) zrot(-90)
+inside_edging(125, 9, iw2, iw1, [-125/2+sd, 125/2-sd], ich2, 0, 0, 0, 0, true, 0);
 
-//fwd(100) right(200) zrot(-90)
-//inside_edging(125, it2, iw2, iw1, [-125/2+sd, 125/2-sd], ich2, 0, 0, 0, 0, true, 0);
+fwd(100) right(350) zrot(-90)
+inside_edging(121, 8, iw2, iw1, [-121/2+sd, 121/2-sd], ich2, 0, 0, 0, 0, true, 0);
 
-//fwd(100) right(350) zrot(-90)
-//inside_edging(121, it2, iw2, iw1, [-121/2+sd, 121/2-sd], ich2, 0, 0, 0, 0, true, 0);
+right(330) zrot(-90)
+inside_edging(l0, 7, iw2, iw1, [-l0/2+sd, l0/2-sd], ich2, l0/2-38/2, 0, 14, 14, true, 0);
 
-//right(330) zrot(-90)
-//inside_edging(l0, it2, iw2, iw1, [-l0/2+sd, l0/2-sd], ich2, l0/2-38/2, 0, 14, 14, true, 0);
+fwd(200) right(300) zrot(-90)
+inside_edging(111, 7, iw2, iw1, [-111/2+sd, 111/2-sd], ich2, 0, 0, 0, 0, true, 0, hack="FI5"); // I think this one needs to be d1adjusted - hm, maybe just the left side?
 
-//fwd(200) right(300) zrot(-90)
-//inside_edging(111, it2, iw2, iw1, [-111/2+sd, 111/2-sd], ich2, 0, 0, 0, 0, true, 0); // I think this one needs to be d1adjusted - hm, maybe just the left side?
+fwd(200) right(450) zrot(-90)
+inside_edging(125, 6, iw2, iw1, [-125/2+sd, 125/2-sd], ich2, 0, 0, 0, 0, true, 0); // Guessing on the d1 adjustment on this one - hm, maybe not
 
-//fwd(200) right(450) zrot(-90)
-//inside_edging(125, it2, iw2, iw1, [-125/2+sd, 125/2-sd], ich2, 0, 0, 0, 0, true, 0); // Guessing on the d1 adjustment on this one - hm, maybe not
-
-//right(500) xflip()
-//inside_corner_front(150, 149, 3, 3, iw2, iw2_back, iw1+10, iw1, 37, 14, 15);
-
+right(500) xflip()
+inside_corner_front(150, 149, 3, 6, iw2, iw2_back, iw1+10, iw1, 37, 14, 15, hack="FI7");
+*/
 
 // Back edge outside
 /*
-outside_corner(l0, l0-2, 6, 2, 18, 28+7, w1, w1, notch_x, notch_w, 15, 13, false);
+outside_corner(l0, l0-2, 6, 7, 18, 29+6, w1, w1, notch_x, notch_w, 15, 13, false);
 
 right(50) fwd(100) zrot(90) xflip()
-outside_edging(120, 2, 30+7, w1, [-120/2+sd, 120/2-sd], 0, 0, 0, 0, false, 0);
+outside_edging(120, 9, 30+6, w1, [-120/2+sd, 120/2-sd], 0, 0, 0, 0, false, 0);
 
 right(180) fwd(100) zrot(90) xflip()
-outside_edging(124, 2, 30+7, w1, [-124/2+sd, 124/2-sd], 0, 0, 0, 59, false, 0);
+outside_edging(124, 9, 30+6, w1, [-124/2+sd, 124/2-sd], 0, 0, 0, 59, false, 0);
 
 right(180) zrot(90) xflip()
-outside_edging(l0, 2, 30+7, w1, [-l0/2+sd, l0/2-sd], l0/2-notch_w/2, notch_w, 15, 0, false, 0);
+outside_edging(l0, 9, 30+6, w1, [-l0/2+sd, l0/2-sd], l0/2-notch_w/2, notch_w, 15, 0, false, 0);
 
 right(250) fwd(200) zrot(90) xflip()
-outside_edging(121, 2, 30+7, w1, [-121/2+sd, 121/2-sd], 0, 0, 0, 6, false, 0);
+outside_edging(121, 9, 30+6, w1, [-121/2+sd, 121/2-sd], 0, 0, 0, 6, false, 0);
 
 right(380) fwd(200) zrot(90) xflip()
-outside_edging(120, 2, 30+7, w1, [-120/2+sd, 120/2-sd], 0, 0, 0, 0, false, 0);
+outside_edging(120, 9, 30+6, w1, [-120/2+sd, 120/2-sd], 0, 0, 0, 0, false, 0);
 
 right(530) xflip()
-outside_corner(l0, l0+1, 6, 2, 21, 29+7, w1, w1, 53, notch_w, 15, 9, false, 0;
+outside_corner(l0, l0+1, 7, 7, 21, 30+6, w1, w1, 53, notch_w, 15, 9, false);
 */
 
 // Back edge inside
-
 /*
 partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
-left(78+e) inside_corner_back(l0, 77+l0, 3, 12+7, iw2, iw2_back+7, iw1+10, iw1+10, 38, 16, 15);
+left(78+e) inside_corner_back(l0, 77+l0, 3, 10, iw2, iw2_back-2, iw1+10, iw1+10, 38, 16, 15);
 
 right(250) fwd(100) zrot(-90)
-inside_edging(154, 12+7, iw2_back+7, iw1+10, [-154/2+sd, 154/2-sd], 0.75, 0, 32, 0, 0, false, 0);
+inside_edging(154, 10, iw2_back-2, iw1+10, [-154/2+sd, 154/2-sd], 0.75, 0, 32, 0, 0, false, 0);
 
 right(350) zrot(-90)
-inside_edging(l0, 12+7, iw2_back+7, iw1+10, [-l0/2+sd, l0/2-sd], 0.75, l0/2-20, 0, 14, 14, false, 0);
+inside_edging(l0, 10, iw2_back-2, iw1+10, [-l0/2+sd, l0/2-sd], 0.75, l0/2-20, 0, 14, 14, false, 0);
 
 right(450) fwd(100) zrot(-90)
-inside_edging(149, 12+7, iw2_back+7, iw1+10, [-149/2+sd, 149/2-sd], 0.75, 0, 109, 0, 0, false, 0);
+inside_edging(149, 10, iw2_back-2, iw1+10, [-149/2+sd, 149/2-sd], 0.75, 0, 109, 0, 0, false, 0);
 
 right(550) xflip()
 partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
-left(81+e) inside_corner_back(l0, 80+l0, 3, 12+7, iw2, iw2_back+7, iw1+10, iw1+10, 41, 14, 15);
+left(81+e) inside_corner_back(l0, 80+l0, 2, 10, iw2, iw2_back-2, iw1+10, iw1+10, 41, 14, 15);
 */
 
 //--- Near side of office side edging
@@ -482,7 +499,7 @@ difference() {
 //side_edging(155, 0, 0, [sd, 155-sd], true, true, true); // x1 x2
 //side_edging(155, 0, 0, [sd, 155-sd], true, true, true); // x2 x2
 //side_edging(163, 0, 0, [sd, 163-sd], true, true, true); // x1
-side_edging(162, 0, 0, [sd, 162-sd], true, true, true); // x1
+//side_edging(162, 0, 0, [sd, 162-sd], true, true, true); // x1
 
 
 

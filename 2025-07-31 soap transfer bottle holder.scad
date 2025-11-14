@@ -2,14 +2,14 @@ include <BOSL2/std.scad>
 
 e = 0.1;
 t = 2;
-h1 = 13;
-r1 = 20;
-r2 = 13;
+h1 = 17; // 13
+r1 = 30; // 20
+r2 = 15; // 13
 h2 = 12;
 r3 = 25;
 h3 = 40;
-r4 = 37;
-shift = 2 * 2.5;
+r4 = 37; // 37
+shift = 8; // 5
 
 difference() {
     union() {
