@@ -46,9 +46,13 @@ lay3 = 46;
 lar = 0.5;
 law3 = 30;
 
-
 barw = 90;
 bary = 20;
+
+r_ohsnap = 29;
+h_ohsnap = 4;
+y_ohsnap = 48;
+
 
 
 // Derived
@@ -91,6 +95,7 @@ xrot(0)
 union() {
 
 // --- mount bar
+    /*
 difference() {
     union() {
         diff() prismoid([t1p + 2*tt, ttr], [t2p + 2*tt, ttr], th, orient=BACK, anchor=BACK+BOTTOM) {
@@ -111,10 +116,12 @@ difference() {
     }
     back(5) back(th+(th-tsc1)/2) down(50) prismoid([210, 2*(th-tsc1)+10], [210, 12], h=2*50); //large plane cutout to make it print flat without support
 }
+*/
 
 
 // --- everything else besides the mount bar
 union() {
+    /*
     difference() {
         union() {
             // --- connector block: left-anchor to mount bar, left-anchor side
@@ -170,8 +177,9 @@ union() {
         // skim off the bottom of the whole left mount, to be able to print this flat
         up(3) left(105-1) color("#ccffcc") cuboid([195, 40, 10], anchor=FRONT+TOP+RIGHT);
     }
+    */
     
-    /*
+    
     // --- phone holder complete assemblage, including base with 3 holes, extension bar, and the actual phone holding part
     fwd(10) up(10)
     right(3.5) fwd(3) up(4.5) xrot(-15)
@@ -209,11 +217,10 @@ union() {
         }
         
         // --- extension bar from the "base" to actual phone holding part
-        // TODO: this might be an easier print with less supports if the red/blue part were lifted a bit up
         color("red")
-        up(20) left(250.5) fwd(8) xrot(-2) difference () {
-            prismoid([jl, 76], [jl, 114], shift=[0, -11], 60);
-            down(e) cuboid([jl+1, 120, 40], anchor=BOTTOM); // I do a difference instead of changing the geometry of the red bar simply because I spent a lot of time visually aligning the red bar and I don't want to mess it up.
+        up(45) left(250.5) fwd(20) xrot(-5) difference () {
+            prismoid([jl, 100], [jl, 120], shift=[0, 0], 25);
+            fwd(77) up(50) yrot(6) zrot(-3) xrot(29.5) cuboid([150, 20, 150]); // These numbers on this line were all guess-and-check eyeball
         }
         
         // --- phone holder: just the phone holding part
@@ -227,6 +234,10 @@ union() {
                     cuboid([pw+2*pt, pd+2*pt, ph+2*pt],chamfer=3);
                     up(ph-2*pt) cuboid([100, 100, ph]);
                     fwd(pt/2) cuboid([pw, pd+pt+e, ph], rounding=5, edges="Y");
+                    back((pd+pt+e)/2-pt/2-e) up(y_ohsnap - ph/2 + r_ohsnap) {
+                        cyl(r=r_ohsnap, h=h_ohsnap, anchor=TOP, orient=FWD);
+                        cuboid([2*r_ohsnap, h_ohsnap, 100], anchor=FRONT+BOTTOM);
+                    }
                 }
                 
                 fwd(0.5*(pd+pt))
@@ -242,7 +253,6 @@ union() {
             fwd(1) color("red") up(11) fwd(2.5) right(0.5*(pw+pt)) yrot(90) cuboid([30, pd+pt+2*e, pt+2*e], chamfer=-1);
         }
     }
-    */
 }
 
 

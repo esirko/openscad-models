@@ -37,6 +37,7 @@ sy = 50;
 // 2.5" wood emulator
 wx = 63;
 
+/*
 block(cx, 80, 0, text="1");
 fwd(150) block(wx, 178, 120, text="5");
 right(80) fwd(150) block(wx, 178, -29, text="0");
@@ -51,8 +52,8 @@ diff() cuboid([wx, 50, 3], anchor=TOP+BACK+RIGHT)
 right(300)
 diff() cuboid([wx, 50, 4], anchor=TOP+BACK+RIGHT)
     attach(TOP) color("red") tag("remove") up(e) text3d("4", h=1, size=8, center=true, anchor=TOP);
+*/
 
-/*
 block(cx, cy, 0, text="TL");
 fwd(420) block(my, mx, 0, text="CL");
 fwd(840) block(cx, cy, 0, text="BL");
@@ -82,6 +83,6 @@ fwd(420+250) {
     right(420) block(sx, sy, 420, text="S2");
     right(840) block(sx, sy, 420, text="S3");
 }
-*/
+
 
 

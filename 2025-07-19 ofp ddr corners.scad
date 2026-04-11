@@ -8,20 +8,21 @@ zh = 20;
 slop = 0.2;
 fn = 36;
 
-ulx = 35;
-uly = 35;
 
 left(100) fwd(0) union() {
-    right(pad) cuboid([ulx+pad, uly, zh], anchor=BOTTOM+FRONT+RIGHT);
-    fwd(pad) cuboid([ulx, uly+pad, zh], anchor=BOTTOM+FRONT+RIGHT);
+    right(pad) cuboid([35+pad, 35, 32.5], anchor=BOTTOM+FRONT+RIGHT);
+    fwd(pad) cuboid([36.5, 35+pad, 32.5], anchor=BOTTOM+FRONT+RIGHT);
+    
+    //up(50) right(pad) cuboid([35+pad, 35, zh+8], anchor=BOTTOM+FRONT+RIGHT);
+    //up(50) fwd(pad) cuboid([35, 35+pad, zh+8], anchor=BOTTOM+FRONT+RIGHT);
 }
 
-llx = 32;
-lly = 87;
-
 left(100) fwd(100) union() {
-    right(pad) cuboid([llx+pad, lly, zh], anchor=BOTTOM+BACK+RIGHT);
-    back(pad) cuboid([llx, lly+pad, zh], anchor=BOTTOM+BACK+RIGHT);
+    color("red") right(pad) cuboid([34+pad, 93, 31], anchor=BOTTOM+BACK+RIGHT);
+    back(pad) cuboid([34, 93+pad, 31], anchor=BOTTOM+BACK+RIGHT);
+    
+    //up(50) right(pad) cuboid([32+pad, 87, zh+8], anchor=BOTTOM+BACK+RIGHT);
+    //up(50) back(pad) cuboid([32, 87+pad, zh+8], anchor=BOTTOM+BACK+RIGHT);
 }
 
 lrx = 43;

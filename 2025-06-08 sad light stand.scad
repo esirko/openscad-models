@@ -82,7 +82,6 @@ union() {
         left(35) up(20) back(e) prismoid(size1=[90, 10], size2=[50, 10], h=58, anchor=FRONT+RIGHT+BOTTOM);
     }
     
-
     prismoid(size1=[0,10], size2=[30, 10], h=80, shift=[-15, 0], anchor=FRONT+RIGHT+BOTTOM);
 
     yrot(-90) xrot(180)
