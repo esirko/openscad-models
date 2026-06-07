@@ -3,7 +3,7 @@
 
 For each model subdirectory this script:
   * groups files into "models" (scad + stl pairs, plus variants / supplemental files),
-  * renders an STL thumbnail (.jpg) via the OpenSCAD CLI when available,
+  * renders an STL thumbnail (.png) via the OpenSCAD CLI when available,
   * maintains a `## <model>` section in that directory's README.md,
   * is NON-DESTRUCTIVE: it only rewrites the auto-managed block between
     <!-- AUTOGEN:START ... --> and <!-- AUTOGEN:END ... --> markers. Any prose
@@ -52,7 +52,6 @@ AUTOGEN_END = "<!-- AUTOGEN:END {key} -->"
 @dataclass
 class Deps:
     openscad: str | None = None
-    pillow: bool = False
 
 
 def find_openscad() -> str | None:
@@ -73,18 +72,9 @@ def find_openscad() -> str | None:
     return None
 
 
-def check_pillow() -> bool:
-    try:
-        import PIL  # noqa: F401
-
-        return True
-    except ImportError:
-        return False
-
-
 def preflight() -> Deps:
     """Check dependencies, print a concise summary with install hints."""
-    deps = Deps(openscad=find_openscad(), pillow=check_pillow())
+    deps = Deps(openscad=find_openscad())
     is_win = platform.system() == "Windows"
 
     print("Dependency check")
@@ -102,21 +92,6 @@ def preflight() -> Deps:
         else:
             print("           brew install --cask openscad")
             print("           (or download: https://openscad.org/downloads.html)")
-
-    # Pillow -----------------------------------------------------------------
-    if deps.pillow:
-        print("  [ok]   Pillow       : installed (PNG -> JPG conversion enabled)")
-    else:
-        print("  [warn] Pillow       : not found -> PNG will be embedded instead of JPG")
-        py = "python" if is_win else "python3"
-        print("         Install (pick ONE):")
-        print("           A) venv (isolated):")
-        if is_win:
-            print(f"                {py} -m venv .venv ; .venv\\Scripts\\activate ; pip install Pillow")
-        else:
-            print(f"                {py} -m venv .venv && source .venv/bin/activate && pip install Pillow")
-        print("           B) native (global):")
-        print("                pip install --user Pillow")
 
     print()
     return deps
@@ -193,24 +168,20 @@ def discover_models(directory: Path) -> dict[str, Model]:
 # --------------------------------------------------------------------------- #
 
 
-def render_thumbnail(stl: Path, out_jpg: Path, deps: Deps, warnings: list[str]) -> Path | None:
-    """Render *stl* to a thumbnail. Returns the image path actually written.
+def render_thumbnail(stl: Path, out_png: Path, deps: Deps, warnings: list[str]) -> Path | None:
+    """Render *stl* to a PNG thumbnail via OpenSCAD.
 
-    Re-renders only when the output is missing or the STL is newer. When Pillow
-    is available the PNG is converted to JPG (out_jpg); otherwise the PNG is kept
-    and its path returned.
+    Returns the image path actually written (or the existing one when up to date).
+    Re-renders only when the output is missing or the STL is newer.
     """
     if not deps.openscad:
-        return out_jpg if out_jpg.exists() else None
+        return out_png if out_png.exists() else None
 
-    png_path = out_jpg.with_suffix(".png")
+    # Reuse the existing render if it's current.
+    if out_png.exists() and out_png.stat().st_mtime >= stl.stat().st_mtime:
+        return out_png
 
-    # Decide the canonical existing output (jpg preferred, else png).
-    existing = out_jpg if out_jpg.exists() else (png_path if png_path.exists() else None)
-    if existing is not None and existing.stat().st_mtime >= stl.stat().st_mtime:
-        return existing
-
-    out_jpg.parent.mkdir(parents=True, exist_ok=True)
+    out_png.parent.mkdir(parents=True, exist_ok=True)
 
     # OpenSCAD renders .scad files; wrap the STL in a tiny import scad.
     scad_src = 'import("{}");\n'.format(str(stl.resolve()).replace("\\", "/"))
@@ -227,11 +198,11 @@ def render_thumbnail(stl: Path, out_jpg: Path, deps: Deps, warnings: list[str]) 
             f"--imgsize={IMG_SIZE[0]},{IMG_SIZE[1]}",
             "--colorscheme=Tomorrow",
             "-o",
-            str(png_path),
+            str(out_png),
             str(tmp),
         ]
         result = subprocess.run(cmd, capture_output=True, text=True)
-        if result.returncode != 0 or not png_path.exists():
+        if result.returncode != 0 or not out_png.exists():
             warnings.append(
                 f"render failed for {stl.name}: {result.stderr.strip().splitlines()[-1] if result.stderr.strip() else 'unknown error'}"
             )
@@ -240,19 +211,7 @@ def render_thumbnail(stl: Path, out_jpg: Path, deps: Deps, warnings: list[str]) 
         if tmp is not None:
             tmp.unlink(missing_ok=True)
 
-    if deps.pillow:
-        try:
-            from PIL import Image
-
-            with Image.open(png_path) as im:
-                im.convert("RGB").save(out_jpg, "JPEG", quality=85)
-            png_path.unlink(missing_ok=True)
-            return out_jpg
-        except Exception as exc:  # noqa: BLE001
-            warnings.append(f"PNG->JPG conversion failed for {stl.name}: {exc}; embedding PNG")
-            return png_path
-
-    return png_path
+    return out_png
 
 
 # --------------------------------------------------------------------------- #
@@ -380,7 +339,9 @@ def build_section(title: str, key: str, inner: str) -> str:
     return f"## {title}\n\n{start}\n{inner}\n{end}\n"
 
 
-def update_readme(directory: Path, models: dict[str, Model], deps: Deps, warnings: list[str]) -> None:
+def update_readme(
+    directory: Path, models: dict[str, Model], deps: Deps, warnings: list[str]
+) -> None:
     readme = directory / "README.md"
     existing_text = readme.read_text(encoding="utf-8") if readme.exists() else ""
 
@@ -436,12 +397,14 @@ def update_readme(directory: Path, models: dict[str, Model], deps: Deps, warning
         print(f"  unchanged: {readme.relative_to(REPO_ROOT)}")
 
 
-def _render_for(directory: Path, model: Model, deps: Deps, warnings: list[str]) -> Path | None:
+def _render_for(
+    directory: Path, model: Model, deps: Deps, warnings: list[str]
+) -> Path | None:
     stl = model.primary_stl()
     if stl is None:
         return None
-    out_jpg = directory / RENDER_DIRNAME / f"{model.key}.jpg"
-    return render_thumbnail(stl, out_jpg, deps, warnings)
+    out_png = directory / RENDER_DIRNAME / f"{model.key}.png"
+    return render_thumbnail(stl, out_png, deps, warnings)
 
 
 # --------------------------------------------------------------------------- #
