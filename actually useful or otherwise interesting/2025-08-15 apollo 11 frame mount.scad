@@ -9,6 +9,8 @@ t = 5;
 
 theta = 20;
 
+zrot(180) {
+
 difference() {
     union() {
         xrot(-theta) {
@@ -39,4 +41,6 @@ difference() {
     }
     
     down(t-e) cuboid([w+2*e, 100, 10], anchor=TOP);
+}
+
 }

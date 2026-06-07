@@ -4,8 +4,8 @@ include <BOSL2/rounding.scad>
 
 // https://thors.com/threaded-fastener-parts-and-terminology/
 
-fnhr = 36; // Should be 180 for final export - controls smoothness of screw and nut
-fn = 36; // Can be less, as it's mainly for aesthetics
+fnhr = 180; // Should be 180 for final export - controls smoothness of screw and nut
+fn = 90; // Can be less, as it's mainly for aesthetics
 e = 0.01;
 
 // screw parameters

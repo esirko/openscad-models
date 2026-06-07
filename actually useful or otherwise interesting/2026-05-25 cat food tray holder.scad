@@ -77,7 +77,7 @@ back(0) {
 }
 
 
-/*
+
 h_joiner = 25;
 
 dovetail_y1 = 20;
@@ -86,6 +86,8 @@ dovetail_h = 10;
 dovetail_y_slop = 0.05;
 dovetail_h_slop = 0.05;
 
+fwd(200) {
+    
 left(110) {
     difference() {
         union() {
@@ -109,5 +111,5 @@ right(110) {
     }
     cuboid([2*r_bowl2, 20, platform_h2], anchor=BOTTOM);
 }
-*/
 
+}

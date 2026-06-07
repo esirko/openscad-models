@@ -8,6 +8,7 @@ x2 = 50;
 y2 = 52;
 h = 6;
 
+
 module cap(x, y, h) {
     difference() {
         union() {
@@ -26,5 +27,10 @@ module cap(x, y, h) {
     }
 }
 
+
+xrot(180) yrot(-90) {
+
 cap(x1, y1, h);
 up(30) cap(x2, y2, h);
+
+}

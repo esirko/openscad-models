@@ -15,6 +15,8 @@ fn=36;
 h3 = d2/sqrt(2) - t1; // h3+t1 = 60/sqrt(2)
 d1 = 60;
 
+zrot(90) {
+
 difference() {
     union() {
         cuboid([w1, d1, t1], anchor=LEFT+BOTTOM);
@@ -47,5 +49,5 @@ up(t1) difference() {
     }
 }
 
-
+}
 

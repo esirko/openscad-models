@@ -21,7 +21,8 @@ tl = 4; // thickness of "lever arm" piece
 ny = 19.5; // notch y-thickness
 
 // Version 1 with 3.5cm area between handle and printer
-
+zrot(-90) {
+    
 difference() {
     union() {
         cuboid([x1, y1, z1], anchor=BACK+BOTTOM);
@@ -40,6 +41,8 @@ difference() {
     up(z1+z2) fwd(t) prismoid(size1=[x2-2*t, y2-2*t], size2=[x3-2*t, y3-2*t], shift=[0, (y2-y3)/2], height=z3+e, anchor=BACK+BOTTOM);
     
     color("red") up(z1+z2) back(10) prismoid(size1=[150,80], size2=[150,130], shift=[0, (80-130)/2], height=z3+e, anchor=BACK+BOTTOM);
+}
+
 }
 
 

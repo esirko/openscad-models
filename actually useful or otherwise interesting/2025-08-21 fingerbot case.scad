@@ -119,7 +119,7 @@ right(40) {
 
 
 // helper tools
-/*
+
 left(60) {
     difference() {
         cuboid([3, 30, 6], anchor=FRONT+BOTTOM);
@@ -160,4 +160,3 @@ left(90) {
     cuboid([1, 1, 20], anchor=BACK);
     cuboid([10, 3, 20], anchor=BOTTOM+BACK);
 }
-*/

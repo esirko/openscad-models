@@ -9,6 +9,8 @@ s = 3;
 dropz = 100;
 dropy = 70;
 
+zrot(-90) {
+
 left(0) {
     difference() {
         prismoid(size1=[d+2*s, w], size2=[d, w], h=8);
@@ -75,5 +77,5 @@ difference() {
 }
 */
 
-
+}
 

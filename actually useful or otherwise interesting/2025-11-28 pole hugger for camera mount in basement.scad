@@ -63,6 +63,8 @@ hh = 20;
 hr = 13;
 ht = 12;
 
+zrot(-90) {
+
 
 back(100) pole_hugger(r=hr, t=ht, h=hh, pinr=rpin);
 back(100) left(50) pin(r1=rpin, h1=hh+2, r2=6, h2=2, slop=0.2, cutback_fudge=0.15);
@@ -85,6 +87,8 @@ up(10) fwd(100) cuboid([2, 50, 65], anchor=FRONT+BOTTOM);
 up(75-e) fwd(80) difference() {
     cuboid([80, 80, 15], anchor=BOTTOM);
     back(2) up(2) cuboid([76, 80, 20], anchor=BOTTOM);
+}
+
 }
 
 /*

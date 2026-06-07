@@ -17,6 +17,7 @@ theta = 35;
 zh = 7.5;
 e = 0.01;
 
+xrot(90) {
 
 difference() {
     union() {
@@ -62,3 +63,5 @@ translate([0, 0, -(thumb_zh - zh)/2])
 translate([42, -40, 0])
 translate([-15, 0, -e]) rotate([0, 0, -15]) cube([thumb_r2 + e, thumb_r2 + e, thumb_zh + 2 * e]);
 */
+
+}

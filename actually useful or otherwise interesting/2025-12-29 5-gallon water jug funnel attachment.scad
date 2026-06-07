@@ -9,7 +9,7 @@ module thingy(r0, r1, h1, h2) {
 }
 
 
-down(50)
+down(100)
 difference() {
     up(2+e) cyl(r=38, h=13, $fn=fn, anchor=TOP, rounding=2);
     down(0) cyl(r1=28, r2=27.5, h=5+e, $fn=fn, anchor=TOP);
@@ -17,7 +17,7 @@ difference() {
     cyl(r=17.5, h=30, $fn=fn);
 }
 
-down(100)
+down(150)
 difference() {
     up(2+e) cyl(r=38, h=13, $fn=fn, anchor=TOP, rounding=2);
     down(0) cyl(r1=28, r2=27.5, h=5+e, $fn=fn, anchor=TOP);

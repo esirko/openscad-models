@@ -95,7 +95,7 @@ xrot(0)
 union() {
 
 // --- mount bar
-    /*
+
 difference() {
     union() {
         diff() prismoid([t1p + 2*tt, ttr], [t2p + 2*tt, ttr], th, orient=BACK, anchor=BACK+BOTTOM) {
@@ -116,12 +116,12 @@ difference() {
     }
     back(5) back(th+(th-tsc1)/2) down(50) prismoid([210, 2*(th-tsc1)+10], [210, 12], h=2*50); //large plane cutout to make it print flat without support
 }
-*/
+
 
 
 // --- everything else besides the mount bar
 union() {
-    /*
+
     difference() {
         union() {
             // --- connector block: left-anchor to mount bar, left-anchor side
@@ -177,7 +177,7 @@ union() {
         // skim off the bottom of the whole left mount, to be able to print this flat
         up(3) left(105-1) color("#ccffcc") cuboid([195, 40, 10], anchor=FRONT+TOP+RIGHT);
     }
-    */
+
     
     
     // --- phone holder complete assemblage, including base with 3 holes, extension bar, and the actual phone holding part
