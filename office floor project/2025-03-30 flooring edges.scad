@@ -335,30 +335,35 @@ l0 = 160;
 
 // Left edge inside: 3x175 + 170
 // Note: for the 175 ones, I accidentally used 150 instead of 175 as the numerator for the screw hole positions. - wait, did I? - yes, in fact for all of them, including the 170 one
-//inside_edging(175, 2, iw2-1, iw1+10, [150/2-sd, -150/2+sd], 0, 0, 0, 0, 0, false, 0); // x3
-//right(50) inside_edging(170, 2, iw2-1, iw1+10, [150/2-sd, -150/2+sd], 0, 0, 0, 0, 0, false, 0);
+inside_edging(175, 2, iw2-1, iw1+10, [150/2-sd, -150/2+sd], 0, 0, 0, 0, 0, false, 0); // x3
+fwd(200) inside_edging(170, 2, iw2-1, iw1+10, [150/2-sd, -150/2+sd], 0, 0, 0, 0, 0, false, 0);
 
 // Left edge outside: 4x150 + 144
-//outside_edging(150, 6, 19, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
-//right(50) outside_edging(148, 6, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
-//right(100) outside_edging(144, 6, 20, w1, [-144/2+sd, 144/2-sd], 0, 0, 0, 0, false, 0);
-//right(150) outside_edging(150, 7, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
-//right(200) outside_edging(150, 7, 21, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
+left(100) {
+outside_edging(150, 6, 19, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
+fwd(200) outside_edging(148, 6, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
+fwd(400) outside_edging(144, 6, 20, w1, [-144/2+sd, 144/2-sd], 0, 0, 0, 0, false, 0);
+fwd(600) outside_edging(150, 7, 20, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
+fwd(800) outside_edging(150, 7, 21, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0);
+}
 
 // Right edge inside: 173 (with 175 screw positions), 175, 169, 175
-//inside_edging(173, 3, iw2, iw1+10, [175/2-sd+1, -175/2+sd+1], 0, 0, 0, 0, 0, false, 0);
-//right(50) inside_edging(175, 3, iw2, iw1+10, [175/2-sd, -175/2+sd], 0, 0, 0, 0, 0, false, 0);
-//right(100) inside_edging(169, 3, iw2, iw1+10, [169/2-sd, -169/2+sd], 0, 0, 0, 0, 0, false, 0);
-//right(150) inside_edging(175, 3, iw2, iw1+10, [175/2-sd, -175/2+sd], 0, 0, 0, 0, 0, false, 0);
+fwd(800) right(800) zrot(180) {
+inside_edging(173, 3, iw2, iw1+10, [175/2-sd+1, -175/2+sd+1], 0, 0, 0, 0, 0, false, 0);
+fwd(200) inside_edging(175, 3, iw2, iw1+10, [175/2-sd, -175/2+sd], 0, 0, 0, 0, 0, false, 0);
+fwd(400) inside_edging(169, 3, iw2, iw1+10, [169/2-sd, -169/2+sd], 0, 0, 0, 0, 0, false, 0);
+fwd(600) inside_edging(175, 3, iw2, iw1+10, [175/2-sd, -175/2+sd], 0, 0, 0, 0, 0, false, 0);
+}
 
 // Right edge outside:
+fwd(600) right(900) zrot(180) {
 outside_edging(150, 7, 19, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, -1); // x2
-right(50) outside_edging(140, 7, 19, w1, [-140/2+sd, 140/2-sd], 0, 0, 0, 0, false, 0);
-//right(100) outside_edging(150, 6, 18, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0); // x2
-
+fwd(200) outside_edging(140, 7, 19, w1, [-140/2+sd, 140/2-sd], 0, 0, 0, 0, false, 0);
+fwd(400) outside_edging(150, 6, 18, w1, [-150/2+sd, 150/2-sd], 0, 0, 0, 0, false, 0); // x2
+}
 
 // Front edge outside
-/*
+right(200) back(250) {
 outside_corner(150, 150, 6, 12, w2_1, w2_2+1, w1, w1+10, notch_x, notch_w,  notch_d, 0, true, hack="FO1");
 
 fwd(100) right(40) zrot(90) xflip()
@@ -379,10 +384,10 @@ outside_edging(123, 12, w2_2-1, w1+10, [-122/2+sd, 122/2-sd], 0, 0, 0, 0, true, 
 
 right(500) xflip()
 outside_corner(150, 150, 7, 12, w2_1, w2_2-2, w1, w1+10, notch_x, notch_w, notch_d, 0, true, d1adjustment=-2);
-*/
+}
 
 // Front edge inside
-/*
+right(150) fwd(100) {
 inside_corner_front(150, 150, 2, 10, iw2, iw2_back, iw1+10, iw1, 39, 14, 15, hack="FI1");
 
 fwd(100) right(200) zrot(-90)
@@ -402,10 +407,11 @@ inside_edging(125, 6, iw2, iw1, [-125/2+sd, 125/2-sd], ich2, 0, 0, 0, 0, true, 0
 
 right(500) xflip()
 inside_corner_front(150, 149, 3, 6, iw2, iw2_back, iw1+10, iw1, 37, 14, 15, hack="FI7");
-*/
+}
+
 
 // Back edge outside
-/*
+right(600) fwd(1100) zrot(180) {
 outside_corner(l0, l0-2, 6, 7, 18, 29+6, w1, w1, notch_x, notch_w, 15, 13, false);
 
 right(50) fwd(100) zrot(90) xflip()
@@ -425,10 +431,11 @@ outside_edging(120, 9, 30+6, w1, [-120/2+sd, 120/2-sd], 0, 0, 0, 0, false, 0);
 
 right(530) xflip()
 outside_corner(l0, l0+1, 7, 7, 21, 30+6, w1, w1, 53, notch_w, 15, 9, false);
-*/
+}
+
 
 // Back edge inside
-/*
+right(650) fwd(800) zrot(180) {
 partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
 left(78+e) inside_corner_back(l0, 77+l0, 3, 10, iw2, iw2_back-2, iw1+10, iw1+10, 38, 16, 15);
 
@@ -444,32 +451,36 @@ inside_edging(149, 10, iw2_back-2, iw1+10, [-149/2+sd, 149/2-sd], 0.75, 0, 109, 
 right(550) xflip()
 partition(spread=5, cutpath="flat", spin=90, size=[400, 400, 200])
 left(81+e) inside_corner_back(l0, 80+l0, 2, 10, iw2, iw2_back-2, iw1+10, iw1+10, 41, 14, 15);
-*/
+}
 
 //--- Near side of office side edging
-
-//back(110-4+216+126) side_edging(126, 0, 0, [sd, 126-sd], true, false);
-//back(110-4+216) side_edging(216, 0, 0, [sd, 216-sd]);
+left(300) fwd(400) {
+back(110-4+216+126) side_edging(126, 0, 0, [sd, 126-sd], true, false);
+back(110-4+216) side_edging(216, 0, 0, [sd, 216-sd]);
 
 // The joint between the two types, welded together.
-//back(110-4) side_edging(110, 0, 0, [sd]);
-//side_edging(110, 11.5, 10.5, [110-sd]);
+back(110-4) side_edging(110, 0, 0, [sd]);
+side_edging(110, 11.5, 10.5, [110-sd]);
 
-//fwd(110) side_edging(216, 10.5, 8, [sd, 216-sd]);
-//fwd(326) side_edging(216, 8, 6, [sd, 216-sd]);
-//fwd(542) side_edging(216, 6, 6, [sd, 216-sd]);
-//fwd(758) side_edging(216, 6, 6, [sd, 216-sd]);
-//fwd(974) side_edging(216, 6, 6, [sd, 216-sd]); // maybe it should have been 6, 6.5
-//fwd(1190) side_edging(216, 6, 6, [sd, 216-sd]);
-//fwd(1406) side_edging(170, 6, 6, [sd, 170-sd]); // 216 makes the next piece look bad, so shortening it a bit
-//fwd(1576) side_edging(80, 6, 6, [sd, 80-sd], false, true);
+fwd(110) side_edging(216, 10.5, 8, [sd, 216-sd]);
+fwd(326) side_edging(216, 8, 6, [sd, 216-sd]);
+back(800) left(50) {
+fwd(542) side_edging(216, 6, 6, [sd, 216-sd]);
+fwd(758) side_edging(216, 6, 6, [sd, 216-sd]);
+fwd(974) side_edging(216, 6, 6, [sd, 216-sd]); // maybe it should have been 6, 6.5
+fwd(1190) side_edging(216, 6, 6, [sd, 216-sd]);
+fwd(1406) side_edging(170, 6, 6, [sd, 170-sd]); // 216 makes the next piece look bad, so shortening it a bit
+fwd(1576) side_edging(80, 6, 6, [sd, 80-sd], false, true);
+}
+}
 
 // --- Far side of office side edging
-//side_edging(216, 0, 0, [sd, 216-sd], true, false, true); // Need to cut out a notch manually (I didn't bother modeling it)
-//side_edging(216, 0, 0, [sd, 216-sd], true, true, true); // x8
-//side_edging(175, 0, 0, [sd, 175-sd], true, true, true);
-//side_edging(179, 0, 0, [sd, 179-sd], false, true, true);
-
+right(1050) {
+side_edging(216, 0, 0, [sd, 216-sd], true, false, true); // Need to cut out a notch manually (I didn't bother modeling it)
+fwd(250) side_edging(216, 0, 0, [sd, 216-sd], true, true, true); // x8
+fwd(500) side_edging(175, 0, 0, [sd, 175-sd], true, true, true);
+fwd(750) side_edging(179, 0, 0, [sd, 179-sd], false, true, true);
+}
 
 // --- Extra platform corners
 
