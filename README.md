@@ -1,5 +1,7 @@
 # esirko's OpenSCAD models
 
+This repo contains simple [OpenSCAD](https://openscad.org/) models that I've made to solve simple problems. I'm learning this fresh so I'm sure most of these models are janky in both their solution to the problem and code!
+
 ## actually useful or otherwise interesting
 
 Models that I made that are useful to me, may be useful to others (with or without tweaking), or otherwise interesting to talk about. I typically have pictures, demos, and commentaries of these.
