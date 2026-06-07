@@ -88,7 +88,7 @@ module create_one(m00, m01, m10, m11, ii, jj) {
 
 
 for (i = [0 : 1 : 4]) {
-    for (j = [0 : 1 : 0]) {
+    for (j = [0 : 1 : 4]) {
         right(j * (2 * (tilex+minorgap) + majorgap)) fwd(i * (2 * (tilex+minorgap) + majorgap)) create_four(31 - measurements[i][j], 31 - measurements[i][j+1], 31 - measurements[i+1][j], 31 - measurements[i+1][j+1], i, j);
     }
 }

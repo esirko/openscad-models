@@ -424,6 +424,26 @@ def collect_pairing_warnings(directory: Path, models: dict[str, Model], warnings
             warnings.append(f"{directory.name}/: '{key}' has STL but no SCAD")
 
 
+def collect_stale_render_warnings(directory: Path, models: dict[str, Model], warnings: list[str]) -> None:
+    render_dir = directory / RENDER_DIRNAME
+    if not render_dir.is_dir():
+        return
+
+    expected_renders = {
+        f"{key}.png"
+        for key, model in models.items()
+        if model.primary_stl() is not None
+    }
+
+    for entry in sorted(render_dir.iterdir()):
+        if not entry.is_file() or entry.suffix.lower() != ".png":
+            continue
+        if entry.name not in expected_renders:
+            warnings.append(
+                f"{directory.name}/{RENDER_DIRNAME}/: extra render '{entry.name}' has no matching model"
+            )
+
+
 # --------------------------------------------------------------------------- #
 # Main
 # --------------------------------------------------------------------------- #
@@ -466,6 +486,7 @@ def main() -> int:
         print(f"\n{directory.name}/")
         models = discover_models(directory)
         collect_pairing_warnings(directory, models, warnings)
+        collect_stale_render_warnings(directory, models, warnings)
         update_readme(directory, models, deps, warnings)
 
     print("\nDone.")

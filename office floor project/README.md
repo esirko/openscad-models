@@ -98,5 +98,4 @@
 
 - SCAD: [2025-12-12 level floor 2.scad](2025-12-12%20level%20floor%202.scad)
 - STL: [2025-12-12 level floor 2.stl](2025-12-12%20level%20floor%202.stl)
-- Variant STL: [2025-12-12 level floor 2 - all.stl](2025-12-12%20level%20floor%202%20-%20all.stl)
 <!-- AUTOGEN:END 2025-12-12 level floor 2 -->
