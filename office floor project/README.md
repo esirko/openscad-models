@@ -45,14 +45,6 @@
 - Variant STL: [2025-03-30 flooring edges - 1 - back outside.stl](2025-03-30%20flooring%20edges%20-%201%20-%20back%20outside.stl), [2025-03-30 flooring edges - 10 - far side edging.stl](2025-03-30%20flooring%20edges%20-%2010%20-%20far%20side%20edging.stl), [2025-03-30 flooring edges - 11 - extra platform corner.stl](2025-03-30%20flooring%20edges%20-%2011%20-%20extra%20platform%20corner.stl), [2025-03-30 flooring edges - 2 - back inside.stl](2025-03-30%20flooring%20edges%20-%202%20-%20back%20inside.stl), [2025-03-30 flooring edges - 3 - front outside.stl](2025-03-30%20flooring%20edges%20-%203%20-%20front%20outside.stl), [2025-03-30 flooring edges - 4 - front inside.stl](2025-03-30%20flooring%20edges%20-%204%20-%20front%20inside.stl), [2025-03-30 flooring edges - 5 - left inside.stl](2025-03-30%20flooring%20edges%20-%205%20-%20left%20inside.stl), [2025-03-30 flooring edges - 5.stl](2025-03-30%20flooring%20edges%20-%205.stl), [2025-03-30 flooring edges - 6 - left outside.stl](2025-03-30%20flooring%20edges%20-%206%20-%20left%20outside.stl), [2025-03-30 flooring edges - 7 - right inside.stl](2025-03-30%20flooring%20edges%20-%207%20-%20right%20inside.stl), [2025-03-30 flooring edges - 8 - right outside.stl](2025-03-30%20flooring%20edges%20-%208%20-%20right%20outside.stl), [2025-03-30 flooring edges - 9 - side edging.stl](2025-03-30%20flooring%20edges%20-%209%20-%20side%20edging.stl)
 <!-- AUTOGEN:END 2025-03-30 flooring edges -->
 
-## 2025-03-30 flooring edges variable legend
-
-<!-- AUTOGEN:START 2025-03-30 flooring edges variable legend -->
-**Files:**
-
-- Images: [2025-03-30 flooring edges variable legend.png](2025-03-30%20flooring%20edges%20variable%20legend.png)
-<!-- AUTOGEN:END 2025-03-30 flooring edges variable legend -->
-
 ## 2025-04-13 lvp placement prototype
 
 <!-- AUTOGEN:START 2025-04-13 lvp placement prototype -->

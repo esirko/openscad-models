@@ -54,6 +54,8 @@ module grip1() {
 }
 */
 
+zrot(-90) {
+
 
 difference() {
     back(s)
@@ -130,4 +132,7 @@ right(100) {
         }
     }
     fwd(30) cyl(h=2*w2 + w1, r=rh-$slop/2, $fn=fn, anchor=BOTTOM);
+}
+
+
 }

@@ -25,9 +25,12 @@
 ## 2025-12-27 font test
 
 <!-- AUTOGEN:START 2025-12-27 font test -->
+![2025-12-27 font test](renders/2025-12-27%20font%20test.png)
+
 **Files:**
 
 - SCAD: [2025-12-27 font test.scad](2025-12-27%20font%20test.scad)
+- STL: [2025-12-27 font test.stl](2025-12-27%20font%20test.stl)
 <!-- AUTOGEN:END 2025-12-27 font test -->
 
 ## 2025-12-27 font test 2

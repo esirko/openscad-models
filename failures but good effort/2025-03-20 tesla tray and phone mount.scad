@@ -5,16 +5,16 @@ include <BOSL2/walls.scad>
 include <BOSL2/rounding.scad>
 
 //trapezoid_mount = false;
-wood_panel_contour = false;
-cargo_tray = false;
+//wood_panel_contour = false;
+//cargo_tray = false;
 //phone_mount = false;
-tray_to_phone_connector = false;
+//tray_to_phone_connector = false;
 
 trapezoid_mount = true;
-//wood_panel_contour = true;
-//cargo_tray = true;
+wood_panel_contour = true;
+cargo_tray = true;
 phone_mount = true;
-//tray_to_phone_connector = true;
+tray_to_phone_connector = true;
 
 // --- constants
 e = 0.01;

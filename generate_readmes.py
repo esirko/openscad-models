@@ -34,7 +34,9 @@ REPO_ROOT = Path(__file__).resolve().parent
 SKIP_DIRS = {".git", "renders", "backups", "__pycache__", ".venv"}
 
 MODEL_EXTS = {".scad", ".stl", ".3mf"}
-IMAGE_EXTS = {".jpg", ".jpeg", ".png"}
+# Supplemental images discovered in model directories (non-recursive).
+# Intentionally excludes .png so top-level PNGs can be managed manually in README.
+IMAGE_EXTS = {".jpg", ".jpeg"}
 
 RENDER_DIRNAME = "renders"
 IMG_SIZE = (600, 600)
