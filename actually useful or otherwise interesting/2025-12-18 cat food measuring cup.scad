@@ -198,6 +198,7 @@ module scoop(t=2, w1=75, w2=35, l=80, h=30, sbt = 2.5, shift=10, hx1=60, hx2=20,
 
 //scoop(t=2, w1=125, w2=15, l=100, h=67, sbt=2.5, shift=10, hx1=90, hx2=20, hl=70, mark_volumes=[1.0, 0.666, 0.5, 0.333, 0.25], mark_texts=["1 cup", "⅔", "½", "⅓", "¼"], mark_styles=["below_with_arrow", "left", "right", "left", "right"], just_markings=false);
 
+zrot(60)
 scoop(t=2, w1=100, w2=50, l=80, h=46.5, sbt=2, shift=10, hx1=90, hx2=20, hl=70, mark_volumes=[0.666, 0.5, 0.333, 0.25], mark_texts=["⅔ cup", "½", "⅓", "¼"], mark_styles=["below_with_arrow", "left", "right", "left"], just_markings=false);
 
 
