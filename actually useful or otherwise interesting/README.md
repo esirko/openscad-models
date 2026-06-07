@@ -468,3 +468,14 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 - SCAD: [2026-05-31 shot glass gauge.scad](2026-05-31%20shot%20glass%20gauge.scad)
 - STL: [2026-05-31 shot glass gauge.stl](2026-05-31%20shot%20glass%20gauge.stl)
 <!-- AUTOGEN:END 2026-05-31 shot glass gauge -->
+
+## 2025-06-29 webcam wedge to angle it a little differently
+
+<!-- AUTOGEN:START 2025-06-29 webcam wedge to angle it a little differently -->
+![2025-06-29 webcam wedge to angle it a little differently](renders/2025-06-29%20webcam%20wedge%20to%20angle%20it%20a%20little%20differently.png)
+
+**Files:**
+
+- SCAD: [2025-06-29 webcam wedge to angle it a little differently.scad](2025-06-29%20webcam%20wedge%20to%20angle%20it%20a%20little%20differently.scad)
+- STL: [2025-06-29 webcam wedge to angle it a little differently.stl](2025-06-29%20webcam%20wedge%20to%20angle%20it%20a%20little%20differently.stl)
+<!-- AUTOGEN:END 2025-06-29 webcam wedge to angle it a little differently -->

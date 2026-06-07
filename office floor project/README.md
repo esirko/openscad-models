@@ -48,9 +48,12 @@
 ## 2025-04-13 lvp placement prototype
 
 <!-- AUTOGEN:START 2025-04-13 lvp placement prototype -->
+![2025-04-13 lvp placement prototype](renders/2025-04-13%20lvp%20placement%20prototype.png)
+
 **Files:**
 
 - SCAD: [2025-04-13 lvp placement prototype.scad](2025-04-13%20lvp%20placement%20prototype.scad)
+- STL: [2025-04-13 lvp placement prototype.stl](2025-04-13%20lvp%20placement%20prototype.stl)
 <!-- AUTOGEN:END 2025-04-13 lvp placement prototype -->
 
 ## 2025-06-29 fast prototype corner piece
@@ -86,28 +89,6 @@
 - STL: [2025-10-19 trap door wedge for disassembly.stl](2025-10-19%20trap%20door%20wedge%20for%20disassembly.stl)
 <!-- AUTOGEN:END 2025-10-19 trap door wedge for disassembly -->
 
-## 2025-11-01 level floor
-
-<!-- AUTOGEN:START 2025-11-01 level floor -->
-![2025-11-01 level floor](renders/2025-11-01%20level%20floor.png)
-
-**Files:**
-
-- SCAD: [2025-11-01 level floor.scad](2025-11-01%20level%20floor.scad)
-- STL: [2025-11-01 level floor.stl](2025-11-01%20level%20floor.stl)
-<!-- AUTOGEN:END 2025-11-01 level floor -->
-
-## 2025-11-15 trap door hinge foot guards
-
-<!-- AUTOGEN:START 2025-11-15 trap door hinge foot guards -->
-![2025-11-15 trap door hinge foot guards](renders/2025-11-15%20trap%20door%20hinge%20foot%20guards.png)
-
-**Files:**
-
-- SCAD: [2025-11-15 trap door hinge foot guards.scad](2025-11-15%20trap%20door%20hinge%20foot%20guards.scad)
-- STL: [2025-11-15 trap door hinge foot guards.stl](2025-11-15%20trap%20door%20hinge%20foot%20guards.stl)
-<!-- AUTOGEN:END 2025-11-15 trap door hinge foot guards -->
-
 ## 2025-12-12 level floor 2
 
 <!-- AUTOGEN:START 2025-12-12 level floor 2 -->
@@ -119,14 +100,3 @@
 - STL: [2025-12-12 level floor 2.stl](2025-12-12%20level%20floor%202.stl)
 - Variant STL: [2025-12-12 level floor 2 - all.stl](2025-12-12%20level%20floor%202%20-%20all.stl)
 <!-- AUTOGEN:END 2025-12-12 level floor 2 -->
-
-## 2025-12-28 trap door hinge foot guard 2
-
-<!-- AUTOGEN:START 2025-12-28 trap door hinge foot guard 2 -->
-![2025-12-28 trap door hinge foot guard 2](renders/2025-12-28%20trap%20door%20hinge%20foot%20guard%202.png)
-
-**Files:**
-
-- SCAD: [2025-12-28 trap door hinge foot guard 2.scad](2025-12-28%20trap%20door%20hinge%20foot%20guard%202.scad)
-- STL: [2025-12-28 trap door hinge foot guard 2.stl](2025-12-28%20trap%20door%20hinge%20foot%20guard%202.stl)
-<!-- AUTOGEN:END 2025-12-28 trap door hinge foot guard 2 -->
