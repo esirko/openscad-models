@@ -282,6 +282,8 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 
 ## 2025-12-18 cat food measuring cup
 
+![measuring cup photo](images/measuring%20cup.jpg)
+
 <!-- AUTOGEN:START 2025-12-18 cat food measuring cup -->
 ![2025-12-18 cat food measuring cup](renders/2025-12-18%20cat%20food%20measuring%20cup.png)
 
