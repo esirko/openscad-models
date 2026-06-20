@@ -1,10 +1,20 @@
 include <BOSL2/std.scad>
 include <BOSL2/threading.scad>
 
+// Suggestions on how to print
+// - Upside-down
+//     - Use a smooth plate to get a smooth top part
+//     - I had a terribly hard time separating PLA support from the bottom of the well, so much that I gave up
+//     - Even PETG was easier to remove, but still not the easiest
+// - Rightside-up
+//     - Removing PETG as the support was fairly easy, but there's a noticeable weakness at the transition point where it starts to break
+
+
+
 e = 0.01;
 r0 = 113/2;
 r1 = 72/2; // I measured this wrong I think, it should be more like 76 not 72
-fn=36;
+fn = 36;
 
 dx = 6;
 t = 1.6;
@@ -26,7 +36,7 @@ difference() {
     }
 
     down(h) grid_copies(size=2*(25-dx), spacing=3)
-        cuboid([1.5, 1.5, 10]);
+        cuboid([2, 1.5, 10]);
     
     zrot_copies(n=40)
     right(43-dx) {
