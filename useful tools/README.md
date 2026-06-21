@@ -17,6 +17,8 @@ Tool to measure gaps in 1mm increments
 
 ## 2025-11-28 radius gauge
 
+Tool to measure radius of cylinders
+
 ![radius gauge](images/radius-gauge-1.jpg)
 ![radius gauge in use](images/radius-gauge-2.jpg)
 
@@ -57,6 +59,8 @@ Tool to measure gaps in 1mm increments
 <!-- AUTOGEN:END 2025-12-27 font test 2 -->
 
 ## 2026-01-04 joiner prototypes
+
+Tests for some joiners I created. It's important to consider print direction and how it affects the axis of weakness.
 
 <!-- AUTOGEN:START 2026-01-04 joiner prototypes -->
 ![2026-01-04 joiner prototypes](renders/2026-01-04%20joiner%20prototypes.png)
