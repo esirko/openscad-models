@@ -17,6 +17,11 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 
 ## 2025-03-02 door handle thumb lever
 
+My door handle thumb lever broke as shown in the picture. Even though it was a pretty tough piece of metal, printing a replacement worked in a pinch.
+
+![thumb lever original broken](images/thumb-lever-original-broken.jpg)
+![thumb lever](images/thumb-lever.jpg)
+
 <!-- AUTOGEN:START 2025-03-02 door handle thumb lever -->
 ![2025-03-02 door handle thumb lever](renders/2025-03-02%20door%20handle%20thumb%20lever.png)
 
@@ -40,6 +45,10 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 
 ## 2025-03-25 desk gizmo
 
+Desk gizmo accomplishes two things: it keeps my phone/earbud/watch charger in place on the desk, and it provides tactile guardrails to the capacative buttons on my standing desk, also helping to prevent accidental presses.
+
+![desk gizmo](images/desk-gizmo.jpg)
+
 <!-- AUTOGEN:START 2025-03-25 desk gizmo -->
 ![2025-03-25 desk gizmo](renders/2025-03-25%20desk%20gizmo.png)
 
@@ -62,6 +71,10 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 
 ## 2025-07-02 poop bucket with obstacle
 
+Waste filament collector for my Bambu A1 mini.
+
+![poop bucket and webcam holder](images/poop-bucket.jpg)
+
 <!-- AUTOGEN:START 2025-07-02 poop bucket with obstacle -->
 ![2025-07-02 poop bucket with obstacle](renders/2025-07-02%20poop%20bucket%20with%20obstacle.png)
 
@@ -72,6 +85,8 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 <!-- AUTOGEN:END 2025-07-02 poop bucket with obstacle -->
 
 ## 2025-07-05 webcam vs printer holder
+
+This holds a Wansview webcam in a spot where it can view the bed pretty clearly. See the picture for the poop bucket.
 
 <!-- AUTOGEN:START 2025-07-05 webcam vs printer holder -->
 ![2025-07-05 webcam vs printer holder](renders/2025-07-05%20webcam%20vs%20printer%20holder.png)
@@ -95,6 +110,10 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 
 ## 2025-07-24 rotating vesa mount
 
+This allows me to quickly rotate my digital picture frame between landscape and portrait depending on the selected picture.
+
+![rotating vesa mount 1](images/rotating-vesa-mount-1.jpg)
+![rotating vesa mount 2](images/rotating-vesa-mount-2.jpg)
 <!-- AUTOGEN:START 2025-07-24 rotating vesa mount -->
 ![2025-07-24 rotating vesa mount](renders/2025-07-24%20rotating%20vesa%20mount.png)
 
@@ -172,6 +191,9 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 
 ## 2025-09-06 extension pliers
 
+Not sure why I called these "pliers," but you can use this as a wrench for opening the port on an extension when it's too tight.
+
+![extension wrench](images/extension-wrench.jpg)
 <!-- AUTOGEN:START 2025-09-06 extension pliers -->
 ![2025-09-06 extension pliers](renders/2025-09-06%20extension%20pliers.png)
 
@@ -182,6 +204,10 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 <!-- AUTOGEN:END 2025-09-06 extension pliers -->
 
 ## 2025-09-20 cat litter scoop holder
+
+Cat litter scoop holder compatible with [this cat litter scoop from Amazon](https://www.amazon.com/dp/B0CBHTHW9W/?coliid=I9AY0CRHJ0H1U&colid=15LO7KVVDPPE4&ref_=list_c_wl_lv_ov_lig_dp_it&th=1).
+
+![cat litter scoop holder](images/cat-litter-scoop-holder.jpg)
 
 <!-- AUTOGEN:START 2025-09-20 cat litter scoop holder -->
 ![2025-09-20 cat litter scoop holder](renders/2025-09-20%20cat%20litter%20scoop%20holder.png)
@@ -215,6 +241,10 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 <!-- AUTOGEN:END 2025-09-28 picture frame wire wall caps -->
 
 ## 2025-10-12 display case corner pieces
+
+These are supposed to join 3 acrylic sheets together at a corner. They're about as compact as possible for 3d printing, and there's still a fairly big gap between sheets on each edge. In the future I'm thinking I should instead make joiners between 2 sheets at an edge instead of joiners for 3 sheets a at corner.
+
+![acrylic case with lego piano](images/acrylic-case-with-lego-piano.jpg)
 
 <!-- AUTOGEN:START 2025-10-12 display case corner pieces -->
 ![2025-10-12 display case corner pieces](renders/2025-10-12%20display%20case%20corner%20pieces.png)
@@ -282,7 +312,7 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 
 ## 2025-12-18 cat food measuring cup
 
-![measuring cup photo](images/measuring%20cup.jpg)
+![measuring cup](images/measuring-cup.jpg)
 
 <!-- AUTOGEN:START 2025-12-18 cat food measuring cup -->
 ![2025-12-18 cat food measuring cup](renders/2025-12-18%20cat%20food%20measuring%20cup.png)
@@ -329,6 +359,10 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 <!-- AUTOGEN:END 2025-12-29 sad light stand 2 -->
 
 ## 2025-12-29 strainer
+
+Fits my Kohler sink. Costs about 50 cents in filament, and when it gets disgusting I can just throw it out. The spiral structure on the bottom (hard to see in these photos) makes the water do a cool whirlpool effect when draining.
+
+![strainer](images/strainer.jpg)
 
 <!-- AUTOGEN:START 2025-12-29 strainer -->
 ![2025-12-29 strainer](renders/2025-12-29%20strainer.png)
@@ -462,6 +496,9 @@ With the print in place and attached to the keyboard wrist pad from the undersid
 
 ## 2026-05-31 shot glass gauge
 
+I have a few shot glasses that are useful for dispensing liquid medicine. The three levels correspond to 5mL, 10mL, and 15mL for these specific shot glasses.
+
+![shot glass gauge](images/short-glass-gauge.jpg)
 <!-- AUTOGEN:START 2026-05-31 shot glass gauge -->
 ![2026-05-31 shot glass gauge](renders/2026-05-31%20shot%20glass%20gauge.png)
 
