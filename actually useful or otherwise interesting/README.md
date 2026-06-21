@@ -60,6 +60,9 @@ Desk gizmo accomplishes two things: it keeps my phone/earbud/watch charger in pl
 
 ## 2025-06-20 new tesla phone holder
 
+![tesla phone holder 1](images/tesla-phone-holder-1.jpg)
+![tesla phone holder 2](images/tesla-phone-holder-2.jpg)
+
 <!-- AUTOGEN:START 2025-06-20 new tesla phone holder -->
 ![2025-06-20 new tesla phone holder](renders/2025-06-20%20new%20tesla%20phone%20holder.png)
 
@@ -99,6 +102,8 @@ This holds a Wansview webcam in a spot where it can view the bed pretty clearly.
 
 ## 2025-07-09 laptop keyboard guard clip
 
+![laptop keyguard clip](images/laptop-keyguard-clip.jpg)
+
 <!-- AUTOGEN:START 2025-07-09 laptop keyboard guard clip -->
 ![2025-07-09 laptop keyboard guard clip](renders/2025-07-09%20laptop%20keyboard%20guard%20clip.png)
 
@@ -124,6 +129,10 @@ This allows me to quickly rotate my digital picture frame between landscape and 
 <!-- AUTOGEN:END 2025-07-24 rotating vesa mount -->
 
 ## 2025-07-26 microcontroller enclosure
+
+This is for the lighting of my office floor project.
+
+![enclosure](images/enclosure.jpg)
 
 <!-- AUTOGEN:START 2025-07-26 microcontroller enclosure -->
 ![2025-07-26 microcontroller enclosure](renders/2025-07-26%20microcontroller%20enclosure.png)
@@ -220,6 +229,8 @@ Cat litter scoop holder compatible with [this cat litter scoop from Amazon](http
 
 ## 2025-09-21 syringe grip
 
+![syringe grip](images/syringe-grip.jpg)
+
 <!-- AUTOGEN:START 2025-09-21 syringe grip -->
 ![2025-09-21 syringe grip](renders/2025-09-21%20syringe%20grip.png)
 
@@ -268,6 +279,10 @@ These are supposed to join 3 acrylic sheets together at a corner. They're about 
 
 ## 2025-11-23 battery cover
 
+Lost the battery cover to this touchless trash can.
+
+![battery cover](images/battery-cover.jpg)
+
 <!-- AUTOGEN:START 2025-11-23 battery cover -->
 ![2025-11-23 battery cover](renders/2025-11-23%20battery%20cover.png)
 
@@ -280,6 +295,8 @@ These are supposed to join 3 acrylic sheets together at a corner. They're about 
 ## 2025-11-27 tripod mount shoe
 
 This allows a webcam to be pointed directly at my gas meter for the [utilities-monitor dashboard](https://github.com/esirko/utilities-monitor-dashboard). It mounts to an Amazon Basics tripod.
+
+![gas meter camera holder](images/gas-meter-camera-holder.jpg)
 
 <!-- AUTOGEN:START 2025-11-27 tripod mount shoe -->
 ![2025-11-27 tripod mount shoe](renders/2025-11-27%20tripod%20mount%20shoe.png)
@@ -347,6 +364,11 @@ For [utilities-monitor dashboard](https://github.com/esirko/utilities-monitor-da
 
 ## 2025-12-29 5-gallon water jug funnel attachment
 
+It's a pretty good fit to the 5-gallon jug. Could be just a tad tighter.
+
+![5 gallon water funnel cover](images/5gal-water-funnel-cover.jpg)
+![5 gallon water cap](images/5gal-water-cap.jpg)
+
 <!-- AUTOGEN:START 2025-12-29 5-gallon water jug funnel attachment -->
 ![2025-12-29 5-gallon water jug funnel attachment](renders/2025-12-29%205-gallon%20water%20jug%20funnel%20attachment.png)
 
@@ -358,6 +380,8 @@ For [utilities-monitor dashboard](https://github.com/esirko/utilities-monitor-da
 <!-- AUTOGEN:END 2025-12-29 5-gallon water jug funnel attachment -->
 
 ## 2025-12-29 sad light stand 2
+
+![sad light stand](images/sad-light-stand.jpg)
 
 <!-- AUTOGEN:START 2025-12-29 sad light stand 2 -->
 ![2025-12-29 sad light stand 2](renders/2025-12-29%20sad%20light%20stand%202.png)
@@ -384,6 +408,9 @@ Fits my Kohler sink. Costs about 50 cents in filament, and when it gets disgusti
 <!-- AUTOGEN:END 2025-12-29 strainer -->
 
 ## 2026-01-19 kaiacam holder
+
+![kaiacam holder 1](images/kaiacam-holder-1.jpg)
+![kaiacam holder 2](images/kaiacam-holder-2.jpg)
 
 <!-- AUTOGEN:START 2026-01-19 kaiacam holder -->
 ![2026-01-19 kaiacam holder](renders/2026-01-19%20kaiacam%20holder.png)
@@ -427,6 +454,9 @@ It has a little notch for wedging in between planks so it doesn't slip. I also u
 
 ## 2026-02-18 voice recorder case
 
+![recorder case 1](images/recorder-case-1.jpg)
+![recorder case 2](images/recorder-case-2.jpg)
+
 <!-- AUTOGEN:START 2026-02-18 voice recorder case -->
 ![2026-02-18 voice recorder case](renders/2026-02-18%20voice%20recorder%20case.png)
 
@@ -459,6 +489,9 @@ It has a little notch for wedging in between planks so it doesn't slip. I also u
 <!-- AUTOGEN:END 2026-04-25 lava lamp snake cover -->
 
 ## 2026-04-25 monstera pot holder
+
+![monstera pot holder 1](images/monstera-1.jpg)
+![monstera pot holder 2](images/monstera-2.jpg)
 
 <!-- AUTOGEN:START 2026-04-25 monstera pot holder -->
 ![2026-04-25 monstera pot holder](renders/2026-04-25%20monstera%20pot%20holder.png)
@@ -507,6 +540,7 @@ It has a little notch for wedging in between planks so it doesn't slip. I also u
 Some plastic to keep a [Dixie 8.5" paper plate](https://www.amazon.com/Dixie-Plates-Printed-Disposable-Packaging/dp/B0748J34WZ) in place, and two differently-sized cat food bowls in place. Put some adhesive cabinet stoppers on the bottom, and the cats can't slide the plate and bowls all over the place when they're hungry.
 
 ![cat food tray holder](images/cat-food-tray-holder.jpg)
+![cat food bowl holder](images/cat-food-bowl-holder.jpg)
 
 <!-- AUTOGEN:START 2026-05-25 cat food tray holder -->
 ![2026-05-25 cat food tray holder](renders/2026-05-25%20cat%20food%20tray%20holder.png)
@@ -532,6 +566,9 @@ I have a few shot glasses that are useful for dispensing liquid medicine. The th
 <!-- AUTOGEN:END 2026-05-31 shot glass gauge -->
 
 ## 2025-06-29 webcam wedge to angle it a little differently
+
+![webcam wedge 1](images/webcam-wedge-1.jpg)
+![webcam wedge 2](images/webcam-wedge-2.jpg)
 
 <!-- AUTOGEN:START 2025-06-29 webcam wedge to angle it a little differently -->
 ![2025-06-29 webcam wedge to angle it a little differently](renders/2025-06-29%20webcam%20wedge%20to%20angle%20it%20a%20little%20differently.png)

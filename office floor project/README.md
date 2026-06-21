@@ -24,6 +24,8 @@
 
 ## 2025-03-29 conduit for office
 
+![conduit](images/conduit.jpg)
+
 <!-- AUTOGEN:START 2025-03-29 conduit for office -->
 ![2025-03-29 conduit for office](renders/2025-03-29%20conduit%20for%20office.png)
 
@@ -34,6 +36,9 @@
 <!-- AUTOGEN:END 2025-03-29 conduit for office -->
 
 ## 2025-03-30 flooring edges
+
+![flooring edges 1](images/ofp-edges-1.jpg)
+![flooring edges 2](images/ofp-edges-2.jpg)
 
 <!-- AUTOGEN:START 2025-03-30 flooring edges -->
 ![2025-03-30 flooring edges](renders/2025-03-30%20flooring%20edges.png)
@@ -68,6 +73,9 @@
 
 ## 2025-07-19 ofp ddr corners
 
+![ofp ddr corner 1](images/ofp-corner-1.jpg)
+![ofp ddr corner 2](images/ofp-corner-2.jpg)
+
 <!-- AUTOGEN:START 2025-07-19 ofp ddr corners -->
 ![2025-07-19 ofp ddr corners](renders/2025-07-19%20ofp%20ddr%20corners.png)
 
@@ -89,6 +97,9 @@
 <!-- AUTOGEN:END 2025-10-19 trap door wedge for disassembly -->
 
 ## 2025-12-12 level floor 2
+
+![floor tiles stacked](images/floor-tiles-stack.jpg)
+![level floor](images/level-floor.jpg)
 
 <!-- AUTOGEN:START 2025-12-12 level floor 2 -->
 ![2025-12-12 level floor 2](renders/2025-12-12%20level%20floor%202.png)
