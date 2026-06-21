@@ -13,6 +13,10 @@
 
 ## 2025-03-20 tesla tray and phone mount
 
+The first iteration of my Tesla phone mount wasn't so bad, but it melted. Also I didn't like the joiners so I redid it, but didn't get to the sunglasses tray yet.
+
+![tesla tray](images/tesla-tray.jpg)
+
 <!-- AUTOGEN:START 2025-03-20 tesla tray and phone mount -->
 ![2025-03-20 tesla tray and phone mount](renders/2025-03-20%20tesla%20tray%20and%20phone%20mount.png)
 
@@ -68,6 +72,10 @@
 
 ## 2025-07-27 snake cover
 
+It's supposed to house a cord against the wall to make it less ugly than a dangling wire. I found that it popped off a little bit too easily and then I decided to run the cord behind the wall anyway.
+
+![snake cover](images/snake-cover.jpg)
+
 <!-- AUTOGEN:START 2025-07-27 snake cover -->
 ![2025-07-27 snake cover](renders/2025-07-27%20snake%20cover.png)
 
@@ -78,6 +86,10 @@
 <!-- AUTOGEN:END 2025-07-27 snake cover -->
 
 ## 2025-07-31 soap transfer bottle holder
+
+Doesn't quite work to stabilize the top bottle yet.
+
+![soap transfer thingy](images/soap-transfer-thingy.jpg)
 
 <!-- AUTOGEN:START 2025-07-31 soap transfer bottle holder -->
 ![2025-07-31 soap transfer bottle holder](renders/2025-07-31%20soap%20transfer%20bottle%20holder.png)
@@ -100,6 +112,9 @@
 <!-- AUTOGEN:END 2025-12-04 coffee maker lid holder -->
 
 ## 2025-12-29 kaia pink cooler frame
+
+![kaia pump frame](images/kaia-pump-frame-1.jpg)
+![kaia pump frame](images/kaia-pump-frame-2.jpg)
 
 <!-- AUTOGEN:START 2025-12-29 kaia pink cooler frame -->
 ![2025-12-29 kaia pink cooler frame](renders/2025-12-29%20kaia%20pink%20cooler%20frame.png)

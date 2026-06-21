@@ -2,6 +2,10 @@
 
 ## 2025-04-23 thickness measuring tool
 
+Tool to measure gaps in 1mm increments
+
+![thickness tool](images/thickness-tool.jpg)
+
 <!-- AUTOGEN:START 2025-04-23 thickness measuring tool -->
 ![2025-04-23 thickness measuring tool](renders/2025-04-23%20thickness%20measuring%20tool.png)
 
@@ -12,6 +16,9 @@
 <!-- AUTOGEN:END 2025-04-23 thickness measuring tool -->
 
 ## 2025-11-28 radius gauge
+
+![radius gauge](images/radius-gauge-1.jpg)
+![radius gauge in use](images/radius-gauge-2.jpg)
 
 <!-- AUTOGEN:START 2025-11-28 radius gauge -->
 ![2025-11-28 radius gauge](renders/2025-11-28%20radius%20gauge.png)
@@ -24,6 +31,8 @@
 
 ## 2025-12-27 font test
 
+![font test](images/font-test.jpg)
+
 <!-- AUTOGEN:START 2025-12-27 font test -->
 ![2025-12-27 font test](renders/2025-12-27%20font%20test.png)
 
@@ -34,6 +43,8 @@
 <!-- AUTOGEN:END 2025-12-27 font test -->
 
 ## 2025-12-27 font test 2
+
+![font test 2](images/font-test-2.jpg)
 
 <!-- AUTOGEN:START 2025-12-27 font test 2 -->
 ![2025-12-27 font test 2](renders/2025-12-27%20font%20test%202.png)

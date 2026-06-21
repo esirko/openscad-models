@@ -279,6 +279,8 @@ These are supposed to join 3 acrylic sheets together at a corner. They're about 
 
 ## 2025-11-27 tripod mount shoe
 
+This allows a webcam to be pointed directly at my gas meter for the [utilities-monitor dashboard](https://github.com/esirko/utilities-monitor-dashboard). It mounts to an Amazon Basics tripod.
+
 <!-- AUTOGEN:START 2025-11-27 tripod mount shoe -->
 ![2025-11-27 tripod mount shoe](renders/2025-11-27%20tripod%20mount%20shoe.png)
 
@@ -290,6 +292,10 @@ These are supposed to join 3 acrylic sheets together at a corner. They're about 
 
 ## 2025-11-28 pole hugger for camera mount in basement
 
+This allows a webcam to be pointed directly at the water meter for the [utilities-monitor dashboard](https://github.com/esirko/utilities-monitor-dashboard). I tried to make the mechanism to "attach" to the pole general.
+
+![basement pole hugger](images/basement-pole-hugger.jpg)
+
 <!-- AUTOGEN:START 2025-11-28 pole hugger for camera mount in basement -->
 ![2025-11-28 pole hugger for camera mount in basement](renders/2025-11-28%20pole%20hugger%20for%20camera%20mount%20in%20basement.png)
 
@@ -300,6 +306,10 @@ These are supposed to join 3 acrylic sheets together at a corner. They're about 
 <!-- AUTOGEN:END 2025-11-28 pole hugger for camera mount in basement -->
 
 ## 2025-12-05 lens clamps for ip cams
+
+For [utilities-monitor dashboard](https://github.com/esirko/utilities-monitor-dashboard), this attaches a [diopter lens](https://www.amazon.com/Vivitar-Close-Up-Macro-Filter-Pouch/dp/B004DRCEDW) to a tapo IP camera ([C113](https://www.amazon.com/Tapo-Indoor-Outdoor-Security-Camera/dp/B0F58PRJXV) or [C120](https://www.amazon.com/Tapo-cameras-for-home-security/dp/B0CH45HPZT)). The circle part should be enough and fit snugly. The tripod part isn't necessary.
+
+![lens clamp](images/water-camera-lens-closeup.jpg)
 
 <!-- AUTOGEN:START 2025-12-05 lens clamps for ip cams -->
 ![2025-12-05 lens clamps for ip cams](renders/2025-12-05%20lens%20clamps%20for%20ip%20cams.png)
@@ -386,6 +396,12 @@ Fits my Kohler sink. Costs about 50 cents in filament, and when it gets disgusti
 
 ## 2026-02-07 2x4 holder for snowblower ramp
 
+It has a little notch for wedging in between planks so it doesn't slip. I also used this for getting the snowblower into my car when I needed to get it serviced.
+
+![snowblower ramp](images/snowblower-ramp.jpg)
+![snowblower ramp down](images/snowblower-down-ramp.gif)
+![snowblower ramp up](images/snowblower-up-ramp.gif)
+
 <!-- AUTOGEN:START 2026-02-07 2x4 holder for snowblower ramp -->
 ![2026-02-07 2x4 holder for snowblower ramp](renders/2026-02-07%202x4%20holder%20for%20snowblower%20ramp.png)
 
@@ -396,6 +412,9 @@ Fits my Kohler sink. Costs about 50 cents in filament, and when it gets disgusti
 <!-- AUTOGEN:END 2026-02-07 2x4 holder for snowblower ramp -->
 
 ## 2026-02-14 kaia bed lock
+
+
+![kaia bed lock](images/kaia-bed-lock.jpg)
 
 <!-- AUTOGEN:START 2026-02-14 kaia bed lock -->
 ![2026-02-14 kaia bed lock](renders/2026-02-14%20kaia%20bed%20lock.png)
@@ -484,6 +503,10 @@ Fits my Kohler sink. Costs about 50 cents in filament, and when it gets disgusti
 <!-- AUTOGEN:END 2026-05-17 air conditioner zig-zag filler -->
 
 ## 2026-05-25 cat food tray holder
+
+Some plastic to keep a [Dixie 8.5" paper plate](https://www.amazon.com/Dixie-Plates-Printed-Disposable-Packaging/dp/B0748J34WZ) in place, and two differently-sized cat food bowls in place. Put some adhesive cabinet stoppers on the bottom, and the cats can't slide the plate and bowls all over the place when they're hungry.
+
+![cat food tray holder](images/cat-food-tray-holder.jpg)
 
 <!-- AUTOGEN:START 2026-05-25 cat food tray holder -->
 ![2026-05-25 cat food tray holder](renders/2026-05-25%20cat%20food%20tray%20holder.png)
