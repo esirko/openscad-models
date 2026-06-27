@@ -360,6 +360,8 @@ For [utilities-monitor dashboard](https://github.com/esirko/utilities-monitor-da
 
 ## 2025-12-18 cat food measuring cup
 
+I designed this subject to a few constraints: the multi-color part should be waste as little filament as possible (so print that one side on the bed) and I didn't want there to be any supports. The parameters can be modified in the SCAD file to make arbitrary measuring cup sizes.
+
 ![measuring cup](images/measuring-cup.jpg)
 
 <!-- AUTOGEN:START 2025-12-18 cat food measuring cup -->
@@ -402,6 +404,8 @@ It's a pretty good fit to the 5-gallon jug. Could be just a tad tighter.
 
 ## 2025-12-29 sad light stand 2
 
+To mnount [this SAD light](https://www.amazon.com/Verilux%C2%AE-HappyLight%C2%AE-Alba-Adjustable-Brightness/dp/B08KSHJHDN) to my monitor arms in an optimal place.
+
 ![sad light stand](images/sad-light-stand.jpg)
 
 <!-- AUTOGEN:START 2025-12-29 sad light stand 2 -->
@@ -415,7 +419,7 @@ It's a pretty good fit to the 5-gallon jug. Could be just a tad tighter.
 
 ## 2025-12-29 strainer
 
-Fits my Kohler sink. Costs about 50 cents in filament, and when it gets disgusting I can just throw it out. The spiral structure on the bottom (hard to see in these photos) makes the water do a cool whirlpool effect when draining.
+Fits my Kraus sink. Costs about 50 cents in filament, and when it gets disgusting I can just throw it out. The spiral structure on the bottom (hard to see in these photos) makes the water do a cool whirlpool effect when draining.
 
 ![strainer](images/strainer.jpg)
 
@@ -512,6 +516,8 @@ It has a little notch for wedging in between planks so it doesn't slip. I also u
 <!-- AUTOGEN:END 2026-04-25 lava lamp snake cover -->
 
 ## 2026-04-25 monstera pot holder
+
+Once I watered the monstera and a day later it fell off the shelf because the water had slowly made its way to the leaves making it top-heavy. Hoping this solves that problem!
 
 ![monstera pot holder 1](images/monstera-1.jpg)
 ![monstera pot holder 2](images/monstera-2.jpg)
