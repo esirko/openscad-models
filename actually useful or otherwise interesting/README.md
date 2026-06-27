@@ -156,6 +156,11 @@ This is for the lighting of my office floor project.
 
 ## 2025-08-17 formula bag apparatus
 
+It's a stand to keep the enteral formula bag upright while you pour liquids and squeeze formula bags into it, which often takes two hands.
+
+![formula bag apparatus 1](images/formula-bag-apparatus-1.jpg)
+![formula bag apparatus 2](images/formula-bag-apparatus-2.jpg)
+
 <!-- AUTOGEN:START 2025-08-17 formula bag apparatus -->
 ![2025-08-17 formula bag apparatus](renders/2025-08-17%20formula%20bag%20apparatus.png)
 
@@ -478,6 +483,8 @@ It has a little notch for wedging in between planks so it doesn't slip. I also u
 <!-- AUTOGEN:END 2026-04-08 piano cam holder -->
 
 ## 2026-04-25 lava lamp snake cover
+
+![lava lamp snake cover](images/lava-lamp-snake-cover.jpg)
 
 <!-- AUTOGEN:START 2026-04-25 lava lamp snake cover -->
 ![2026-04-25 lava lamp snake cover](renders/2026-04-25%20lava%20lamp%20snake%20cover.png)

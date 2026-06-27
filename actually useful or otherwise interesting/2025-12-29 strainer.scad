@@ -4,10 +4,12 @@ include <BOSL2/threading.scad>
 // Suggestions on how to print
 // - Upside-down
 //     - Use a smooth plate to get a smooth top part
-//     - I had a terribly hard time separating PLA support from the bottom of the well, so much that I gave up
-//     - Even PETG was easier to remove, but still not the easiest
+//     - PLA and supports: 
+//         - I had a terribly hard time separating PLA support from the bottom of the well, so much that I gave up
+//         - Even PETG was easier to remove, but still not the easiest
 // - Rightside-up
 //     - Removing PETG as the support was fairly easy, but there's a noticeable weakness at the transition point where it starts to break
+//         - Yes, it did break at an inopportune time while shaking it off
 
 
 

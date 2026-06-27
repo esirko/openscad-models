@@ -4,6 +4,8 @@
 
 Just a simple holder for a selfie-stick above my door frame. I didn't want to put holes in the wall, so I decided to just hammer two small nails to the top of the door frame, where no one would see them. The camera can then look down into the room from a high angle.
 
+![phone holder bracket](images/phone-holder-bracket.jpg)
+
 <!-- AUTOGEN:START 2025-02-19 phone holder bracket -->
 ![2025-02-19 phone holder bracket](renders/2025-02-19%20phone%20holder%20bracket.png)
 
