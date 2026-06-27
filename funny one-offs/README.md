@@ -41,6 +41,10 @@ This is almost the simplest model to imagine, and took about 2 minutes to design
 
 ## 2025-06-07 simple floor nail punch protector
 
+Believe it or not, this helps reduce accidents when using a nail punch to recess nails in the floor.
+
+![nail punch guide](images/nail-punch-guide.gif)
+
 <!-- AUTOGEN:START 2025-06-07 simple floor nail punch protector -->
 ![2025-06-07 simple floor nail punch protector](renders/2025-06-07%20simple%20floor%20nail%20punch%20protector.png)
 

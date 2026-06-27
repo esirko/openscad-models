@@ -6,6 +6,8 @@ I use a Kinesis split keyboard (Freestyle Edge) with a lift kit that raises the 
 
 With the print in place and attached to the keyboard wrist pad from the underside, the part of the mouse _underneath_ the button will collide with the print first. This prevents the left mouse button from being inadvertantly clicked.
 
+![keyboard mouse blocker](images/keyboard-guard.gif)
+
 <!-- AUTOGEN:START 2025-03-01 keyboard mouse blocker -->
 ![2025-03-01 keyboard mouse blocker](renders/2025-03-01%20keyboard%20mouse%20blocker.png)
 
@@ -117,6 +119,7 @@ This holds a Wansview webcam in a spot where it can view the bed pretty clearly.
 
 This allows me to quickly rotate my digital picture frame between landscape and portrait depending on the selected picture.
 
+![rotating vesa mount demo](images/rotating-vesa-mount.gif)
 ![rotating vesa mount 1](images/rotating-vesa-mount-1.jpg)
 ![rotating vesa mount 2](images/rotating-vesa-mount-2.jpg)
 <!-- AUTOGEN:START 2025-07-24 rotating vesa mount -->
@@ -194,6 +197,10 @@ It's a stand to keep the enteral formula bag upright while you pour liquids and 
 
 ## 2025-08-30 syringe press v3
 
+When the syringe gets difficult to push, transfer rotational energy into translational energy!
+
+![syringe press v3](images/syringe-press.gif)
+
 <!-- AUTOGEN:START 2025-08-30 syringe press v3 -->
 ![2025-08-30 syringe press v3](renders/2025-08-30%20syringe%20press%20v3.png)
 
@@ -205,9 +212,12 @@ It's a stand to keep the enteral formula bag upright while you pour liquids and 
 
 ## 2025-09-06 extension pliers
 
-Not sure why I called these "pliers," but you can use this as a wrench for opening the port on an extension when it's too tight.
+Not sure why I called these "pliers," but you can use this as a wrench for opening the port on an extension when it's too tight. The rectangular slot has a purpose too: it can be used to pry the enteral bag tube off of the extension.
 
 ![extension wrench](images/extension-wrench.jpg)
+![extension wrench gif](images/extension-wrench.gif)
+
+
 <!-- AUTOGEN:START 2025-09-06 extension pliers -->
 ![2025-09-06 extension pliers](renders/2025-09-06%20extension%20pliers.png)
 
