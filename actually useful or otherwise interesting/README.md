@@ -175,6 +175,10 @@ It's a stand to keep the enteral formula bag upright while you pour liquids and 
 
 ## 2025-08-21 fingerbot case
 
+A lot of this is really not the best way to do it; I didn't have any shrinkwrap on hand so I thought I'd just insulate wires from each other with 3d-printed "guides"...
+
+![fingerbot](images/fingerbot.gif)
+
 <!-- AUTOGEN:START 2025-08-21 fingerbot case -->
 ![2025-08-21 fingerbot case](renders/2025-08-21%20fingerbot%20case.png)
 
@@ -185,6 +189,8 @@ It's a stand to keep the enteral formula bag upright while you pour liquids and 
 <!-- AUTOGEN:END 2025-08-21 fingerbot case -->
 
 ## 2025-08-23 finger pusher
+
+See gif for fingerbot case above
 
 <!-- AUTOGEN:START 2025-08-23 finger pusher -->
 ![2025-08-23 finger pusher](renders/2025-08-23%20finger%20pusher.png)
