@@ -9,6 +9,7 @@ basex = 116;
 basey = 127;
 basedx = 10;
 
+h0 = 104;
 h1 = 144;
 h2 = 44;
 
@@ -19,33 +20,47 @@ camera_r = 58/2;
 jh = 10;
 
 module legs(slop=0.0) {
-    fwd(basey/2) left(10) prismoid(size1=[20, basedx], size2=[20+slop, basedx+slop], height=h1-4, shift=[20, 23], anchor=BOTTOM+RIGHT+BACK);
-    left(basex/2) prismoid(size1=[basedx, 20], size2=[basedx+slop, 20+slop], height=h1-4, shift=[17, -10], anchor=BOTTOM+RIGHT+FRONT);
-    back(basey/2) right(10) prismoid(size1=[20, basedx], size2=[20+slop, basedx+slop], height=h1-4, shift=[-20, -23], anchor=BOTTOM+LEFT+FRONT);
+    fwd(basey/2) left(10) prismoid(size1=[20, basedx], size2=[20+slop, basedx+slop], height=h0-4, shift=[0, 0], anchor=BOTTOM+RIGHT+BACK);
+    left(basex/2) prismoid(size1=[basedx, 20], size2=[basedx+slop, 20+slop], height=h0-4, shift=[0, 0], anchor=BOTTOM+RIGHT+FRONT);
+    back(basey/2) right(10) prismoid(size1=[20, basedx], size2=[20+slop, basedx+slop], height=h0-4, shift=[0, 0], anchor=BOTTOM+LEFT+FRONT);
 }
 
 
 
 // Bottom mount
-down(20) {
+down(60) {
+    //prismoid(size1=[basex+2*basedx, 0], size2=[basex+2*basedx,  basey+2*basedx], shift=[0, (basey+2*basedx)/2], h=8, anchor=BACK);
     diff() cuboid([basex+2*basedx, basey+2*basedx, 4], anchor=BOTTOM)
         position(CENTER) tag("remove") cuboid([basex, basey, 12]);
         
     up(4) legs();
+    
+    up(10) 
+    difference() {
+        up(h0) union() {
+            fwd(10) cuboid([175, 175, 0.4], anchor=BOTTOM);
+            left(10) cuboid([basex+2*basedx-10, basey+2*basedx+10, 4], anchor=BOTTOM);
+        }
+        up(h0) cyl(r=50, h=10);
+        up(6) legs(0.1);
+    }
 }
-
 
 
 // Top camera holder
-up(h1+h2)
-difference() {
-    down(4) cyl(r1=camera_r+2, r2=camera_r+8, h=4+41, anchor=BOTTOM);
-    cyl(r=lens_outer_r, h=100, anchor=BOTTOM);
-    up(5) cyl(r=camera_r, h=100, anchor=BOTTOM);
-    down(5) cyl(r=lens_inner_r-2, h=20, anchor=BOTTOM);
-    cuboid([100, 100, 30], anchor=BOTTOM+BACK);
-    color("red") cuboid([10, 100, 50], anchor=BOTTOM+BACK);
+up(h1+h2) {
+    difference() {
+        down(4) cyl(r1=camera_r+2, r2=camera_r+8, h=4+41, anchor=BOTTOM);
+        cyl(r=lens_outer_r, h=100, anchor=BOTTOM);
+        up(5) cyl(r=camera_r, h=100, anchor=BOTTOM);
+        down(5) cyl(r=lens_inner_r-2, h=20, anchor=BOTTOM);
+        cuboid([100, 100, 30], anchor=BOTTOM+BACK);
+        color("red") cuboid([10, 100, 50], anchor=BOTTOM+BACK);
+    }
+
+    fwd(lens_outer_r) cuboid([8, 3.5, 5], anchor=BOTTOM+BACK, chamfer=0.5, edges=TOP);
 }
+
 
 up(h1+h2) color("red")
 up(40) difference() {
@@ -54,24 +69,42 @@ up(40) difference() {
     down(e) cuboid([100, 100, 100], anchor=BOTTOM+BACK);
 }
 
-up(h1) {
+up(h1) { color("lightblue")
     difference() {
-        cyl(r1=45, r2=camera_r+2, h=h2-4, anchor=BOTTOM);
-        down(e) cyl(r1=40, r2=lens_inner_r-2, h=h2-4+2*e, anchor=BOTTOM);
+        cyl(r1=50, r2=camera_r+2, h=h2-4, anchor=BOTTOM);
+        down(e) cyl(r1=46, r2=lens_inner_r-2, h=h2-4+2*e, anchor=BOTTOM);
     }
-
 }
 
-difference() {
-    up(h1) cyl(r=45, h=10, anchor=TOP);
-    up(h1) up(e) cyl(r=40, h=10+2*e, anchor=TOP);
-    up(4) legs(0.5);
+module circle_mount_part() {
+    cylslop = 0.1;
+    difference() {
+        union() {
+            cyl(r=50-cylslop, h=10, anchor=TOP);
+            cyl(r=55, h=2, anchor=TOP);
+        }
+        up(e) cyl(r=46, h=10+2*e, anchor=TOP);
+    }
+}
+
+color("blue")
+up(h1) circle_mount_part();
+
+// Extension cylinder - TODO continue here
+extension_cylinder_height = 20;
+down(60) up(h1) color("red") {
+    circle_mount_part();
+    difference() {
+        union() {
+            //cyl(r1=55, r2=52, h=4, anchor=BOTTOM); // attempt to remove supports - need to do it on the other side to work - too complicated, just use supports
+            cyl(r=52, h=extension_cylinder_height, anchor=BOTTOM);
+        }
+        down(e) cyl(r=50, h=extension_cylinder_height+1, anchor=BOTTOM);
+    }
 }
 
 
-
-
-// ipad mount
+// hacky ipad mount pieces
 mount_x = 55.5;
 mount_y = 16;
 out_buf_x = 10;
@@ -96,8 +129,8 @@ xflip_copy() {
     fwd(120) left(80) {
         cuboid([10, 10, 5], anchor=BOTTOM+FRONT+RIGHT);
         fwd(10.1) cuboid([10, 25, 5], anchor=BOTTOM+BACK+RIGHT);
-        back(10) cuboid([10, 45.1, 14], anchor=TOP+BACK+RIGHT);
-        fwd(35.1) down(14) cuboid([10, 10, 4], anchor=TOP+FRONT+RIGHT);
+        back(10) cuboid([10, 45.1, 10], anchor=TOP+BACK+RIGHT);
+        fwd(35.1) down(10) cuboid([10, 8, 4], anchor=TOP+FRONT+RIGHT);
     }
 }
 
@@ -141,7 +174,7 @@ up(300) {
 }
 */
 
-
+/*
 // light shield v2, simpler
 yshift = 15;
 up(300) {
@@ -162,5 +195,5 @@ up(300) {
         }
     }
 }
-
+*/
 
