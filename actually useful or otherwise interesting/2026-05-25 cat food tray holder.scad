@@ -23,10 +23,10 @@ module full_plate_tray() {
         down(e) cyl(r = 90, h=h0+2, anchor=BOTTOM, $fn=fn);
         fwd(r_plate) up(platform_h0) cuboid([50, 50, h0], anchor=BOTTOM);
     }
-    up(h0) difference() {
+    color("red") up(h0) difference() {
         cyl(r1=r_plate+t, r2=r_plate, h=5, anchor=BOTTOM, $fn=fn);
         down(e) cyl(r1=r_plate, r2=r_plate-t, h=5+2*e, anchor=BOTTOM, $fn=fn);
-        down(e) cuboid([300, 150, 10], anchor=BOTTOM+BACK);
+        back(30) down(e) cuboid([300, 150, 10], anchor=BOTTOM+BACK);
     }
     up(h0) difference() {
         cyl(r = r_plate+t, h=h0b, anchor=BOTTOM, $fn=fn);
@@ -35,9 +35,6 @@ module full_plate_tray() {
         down(e) xrot(-8) cuboid([300, 300, 50], anchor=BOTTOM);
         down(e) fwd(r_plate) cuboid([50, 50, h0b+2*e], anchor=BOTTOM);
     }
-
-    //zrot(45) cuboid([2*r_plate, 10, platform_h0], anchor=BOTTOM);
-    //zrot(-45) cuboid([2*r_plate, 10, platform_h0], anchor=BOTTOM);
 }
 
 module dovetail_wedge(d) {
@@ -75,7 +72,6 @@ back(0) {
     }
     zrot(120) dovetail_wedge();
 }
-
 
 
 h_joiner = 25;
