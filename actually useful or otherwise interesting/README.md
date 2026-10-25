@@ -493,6 +493,11 @@ It has a little notch for wedging in between planks so it doesn't slip. I also u
 
 ## 2026-04-08 piano cam holder
 
+I use this to hold a selfie stick in place for the overhead shots of my piano videos.
+
+![piano cam holder](images/piano-cam-holder-2.jpg)
+![piano cam holder in action](images/piano-cam-holder-1.jpg)
+
 <!-- AUTOGEN:START 2026-04-08 piano cam holder -->
 ![2026-04-08 piano cam holder](renders/2026-04-08%20piano%20cam%20holder.png)
 
@@ -542,18 +547,11 @@ Once I watered the monstera and a day later it fell off the shelf because the wa
 - STL: [2026-04-26 mic tripod adapter.stl](2026-04-26%20mic%20tripod%20adapter.stl)
 <!-- AUTOGEN:END 2026-04-26 mic tripod adapter -->
 
-## 2026-05-17 air conditioner spacer
-
-<!-- AUTOGEN:START 2026-05-17 air conditioner spacer -->
-![2026-05-17 air conditioner spacer](renders/2026-05-17%20air%20conditioner%20spacer.png)
-
-**Files:**
-
-- SCAD: [2026-05-17 air conditioner spacer.scad](2026-05-17%20air%20conditioner%20spacer.scad)
-- STL: [2026-05-17 air conditioner spacer.stl](2026-05-17%20air%20conditioner%20spacer.stl)
-<!-- AUTOGEN:END 2026-05-17 air conditioner spacer -->
-
 ## 2026-05-17 air conditioner zig-zag filler
+
+I lost the source SCAD for this one. But here's a picture.
+
+![air conditioner zig-zag thingy](images/air-conditioner-zig-zag-thingy.jpg)
 
 <!-- AUTOGEN:START 2026-05-17 air conditioner zig-zag filler -->
 ![2026-05-17 air conditioner zig-zag filler](renders/2026-05-17%20air%20conditioner%20zig-zag%20filler.png)
@@ -610,6 +608,12 @@ I have a few shot glasses that are useful for dispensing liquid medicine. The th
 
 ## 2026-06-18 keyboard ramp thingy
 
+Dumb thing to stay in place over my KVM with an awkwardly placed USB port, so that I can shove my keyboard out of the way when I'm eating lunch.
+
+![keyboard shield anchor](images/keyboard-shield-anchor.jpg)
+![keyboard shield](images/keyboard-shield.jpg)
+![keyboard shield in action](images/keyboard-shield-in-action.jpg)
+
 <!-- AUTOGEN:START 2026-06-18 keyboard ramp thingy -->
 ![2026-06-18 keyboard ramp thingy](renders/2026-06-18%20keyboard%20ramp%20thingy.png)
 
@@ -643,6 +647,12 @@ I have a few shot glasses that are useful for dispensing liquid medicine. The th
 
 ## 2026-08-11 wand sprayer extension arm
 
+They didn't make the wand for the [Lowe's Project Source pressure sprayer](https://www.lowes.com/pd/Project-Source-1-Gallon-Plastic-Tank-Sprayer-with-Adjustable-Spray-Pattern/5013010097) very ergonomic. This just makes the wand longer so it's more comfortable to hold while aiming at the ground.
+
+![pressure sprayer from Lowe's](images/wand-sprayer-before.jpg)
+![wand sprayer closeup](images/wand-sprayer-closeup.jpg)
+![wand sprayer ready to go](images/wand-sprayer-after.jpg)
+
 <!-- AUTOGEN:START 2026-08-11 wand sprayer extension arm -->
 ![2026-08-11 wand sprayer extension arm](renders/2026-08-11%20wand%20sprayer%20extension%20arm.png)
 
@@ -654,6 +664,11 @@ I have a few shot glasses that are useful for dispensing liquid medicine. The th
 
 ## 2026-08-22 bin frame rod endcaps
 
+Coupled with a 1/4" wooden dowel of the right length, this can be used to straighten out [these 22x15x13" fabric bins from Amazon](https://www.amazon.com/dp/B0CJCD3LB9) that come folded and tend to collapse.
+
+![bin frame rod endcaps](images/bin-frame-rod-endcaps-closeup.jpg)
+![bin frame rod endcaps in action](images/bin-frame-rod-endcaps-in-action.jpg)
+
 <!-- AUTOGEN:START 2026-08-22 bin frame rod endcaps -->
 ![2026-08-22 bin frame rod endcaps](renders/2026-08-22%20bin%20frame%20rod%20endcaps.png)
 
@@ -664,6 +679,11 @@ I have a few shot glasses that are useful for dispensing liquid medicine. The th
 <!-- AUTOGEN:END 2026-08-22 bin frame rod endcaps -->
 
 ## 2026-09-06 freezer drain water collector
+
+A simple collector of water I designed to put underneath my freezer drain during defrosting. The idea was that it would fill to the brim, and then I could tilt it while walking with it to dump it, to avoid sloshing over the side.
+
+![freezer drain water collector in theory](images/freezer-drain-water-collector-in-theory.jpg)
+![freezer drain water collector in practice](images/freezer-drain-water-collector-in-practice.jpg)
 
 <!-- AUTOGEN:START 2026-09-06 freezer drain water collector -->
 ![2026-09-06 freezer drain water collector](renders/2026-09-06%20freezer%20drain%20water%20collector.png)
@@ -686,6 +706,10 @@ I have a few shot glasses that are useful for dispensing liquid medicine. The th
 <!-- AUTOGEN:END 2026-09-19 pill tray -->
 
 ## 2026-09-25 laptop arm desk attachment thing
+
+Just a block that fits in the space underneath my desk so that a monitor arm (which I use for my laptop) can be anchored to the desk.
+
+![laptop arm desk attachment thing](images/laptop-arm-desk-attachment-thing.jpg)
 
 <!-- AUTOGEN:START 2026-09-25 laptop arm desk attachment thing -->
 ![2026-09-25 laptop arm desk attachment thing](renders/2026-09-25%20laptop%20arm%20desk%20attachment%20thing.png)
