@@ -524,8 +524,7 @@ I use this to hold a selfie stick in place for the overhead shots of my piano vi
 
 Once I watered the monstera and a day later it fell off the shelf because the water had slowly made its way to the leaves making it top-heavy. Hoping this solves that problem!
 
-![monstera pot holder 1](images/monstera-1.jpg)
-![monstera pot holder 2](images/monstera-2.jpg)
+![monstera pot holder](images/monstera-pot-holder.jpg)
 
 <!-- AUTOGEN:START 2026-04-25 monstera pot holder -->
 ![2026-04-25 monstera pot holder](renders/2026-04-25%20monstera%20pot%20holder.png)
@@ -624,6 +623,10 @@ Dumb thing to stay in place over my KVM with an awkwardly placed USB port, so th
 <!-- AUTOGEN:END 2026-06-18 keyboard ramp thingy -->
 
 ## 2026-07-05 camera mount for ipad personal voice recording
+
+A holder for the Tapo [C120](https://www.amazon.com/Tapo-cameras-for-home-security/dp/B0CH45HPZT) to be placed at just the right distance, along with a diopter, from the iPad, to transmit video of the screen during Personal Voice recording of 150 phrases, which can be OCR'd so that a synthetic voice can read it, to the iPad. Coming soon: a video of this process.
+
+![camera mount for ipad Personal Voice recording](images/webcam-holder-for-ipad.jpg)
 
 <!-- AUTOGEN:START 2026-07-05 camera mount for ipad personal voice recording -->
 ![2026-07-05 camera mount for ipad personal voice recording](renders/2026-07-05%20camera%20mount%20for%20ipad%20personal%20voice%20recording.png)
