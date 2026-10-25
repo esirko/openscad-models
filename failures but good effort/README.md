@@ -157,3 +157,25 @@ Doesn't quite work to stabilize the top bottle yet.
 - SCAD: [2025-12-28 trap door hinge foot guard 2.scad](2025-12-28%20trap%20door%20hinge%20foot%20guard%202.scad)
 - STL: [2025-12-28 trap door hinge foot guard 2.stl](2025-12-28%20trap%20door%20hinge%20foot%20guard%202.stl)
 <!-- AUTOGEN:END 2025-12-28 trap door hinge foot guard 2 -->
+
+## 2026-07-25 pool vacuum basket stand
+
+<!-- AUTOGEN:START 2026-07-25 pool vacuum basket stand -->
+![2026-07-25 pool vacuum basket stand](renders/2026-07-25%20pool%20vacuum%20basket%20stand.png)
+
+**Files:**
+
+- SCAD: [2026-07-25 pool vacuum basket stand.scad](2026-07-25%20pool%20vacuum%20basket%20stand.scad)
+- STL: [2026-07-25 pool vacuum basket stand.stl](2026-07-25%20pool%20vacuum%20basket%20stand.stl)
+<!-- AUTOGEN:END 2026-07-25 pool vacuum basket stand -->
+
+## 2026-07-26 bin frame
+
+<!-- AUTOGEN:START 2026-07-26 bin frame -->
+![2026-07-26 bin frame](renders/2026-07-26%20bin%20frame.png)
+
+**Files:**
+
+- SCAD: [2026-07-26 bin frame.scad](2026-07-26%20bin%20frame.scad)
+- STL: [2026-07-26 bin frame.stl](2026-07-26%20bin%20frame.stl)
+<!-- AUTOGEN:END 2026-07-26 bin frame -->

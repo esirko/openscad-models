@@ -607,3 +607,91 @@ I have a few shot glasses that are useful for dispensing liquid medicine. The th
 - SCAD: [2025-06-29 webcam wedge to angle it a little differently.scad](2025-06-29%20webcam%20wedge%20to%20angle%20it%20a%20little%20differently.scad)
 - STL: [2025-06-29 webcam wedge to angle it a little differently.stl](2025-06-29%20webcam%20wedge%20to%20angle%20it%20a%20little%20differently.stl)
 <!-- AUTOGEN:END 2025-06-29 webcam wedge to angle it a little differently -->
+
+## 2026-06-18 keyboard ramp thingy
+
+<!-- AUTOGEN:START 2026-06-18 keyboard ramp thingy -->
+![2026-06-18 keyboard ramp thingy](renders/2026-06-18%20keyboard%20ramp%20thingy.png)
+
+**Files:**
+
+- SCAD: [2026-06-18 keyboard ramp thingy.scad](2026-06-18%20keyboard%20ramp%20thingy.scad)
+- STL: [2026-06-18 keyboard ramp thingy.stl](2026-06-18%20keyboard%20ramp%20thingy.stl)
+<!-- AUTOGEN:END 2026-06-18 keyboard ramp thingy -->
+
+## 2026-07-05 camera mount for ipad personal voice recording
+
+<!-- AUTOGEN:START 2026-07-05 camera mount for ipad personal voice recording -->
+![2026-07-05 camera mount for ipad personal voice recording](renders/2026-07-05%20camera%20mount%20for%20ipad%20personal%20voice%20recording.png)
+
+**Files:**
+
+- SCAD: [2026-07-05 camera mount for ipad personal voice recording.scad](2026-07-05%20camera%20mount%20for%20ipad%20personal%20voice%20recording.scad)
+- STL: [2026-07-05 camera mount for ipad personal voice recording.stl](2026-07-05%20camera%20mount%20for%20ipad%20personal%20voice%20recording.stl)
+<!-- AUTOGEN:END 2026-07-05 camera mount for ipad personal voice recording -->
+
+## 2026-07-07 blender holder
+
+<!-- AUTOGEN:START 2026-07-07 blender holder -->
+![2026-07-07 blender holder](renders/2026-07-07%20blender%20holder.png)
+
+**Files:**
+
+- SCAD: [2026-07-07 blender holder.scad](2026-07-07%20blender%20holder.scad)
+- STL: [2026-07-07 blender holder.stl](2026-07-07%20blender%20holder.stl)
+<!-- AUTOGEN:END 2026-07-07 blender holder -->
+
+## 2026-08-11 wand sprayer extension arm
+
+<!-- AUTOGEN:START 2026-08-11 wand sprayer extension arm -->
+![2026-08-11 wand sprayer extension arm](renders/2026-08-11%20wand%20sprayer%20extension%20arm.png)
+
+**Files:**
+
+- SCAD: [2026-08-11 wand sprayer extension arm.scad](2026-08-11%20wand%20sprayer%20extension%20arm.scad)
+- STL: [2026-08-11 wand sprayer extension arm.stl](2026-08-11%20wand%20sprayer%20extension%20arm.stl)
+<!-- AUTOGEN:END 2026-08-11 wand sprayer extension arm -->
+
+## 2026-08-22 bin frame rod endcaps
+
+<!-- AUTOGEN:START 2026-08-22 bin frame rod endcaps -->
+![2026-08-22 bin frame rod endcaps](renders/2026-08-22%20bin%20frame%20rod%20endcaps.png)
+
+**Files:**
+
+- SCAD: [2026-08-22 bin frame rod endcaps.scad](2026-08-22%20bin%20frame%20rod%20endcaps.scad)
+- STL: [2026-08-22 bin frame rod endcaps.stl](2026-08-22%20bin%20frame%20rod%20endcaps.stl)
+<!-- AUTOGEN:END 2026-08-22 bin frame rod endcaps -->
+
+## 2026-09-06 freezer drain water collector
+
+<!-- AUTOGEN:START 2026-09-06 freezer drain water collector -->
+![2026-09-06 freezer drain water collector](renders/2026-09-06%20freezer%20drain%20water%20collector.png)
+
+**Files:**
+
+- SCAD: [2026-09-06 freezer drain water collector.scad](2026-09-06%20freezer%20drain%20water%20collector.scad)
+- STL: [2026-09-06 freezer drain water collector.stl](2026-09-06%20freezer%20drain%20water%20collector.stl)
+<!-- AUTOGEN:END 2026-09-06 freezer drain water collector -->
+
+## 2026-09-19 pill tray
+
+<!-- AUTOGEN:START 2026-09-19 pill tray -->
+![2026-09-19 pill tray](renders/2026-09-19%20pill%20tray.png)
+
+**Files:**
+
+- SCAD: [2026-09-19 pill tray.scad](2026-09-19%20pill%20tray.scad)
+- STL: [2026-09-19 pill tray.stl](2026-09-19%20pill%20tray.stl)
+<!-- AUTOGEN:END 2026-09-19 pill tray -->
+
+## 2026-09-25 laptop arm desk attachment thing
+
+<!-- AUTOGEN:START 2026-09-25 laptop arm desk attachment thing -->
+![2026-09-25 laptop arm desk attachment thing](renders/2026-09-25%20laptop%20arm%20desk%20attachment%20thing.png)
+
+**Files:**
+
+- SCAD: [2026-09-25 laptop arm desk attachment thing.scad](2026-09-25%20laptop%20arm%20desk%20attachment%20thing.scad)
+- STL: [2026-09-25 laptop arm desk attachment thing.stl](2026-09-25%20laptop%20arm%20desk%20attachment%20thing.stl)
+<!-- AUTOGEN:END 2026-09-25 laptop arm desk attachment thing -->

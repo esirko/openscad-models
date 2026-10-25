@@ -109,3 +109,14 @@
 - SCAD: [2025-12-12 level floor 2.scad](2025-12-12%20level%20floor%202.scad)
 - STL: [2025-12-12 level floor 2.stl](2025-12-12%20level%20floor%202.stl)
 <!-- AUTOGEN:END 2025-12-12 level floor 2 -->
+
+## 2026-10-06 trap door puller
+
+<!-- AUTOGEN:START 2026-10-06 trap door puller -->
+![2026-10-06 trap door puller](renders/2026-10-06%20trap%20door%20puller.png)
+
+**Files:**
+
+- SCAD: [2026-10-06 trap door puller.scad](2026-10-06%20trap%20door%20puller.scad)
+- STL: [2026-10-06 trap door puller.stl](2026-10-06%20trap%20door%20puller.stl)
+<!-- AUTOGEN:END 2026-10-06 trap door puller -->

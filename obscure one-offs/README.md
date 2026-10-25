@@ -65,3 +65,14 @@
 - SCAD: [2026-05-03 kian's wedge for monitor.scad](2026-05-03%20kian%27s%20wedge%20for%20monitor.scad)
 - STL: [2026-05-03 kian's wedge for monitor.stl](2026-05-03%20kian%27s%20wedge%20for%20monitor.stl)
 <!-- AUTOGEN:END 2026-05-03 kian's wedge for monitor -->
+
+## 2026-06-21 floor gap
+
+<!-- AUTOGEN:START 2026-06-21 floor gap -->
+![2026-06-21 floor gap](renders/2026-06-21%20floor%20gap.png)
+
+**Files:**
+
+- SCAD: [2026-06-21 floor gap.scad](2026-06-21%20floor%20gap.scad)
+- STL: [2026-06-21 floor gap.stl](2026-06-21%20floor%20gap.stl)
+<!-- AUTOGEN:END 2026-06-21 floor gap -->
